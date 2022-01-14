@@ -1,7 +1,3 @@
-/*
-This class is based off of Team Fusion 364's class
-*/
-
 package frc.lib.math;
 
 public class Conversions {

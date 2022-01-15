@@ -91,6 +91,8 @@ public final class Constants {
      public static final int FRONT_LEFT_ENCODER = 12; //Jonathan 
      public static final int FRONT_LEFT_AZIMUTH = 3; //Geraldine
 
+     public static final int INTAKE_FALCON = 0; //tune
+
     /*============================
            Module Constants
     ==============================*/

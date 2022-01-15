@@ -22,19 +22,27 @@ import frc.robot.subsystems.*;
 public class RobotContainer {
 
   /* Controllers */
-  private final XboxController m_driverController = new XboxController(0);
+  private final XboxController m_driverController = new XboxController(Constants.DRIVER_PORT);
+  private final XboxController m_opController = new XboxController(Constants.OPERATOR_PORT);
 
   /* Drive Controls */
   private final int m_translationAxis = XboxController.Axis.kLeftY.value;
   private final int m_strafeAxis = XboxController.Axis.kLeftX.value;
   private final int m_rotationAxis = XboxController.Axis.kRightX.value;
 
+  /* Operator Controls */
+  private final int m_intakeAxis = XboxController.Axis.kLeftY.value;
+
   /* Driver Buttons */
   private final JoystickButton m_zeroGyro = new JoystickButton(m_driverController, XboxController.Button.kY.value);
   private final JoystickButton m_turnTo90 = new JoystickButton(m_driverController, XboxController.Button.kB.value);
 
+  /* Operator Buttons */
+  private final JoystickButton m_intakeCargo = new JoystickButton(m_opController, XboxController.Axis.kLeftY.value);
+
   /* Subsystems */
   private final SwerveDrivetrain m_swerveDrivetrain = new SwerveDrivetrain();
+  private final Intake m_intake = new Intake();
 
   /* Autos */
   private final Command m_auto = new DriveForwardAuto(m_swerveDrivetrain);
@@ -57,10 +65,15 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+
     /* Driver Buttons */
     m_zeroGyro.whenPressed(new InstantCommand(() -> m_swerveDrivetrain.resetGyro()));
     m_turnTo90.whenPressed(new TurnToTheta(m_swerveDrivetrain, -90))
               .whenReleased(new SwerveDrive(m_swerveDrivetrain, m_driverController, m_translationAxis, m_strafeAxis, m_rotationAxis, true, true));
+    
+    /* Operator Buttons */  
+    m_intakeCargo.whenActive(new IntakeCargo(m_intake, m_opController, m_intakeAxis));
+
   }
 
   /**

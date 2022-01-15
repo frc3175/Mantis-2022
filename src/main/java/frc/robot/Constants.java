@@ -146,7 +146,7 @@ public final class Constants {
 
     //RPS IS RADIANS PER SECOND
     //MPS IS METERS PER SECOND
-    public static final double AUTO_MAX_SPEED_MPS = 4.9; //FIXME: Adjust this to whatever speed we want for auto
+    public static final double AUTO_MAX_SPEED = 4.9; //FIXME: Adjust this to whatever speed we want for auto
     public static final double AUTO_MAX_ACCELERATION_MPS_SQUARED = 3;
     
     public static final double AUTO_P_X_CONTROLLER = 1; 

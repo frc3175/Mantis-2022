@@ -14,34 +14,37 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.SwerveDrivetrain;
-import edu.wpi.first.math.geometry.Translation2d;
 
 public class DriveForwardAuto extends SequentialCommandGroup {
 
     public DriveForwardAuto(SwerveDrivetrain m_swerveDrivetrain) {
 
         //configure trajectory with maximum speed and acceleration
-        TrajectoryConfig m_config = new TrajectoryConfig(Constants.MAX_SPEED, 
+        TrajectoryConfig m_config = new TrajectoryConfig(Constants.AUTO_MAX_SPEED, 
                                                          Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED)
                                                          .setKinematics(Constants.swerveKinematics);
                                                          //TODO: figure out how to plot points and create a line of best fit to calculate max acceleration
-                                                         //TODO: ask how to calculate theoretical max acceleration because thats good enough for now
+                                                         //also ask how to calculate theoretical max acceleration because thats good enough for now
 
         //Start point
         var startPoint = new Pose2d(0, 0, Rotation2d.fromDegrees(180));
 
-        //Waypoints
-        //consider switching this to quintic splines so that it stops spinning???
-        var interiorWaypoints = new ArrayList<Translation2d>();
-        //interiorWaypoints.add(new Translation2d(Units.feetToMeters(-4), Units.feetToMeters(0)));
-
         //End point
         var endPoint = new Pose2d(Units.feetToMeters(-8), Units.feetToMeters(0), Rotation2d.fromDegrees(180));
 
+        //Waypoints (using clamped quintic splines) (the basic kind)
+        var interiorWaypoints = new ArrayList<Pose2d>();
+        var waypoint1 = new Pose2d(Units.feetToMeters(-2), Units.feetToMeters(0), Rotation2d.fromDegrees(180));
+        var waypoint2 = new Pose2d(Units.feetToMeters(-2), Units.feetToMeters(2), Rotation2d.fromDegrees(180));
+        var waypoint3 = new Pose2d(Units.feetToMeters(-2), Units.feetToMeters(0), Rotation2d.fromDegrees(180));
+        interiorWaypoints.add(startPoint);
+        interiorWaypoints.add(waypoint1);
+        interiorWaypoints.add(waypoint2);
+        interiorWaypoints.add(waypoint3);
+        interiorWaypoints.add(endPoint);
+
         //creates a trajectory
-        var m_trajectory = TrajectoryGenerator.generateTrajectory(startPoint,
-                                                                  interiorWaypoints,
-                                                                  endPoint,
+        var m_trajectory = TrajectoryGenerator.generateTrajectory(interiorWaypoints,
                                                                   m_config);
 
         //Creates pid controllers for translation, strafe, and theta

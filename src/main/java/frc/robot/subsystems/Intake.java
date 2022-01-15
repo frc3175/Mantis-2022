@@ -12,10 +12,10 @@ public class Intake extends SubsystemBase {
 
     public void intakeCargo(double power) {
         if(power > 0) {
-            m_intakeFalcon.setInverted(false);
+            m_intakeFalcon.setInverted(Constants.INVERT_INTAKE);
             m_intakeFalcon.set(ControlMode.PercentOutput, power);
         } else if(power < 0) {
-            m_intakeFalcon.setInverted(true);
+            m_intakeFalcon.setInverted(Constants.RE_INVERT_INTAKE);
             m_intakeFalcon.set(ControlMode.PercentOutput, power);
         } else {
             m_intakeFalcon.set(ControlMode.PercentOutput, 0);

@@ -56,9 +56,9 @@ public final class Constants {
 
         //TODO: characterize these at some point (ugggggggghhhhhhhhhhhhh fml)
         /* Drive Motor Characterization Values */
-        public static final double DRIVE_S = (0.667 / 12); //divide by 12 to convert from volts to percent output for CTRE
-        public static final double DRIVE_V = (2.44 / 12);
-        public static final double DRIVE_A = (0.27 / 12);
+        public static final double DRIVE_S = (0.48665 / 12); //divide by 12 to convert from volts to percent output for CTRE
+        public static final double DRIVE_V = (2.4132 / 12);
+        public static final double DRIVE_A = (0.06921 / 12);
 
         /* Swerve Profiling Values */
         public static final double MAX_SPEED = Units.feetToMeters(16.2); //meters per second
@@ -96,9 +96,9 @@ public final class Constants {
     ==============================*/
 
     //this is where you put the angle offsets you got from the smart dashboard
-    public static double FRONT_LEFT_OFFSET = 224.25;
+    public static double FRONT_LEFT_OFFSET = 44.25; //temp value, normal is 224.25
     public static double FRONT_RIGHT_OFFSET = 250.84;
-    public static double BACK_LEFT_OFFSET = 223.50;
+    public static double BACK_LEFT_OFFSET = 43.5; //temp value, normal is 223.50
     public static double BACK_RIGHT_OFFSET = 202.43;
 
     //Turning motors reversed
@@ -108,10 +108,10 @@ public final class Constants {
     public static boolean BACK_RIGHT_AZIMUTH_REVERSED = false;
 
     //Drive motors reversed
-    public static boolean FRONT_LEFT_DRIVE_REVERSED = true;
+    public static boolean FRONT_LEFT_DRIVE_REVERSED = false; //temp, normally true
     public static boolean FRONT_RIGHT_DRIVE_REVERSED = true;
-    public static boolean BACK_LEFT_DRIVE_REVERSED = true;
-    public static boolean BACK_RIGHT_DRIVE_REVERSED = true;
+    public static boolean BACK_LEFT_DRIVE_REVERSED = false; //temp, normally true
+    public static boolean BACK_RIGHT_DRIVE_REVERSED = true; 
 
     //CanCoders Reversed
     public static boolean FRONT_LEFT_CANCODER_REVERSED = false;
@@ -125,11 +125,11 @@ public final class Constants {
 
     //RPS IS RADIANS PER SECOND
     //MPS IS METERS PER SECOND
-    public static final double AUTO_MAX_SPEED_MPS = 4.9; //FIXME: Adjust this to whatever speed we want for auto
+    public static final double AUTO_MAX_SPEED_MPS = 4.9;
     public static final double AUTO_MAX_ACCELERATION_MPS_SQUARED = 3;
     
     public static final double AUTO_P_X_CONTROLLER = 1; //TODO: tune these once I start auto
-    public static final double AUTO_P_Y_CONTROLLER = 1;
+    public static final double AUTO_P_Y_CONTROLLER = 1.4884;
     public static final double AUTO_P_THETA_CONTROLLER = 1;
     
     // Constraint for the motion profilied robot angle controller

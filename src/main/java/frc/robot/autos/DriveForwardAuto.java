@@ -31,12 +31,12 @@ public class DriveForwardAuto extends SequentialCommandGroup {
         var startPoint = new Pose2d(0, 0, Rotation2d.fromDegrees(180));
 
         //Waypoints
-        //TODO: consider switching this to quintic splines so that it stops spinning???
+        //consider switching this to quintic splines so that it stops spinning???
         var interiorWaypoints = new ArrayList<Translation2d>();
-        interiorWaypoints.add(new Translation2d(Units.feetToMeters(-2), Units.feetToMeters(0)));
+        //interiorWaypoints.add(new Translation2d(Units.feetToMeters(-4), Units.feetToMeters(0)));
 
         //End point
-        var endPoint = new Pose2d(Units.feetToMeters(-4), Units.feetToMeters(0), Rotation2d.fromDegrees(180));
+        var endPoint = new Pose2d(Units.feetToMeters(-8), Units.feetToMeters(0), Rotation2d.fromDegrees(180));
 
         //creates a trajectory
         var m_trajectory = TrajectoryGenerator.generateTrajectory(startPoint,

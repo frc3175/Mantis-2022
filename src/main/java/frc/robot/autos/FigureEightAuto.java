@@ -15,9 +15,9 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.SwerveDrivetrain;
 
-public class DriveForwardAuto extends SequentialCommandGroup {
+public class FigureEightAuto extends SequentialCommandGroup {
 
-    public DriveForwardAuto(SwerveDrivetrain m_swerveDrivetrain) {
+    public FigureEightAuto(SwerveDrivetrain m_swerveDrivetrain) {
 
         //configure trajectory with maximum speed and acceleration
         TrajectoryConfig m_config = new TrajectoryConfig(Constants.AUTO_MAX_SPEED, 
@@ -29,19 +29,17 @@ public class DriveForwardAuto extends SequentialCommandGroup {
         //Start point
         var startPoint = new Pose2d(0, 0, Rotation2d.fromDegrees(180));
 
-        //End point
-        var endPoint = new Pose2d(Units.feetToMeters(-8), Units.feetToMeters(0), Rotation2d.fromDegrees(180));
-
         //Waypoints (using clamped quintic splines) (the basic kind)
         var interiorWaypoints = new ArrayList<Pose2d>();
-        var waypoint1 = new Pose2d(Units.feetToMeters(-2), Units.feetToMeters(0), Rotation2d.fromDegrees(180));
-        var waypoint2 = new Pose2d(Units.feetToMeters(-2), Units.feetToMeters(2), Rotation2d.fromDegrees(180));
-        var waypoint3 = new Pose2d(Units.feetToMeters(-2), Units.feetToMeters(0), Rotation2d.fromDegrees(180));
+        var waypoint1 = new Pose2d(Units.feetToMeters(-4), Units.feetToMeters(-2), Rotation2d.fromDegrees(180));
+        var waypoint2 = new Pose2d(Units.feetToMeters(-8), Units.feetToMeters(0), Rotation2d.fromDegrees(90));
+        var waypoint3 = new Pose2d(Units.feetToMeters(-11), Units.feetToMeters(5), Rotation2d.fromDegrees(180));
+        var realEndPoint = new Pose2d(Units.feetToMeters(-18), Units.feetToMeters(0), Rotation2d.fromDegrees(90));
         interiorWaypoints.add(startPoint);
         interiorWaypoints.add(waypoint1);
         interiorWaypoints.add(waypoint2);
         interiorWaypoints.add(waypoint3);
-        interiorWaypoints.add(endPoint);
+        interiorWaypoints.add(realEndPoint);
 
         //creates a trajectory
         var m_trajectory = TrajectoryGenerator.generateTrajectory(interiorWaypoints,

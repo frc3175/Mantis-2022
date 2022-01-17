@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.autos.DriveForwardAuto;
+import frc.robot.autos.FigureEightAuto;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -45,7 +45,7 @@ public class RobotContainer {
   private final Intake m_intake = new Intake();
 
   /* Autos */
-  private final Command m_auto = new DriveForwardAuto(m_swerveDrivetrain);
+  private final Command m_auto = new FigureEightAuto(m_swerveDrivetrain);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */

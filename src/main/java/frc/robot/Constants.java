@@ -37,9 +37,9 @@ public final class Constants {
     ==============================*/
 
     //this is where you put the angle offsets
-    public static double FRONT_LEFT_OFFSET = 44.25; //temp value, normal is 224.25
+    public static double FRONT_LEFT_OFFSET = 224.25; //temp value, normal is 224.25
     public static double FRONT_RIGHT_OFFSET = 250.84;
-    public static double BACK_LEFT_OFFSET = 43.5; //temp value, normal is 223.50
+    public static double BACK_LEFT_OFFSET = 223.5; //temp value, normal is 223.50
     public static double BACK_RIGHT_OFFSET = 202.43;
 
     //Turning motors reversed
@@ -49,9 +49,9 @@ public final class Constants {
     public static boolean BACK_RIGHT_AZIMUTH_REVERSED = false;
 
     //Drive motors reversed
-    public static boolean FRONT_LEFT_DRIVE_REVERSED = false; //temp, normally true
+    public static boolean FRONT_LEFT_DRIVE_REVERSED = true; //temp, normally true
     public static boolean FRONT_RIGHT_DRIVE_REVERSED = true;
-    public static boolean BACK_LEFT_DRIVE_REVERSED = false; //temp, normally true
+    public static boolean BACK_LEFT_DRIVE_REVERSED = true; //temp, normally true
     public static boolean BACK_RIGHT_DRIVE_REVERSED = true; 
 
     //CanCoders Reversed
@@ -149,9 +149,9 @@ public final class Constants {
     public static final double AUTO_MAX_SPEED = 4.9; //FIXME: Adjust this to whatever speed we want for auto
     public static final double AUTO_MAX_ACCELERATION_MPS_SQUARED = 3;
     
-    public static final double AUTO_P_X_CONTROLLER = 1; 
+    public static final double AUTO_P_X_CONTROLLER = 0; 
     public static final double AUTO_P_Y_CONTROLLER = 1.4884;
-    public static final double AUTO_P_THETA_CONTROLLER = 1;
+    public static final double AUTO_P_THETA_CONTROLLER = 0.01;
     
     // Constraint for the motion profilied robot angle controller
     public static final TrapezoidProfile.Constraints THETA_CONTROLLER_CONSTRAINTS =

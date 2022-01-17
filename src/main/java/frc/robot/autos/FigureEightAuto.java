@@ -17,7 +17,11 @@ import frc.robot.subsystems.SwerveDrivetrain;
 
 public class FigureEightAuto extends SequentialCommandGroup {
 
-    public FigureEightAuto(SwerveDrivetrain m_swerveDrivetrain) {
+    private SwerveDrivetrain m_drivetrain;
+
+    public FigureEightAuto(SwerveDrivetrain drivetrain) {
+
+        m_drivetrain = drivetrain;
 
         //configure trajectory with maximum speed and acceleration
         TrajectoryConfig m_config = new TrajectoryConfig(Constants.AUTO_MAX_SPEED, 
@@ -56,17 +60,17 @@ public class FigureEightAuto extends SequentialCommandGroup {
         //creates the swerve command
         SwerveControllerCommand swerveCommand = 
         new SwerveControllerCommand(m_trajectory, 
-                                    m_swerveDrivetrain::getPose, 
+                                    m_drivetrain::getPose, 
                                     Constants.swerveKinematics, 
                                     m_translationController, 
                                     m_strafeController, 
                                     m_thetaController, 
-                                    m_swerveDrivetrain::setModuleStates, 
-                                    m_swerveDrivetrain);
+                                    m_drivetrain::setModuleStates, 
+                                    m_drivetrain);
 
         //commands to sequentially run in autonomous
         addCommands(
-            new InstantCommand(() -> m_swerveDrivetrain.resetOdometry(m_trajectory.getInitialPose())), 
+            new InstantCommand(() -> m_drivetrain.resetOdometry(m_trajectory.getInitialPose())), 
             swerveCommand
         );
 

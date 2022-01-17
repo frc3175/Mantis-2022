@@ -107,7 +107,7 @@ public final class Constants {
     ==============================*/
 
      /* Swerve Current Limiting */
-     public static final int AZIMUTH_CONTINUOUS_CURRENT_LIMIT = 25; //FIXME: Adjust these to stop brownouts
+     public static final int AZIMUTH_CONTINUOUS_CURRENT_LIMIT = 25; //FIXME: Adjust these to stop brownouts??
      public static final int AZIMUTH_PEAK_CURRENT_LIMIT = 40;
      public static final double AZIMUTH_PEAK_CURRENT_DURATION = 0.1;
      public static final boolean AZIMUTH_ENABLE_CURRENT_LIMIT = true;

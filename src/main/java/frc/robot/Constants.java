@@ -32,6 +32,8 @@ public final class Constants {
 
     public static final int INTAKE_FALCON = 0; //tune
 
+    public static final int HOPPER = 0;
+
     /*============================
            Module Constants
     ==============================*/
@@ -81,6 +83,12 @@ public final class Constants {
     public static final double DRIVE_V = (2.4132 / 12);
     public static final double DRIVE_A = (0.06921 / 12);
 
+    /* Hopper PIDF Values */
+    public static final double HOPPER_P = 0.0;
+    public static final double HOPPER_I = 0.0;
+    public static final double HOPPER_D = 0.0;
+    public static final double HOPPER_F = 0.0;
+
     /*============================
                Kinematics
     ==============================*/
@@ -106,7 +114,7 @@ public final class Constants {
               CTRE Configs
     ==============================*/
 
-     /* Swerve Current Limiting */
+     /* Current Limiting */
      public static final int AZIMUTH_CONTINUOUS_CURRENT_LIMIT = 25; //FIXME: Adjust these to stop brownouts??
      public static final int AZIMUTH_PEAK_CURRENT_LIMIT = 40;
      public static final double AZIMUTH_PEAK_CURRENT_DURATION = 0.1;
@@ -117,9 +125,15 @@ public final class Constants {
      public static final double DRIVE_PEAK_CURRENT_DURATION = 0.1;
      public static final boolean DRIVE_ENABLE_CURRENT_LIMIT = true;
 
+     public static final int HOPPER_CONTINUOUS_CURRENT_LIMIT = 35; //absolutely no clue what these should be, fix!!
+     public static final int HOPPER_PEAK_CURRENT_LIMIT = 60;
+     public static final double HOPPER_PEAK_CURRENT_DURATION = 0.1;
+     public static final boolean HOPPER_ENABLE_CURRENT_LIMIT = true;
+
      /* Neutral Modes */
      public static final NeutralMode AZIMUTH_NEUTRAL_MODE = NeutralMode.Coast;
      public static final NeutralMode DRIVE_NEUTRAL_MODE = NeutralMode.Brake;
+     public static final NeutralMode HOPPER_NEUTRAL_MODE = NeutralMode.Brake; //???
 
     /*============================
             TeleOp Constants
@@ -134,6 +148,10 @@ public final class Constants {
     public static final boolean INVERT_GYRO = true; // Always ensure Gyro is CCW+ CW- !!!!!
     public static final boolean INVERT_INTAKE = true; //opposite of intake_not_inverted
     public static final boolean RE_INVERT_INTAKE = false; //opposite of invert_intake
+    public static final boolean INVERT_HOPPER = false;
+
+    /* Hopper Constants */
+    public static final double TARGET_HOPPER_RPM = 1000; //random
 
     /* Swerve Profiling Values */
     public static final double MAX_SPEED = Units.feetToMeters(16.2); //meters per second

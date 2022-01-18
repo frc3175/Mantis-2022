@@ -13,12 +13,14 @@ public final class CTREConfigs {
     public TalonFXConfiguration swerveAngleFXConfig;
     public TalonFXConfiguration swerveDriveFXConfig;
     public CANCoderConfiguration swerveCanCoderConfig;
+    public static TalonFXConfiguration hopperFXConfig;
 
 
     public CTREConfigs(){
         swerveAngleFXConfig = new TalonFXConfiguration();
         swerveDriveFXConfig = new TalonFXConfiguration();
         swerveCanCoderConfig = new CANCoderConfiguration();
+        hopperFXConfig = new TalonFXConfiguration();
 
         /* Swerve Angle Motor Configurations */
         SupplyCurrentLimitConfiguration angleSupplyLimit = new SupplyCurrentLimitConfiguration(
@@ -56,6 +58,25 @@ public final class CTREConfigs {
         swerveCanCoderConfig.absoluteSensorRange = AbsoluteSensorRange.Unsigned_0_to_360;
         swerveCanCoderConfig.initializationStrategy = SensorInitializationStrategy.BootToAbsolutePosition;
         swerveCanCoderConfig.sensorTimeBase = SensorTimeBase.PerSecond;
+
+        /* Hopper Falcon Configuration */
+        SupplyCurrentLimitConfiguration hopperSupplyLimit = new SupplyCurrentLimitConfiguration(
+            Constants.HOPPER_ENABLE_CURRENT_LIMIT,
+            Constants.HOPPER_CONTINUOUS_CURRENT_LIMIT,
+            Constants.HOPPER_PEAK_CURRENT_LIMIT,
+            Constants.HOPPER_PEAK_CURRENT_DURATION
+        );
+
+        hopperFXConfig.slot0.kP = Constants.HOPPER_P;
+        hopperFXConfig.slot0.kI = Constants.HOPPER_I;
+        hopperFXConfig.slot0.kD = Constants.HOPPER_D;
+        hopperFXConfig.slot0.kF = Constants.HOPPER_F;
+        hopperFXConfig.supplyCurrLimit = hopperSupplyLimit;
+        hopperFXConfig.initializationStrategy = SensorInitializationStrategy.BootToZero;
+        hopperFXConfig.openloopRamp = Constants.OPEN_LOOP_RAMP; //maybe make this own ramp to spin up faster???
+        hopperFXConfig.closedloopRamp = Constants.CLOSED_LOOP_RAMP; //"                                     "
+
+
 
         
 

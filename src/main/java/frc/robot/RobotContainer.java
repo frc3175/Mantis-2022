@@ -16,8 +16,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-//import frc.robot.autos.FigureEightAuto;
-import frc.robot.autos.PathweaverTest;
+import frc.robot.autos.automodes.PathweaverTest;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -33,20 +32,22 @@ public class RobotContainer {
   private final XboxController m_driverController = new XboxController(Constants.DRIVER_PORT);
   private final XboxController m_opController = new XboxController(Constants.OPERATOR_PORT);
 
-  /* Drive Controls */
+  /* Drive Axes */
   private final int m_translationAxis = XboxController.Axis.kLeftY.value;
   private final int m_strafeAxis = XboxController.Axis.kLeftX.value;
   private final int m_rotationAxis = XboxController.Axis.kRightX.value;
 
-  /* Operator Controls */
-  private final int m_intakeAxis = XboxController.Axis.kLeftY.value;
+  /* Operator Axes */
+  private final int m_intakeAxis = XboxController.Axis.kLeftTrigger.value;
+  private final int m_outtakeAxis = XboxController.Axis.kRightTrigger.value;
 
   /* Driver Buttons */
   private final JoystickButton m_zeroGyro = new JoystickButton(m_driverController, XboxController.Button.kY.value);
   private final JoystickButton m_turnTo90 = new JoystickButton(m_driverController, XboxController.Button.kB.value);
 
   /* Operator Buttons */
-  private final JoystickButton m_intakeCargo = new JoystickButton(m_opController, XboxController.Axis.kLeftY.value);
+  private final JoystickButton m_intakeCargo = new JoystickButton(m_opController, XboxController.Axis.kLeftTrigger.value);
+  private final JoystickButton m_outtakeCargo = new JoystickButton(m_opController, XboxController.Axis.kRightTrigger.value);
 
   /* Subsystems */
   private final SwerveDrivetrain m_swerveDrivetrain = new SwerveDrivetrain();
@@ -93,6 +94,8 @@ public class RobotContainer {
     
     /* Operator Buttons */  
     m_intakeCargo.whenActive(new IntakeCargo(m_intake, m_opController, m_intakeAxis));
+    m_outtakeCargo.whenActive(new IntakeCargo(m_intake, m_opController, m_outtakeAxis));
+
 
   }
 

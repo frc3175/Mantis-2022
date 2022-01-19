@@ -1,20 +1,17 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
 
 public class IntakeCargo extends CommandBase {
 
     private final Intake m_intake;
-    private final XboxController m_opController;
-    private final int m_intakeAxis;
+    private final double m_speed;
     
-    public IntakeCargo(Intake intake, XboxController opController, int intakeAxis) {
+    public IntakeCargo(Intake intake, double speed) {
 
         m_intake = intake;
-        m_opController = opController;
-        m_intakeAxis = intakeAxis;
+        m_speed = speed;
 
         addRequirements(m_intake);
 
@@ -23,7 +20,7 @@ public class IntakeCargo extends CommandBase {
     @Override
     public void execute() {
        
-        m_intake.intakeCargo((m_opController.getRawAxis(m_intakeAxis)) * -1);
+        m_intake.intakeCargo(m_speed);
 
     }
 

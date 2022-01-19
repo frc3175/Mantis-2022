@@ -150,6 +150,10 @@ public final class Constants {
     public static final boolean RE_INVERT_INTAKE = false; //opposite of invert_intake
     public static final boolean INVERT_HOPPER = false;
 
+    /* Intake Constants */
+    public static final double INTAKE_SPEED = 0.5;
+    public static final double OUTTAKE_SPEED = 0.5;
+
     /* Hopper Constants */
     public static final double TARGET_HOPPER_RPM = 1000; //random
 

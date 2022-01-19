@@ -41,7 +41,6 @@ public class RobotContainer {
   private final JoystickButton m_zeroGyro = new JoystickButton(m_driverController, XboxController.Button.kY.value);
   private final JoystickButton m_turnTo90 = new JoystickButton(m_driverController, XboxController.Button.kB.value);
   private final JoystickButton m_feedShooter = new JoystickButton(m_driverController, XboxController.Button.kLeftBumper.value);
-  private final JoystickButton m_agitateHopper = new JoystickButton(m_driverController, XboxController.Button.kRightBumper.value);
 
   /* Operator Buttons */
   private final JoystickButton m_intakeCargo = new JoystickButton(m_opController, XboxController.Axis.kLeftTrigger.value);
@@ -50,7 +49,7 @@ public class RobotContainer {
   /* Subsystems */
   private final SwerveDrivetrain m_swerveDrivetrain = new SwerveDrivetrain();
   private final Intake m_intake = new Intake();
-  private final Hopper m_hopper = new Hopper();
+  private final Feeder m_feeder = new Feeder();
 
   /* Autos */
   //private final Command m_auto = new FigureEightAuto(m_swerveDrivetrain);
@@ -90,8 +89,7 @@ public class RobotContainer {
     m_zeroGyro.whenPressed(new InstantCommand(() -> m_swerveDrivetrain.resetGyro()));
     m_turnTo90.whenPressed(new TurnToTheta(m_swerveDrivetrain, -90))
               .whenReleased(new SwerveDrive(m_swerveDrivetrain, m_driverController, m_translationAxis, m_strafeAxis, m_rotationAxis, true, true));
-    m_feedShooter.whenPressed(new FeedShooter(m_hopper, Constants.TARGET_HOPPER_RPM));
-    m_agitateHopper.whenPressed(new AgitateHopper(m_hopper, Constants.AGITATE_HOPPER_RPM));
+    m_feedShooter.whenPressed(new FeedShooter(m_feeder, Constants.TARGET_FEEDER_RPM));
     
     /* Operator Buttons */  
     m_intakeCargo.whenActive(new IntakeCargo(m_intake, Constants.INTAKE_SPEED));

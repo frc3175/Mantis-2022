@@ -1,28 +1,28 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Hopper;
+import frc.robot.subsystems.Feeder;
 
 public class FeedShooter extends CommandBase {
 
-    private final Hopper m_hopper;
+    private final Feeder m_feeder;
     private final double m_rpm;
     
-    public FeedShooter(Hopper hopper, double rpm) {
+    public FeedShooter(Feeder feeder, double rpm) {
 
-        m_hopper = hopper;
+        m_feeder = feeder;
         m_rpm = rpm;
         
     }
 
     @Override
     public void initialize() {
-        m_hopper.resetEncoders();
+        m_feeder.resetEncoders();
     }
 
     @Override
     public void execute() {
-        m_hopper.hopperRun(m_rpm);
+        m_feeder.feederRun(m_rpm);
     }
 
 

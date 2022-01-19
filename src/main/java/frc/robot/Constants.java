@@ -156,6 +156,7 @@ public final class Constants {
 
     /* Hopper Constants */
     public static final double TARGET_HOPPER_RPM = 1000; //random
+    public static final double AGITATE_HOPPER_RPM = 1000;
 
     /* Swerve Profiling Values */
     public static final double MAX_SPEED = Units.feetToMeters(16.2); //meters per second

@@ -10,10 +10,12 @@ import com.ctre.phoenix.sensors.SensorTimeBase;
 //TODO: make sure to config all motors and do all configs in subsystem manager file!!
 
 public final class CTREConfigs {
+
     public TalonFXConfiguration swerveAngleFXConfig;
     public TalonFXConfiguration swerveDriveFXConfig;
     public CANCoderConfiguration swerveCanCoderConfig;
     public static TalonFXConfiguration feederFXConfig;
+    public static TalonFXConfiguration shooterFXConfig;
 
 
     public CTREConfigs(){
@@ -21,6 +23,7 @@ public final class CTREConfigs {
         swerveDriveFXConfig = new TalonFXConfiguration();
         swerveCanCoderConfig = new CANCoderConfiguration();
         feederFXConfig = new TalonFXConfiguration();
+        shooterFXConfig = new TalonFXConfiguration();
 
         /* Swerve Angle Motor Configurations */
         SupplyCurrentLimitConfiguration angleSupplyLimit = new SupplyCurrentLimitConfiguration(
@@ -75,6 +78,14 @@ public final class CTREConfigs {
         feederFXConfig.initializationStrategy = SensorInitializationStrategy.BootToZero;
         feederFXConfig.openloopRamp = Constants.OPEN_LOOP_RAMP; //maybe make this own ramp to spin up faster???
         feederFXConfig.closedloopRamp = Constants.CLOSED_LOOP_RAMP; //"                                     "
+
+        /* Shooter Falcon Configuration */
+        SupplyCurrentLimitConfiguration shooterSupplyLimit = new SupplyCurrentLimitConfiguration(
+            Constants.SHOOTER_ENABLE_CURRENT_LIMIT,
+            Constants.SHOOTER_CONTINUOUS_CURRENT_LIMIT,
+            Constants.SHOOTER_PEAK_CURRENT_LIMIT,
+            Constants.SHOOTER_PEAK_CURRENT_DURATION
+        );
 
 
 

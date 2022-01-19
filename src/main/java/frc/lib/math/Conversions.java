@@ -1,5 +1,13 @@
 package frc.lib.math;
 
+import java.io.IOException;
+import java.nio.file.Path;
+
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryUtil;
+import edu.wpi.first.wpilibj.Filesystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class Conversions {
 
     /**
@@ -65,6 +73,18 @@ public class Conversions {
         double wheelRPM = ((velocity * 60) / circumference);
         double wheelVelocity = RPMToFalcon(wheelRPM, gearRatio);
         return wheelVelocity;
+    }
+
+    public static Trajectory toTrajectory() {
+        String trajectoryJSON = "paths/firstPath.wpilib.json";
+        try {
+            Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
+            Trajectory trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+            return trajectory;
+        } catch (IOException e) {
+            SmartDashboard.putString("conversion error", e.toString());
+            return null;
+        }
     }
 
     

@@ -130,6 +130,11 @@ public final class Constants {
      public static final double FEEDER_PEAK_CURRENT_DURATION = 0.1;
      public static final boolean FEEDER_ENABLE_CURRENT_LIMIT = true;
 
+     public static final int SHOOTER_CONTINUOUS_CURRENT_LIMIT = 35;
+     public static final int SHOOTER_PEAK_CURRENT_LIMIT = 60;
+     public static final double SHOOTER_PEAK_CURRENT_DURATION = 0.1;
+     public static final boolean SHOOTER_ENABLE_CURRENT_LIMIT = true;
+
      /* Neutral Modes */
      public static final NeutralMode AZIMUTH_NEUTRAL_MODE = NeutralMode.Coast;
      public static final NeutralMode DRIVE_NEUTRAL_MODE = NeutralMode.Brake;

@@ -87,6 +87,15 @@ public final class CTREConfigs {
             Constants.SHOOTER_PEAK_CURRENT_DURATION
         );
 
+        shooterFXConfig.slot0.kP = Constants.SHOOTER_P; //maybe switch to bang bang controller
+        shooterFXConfig.slot0.kI = Constants.SHOOTER_I;
+        shooterFXConfig.slot0.kD = Constants.SHOOTER_D;
+        shooterFXConfig.slot0.kF = Constants.SHOOTER_F;
+        shooterFXConfig.supplyCurrLimit = shooterSupplyLimit;
+        shooterFXConfig.initializationStrategy = SensorInitializationStrategy.BootToZero;
+        shooterFXConfig.openloopRamp = Constants.OPEN_LOOP_RAMP;
+        shooterFXConfig.closedloopRamp = Constants.CLOSED_LOOP_RAMP; //change these for flywheel??
+
 
 
         

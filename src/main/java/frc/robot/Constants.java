@@ -6,6 +6,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 
 public final class Constants {
 
@@ -33,6 +34,9 @@ public final class Constants {
     public static final int INTAKE_FALCON = 0; //tune
 
     public static final int FEEDER_FALCON = 0;
+
+    public static final int LEFT_SHOOTER_FALCON = 0;
+    public static final int RIGHT_SHOOTER_FALCON = 0;
 
     /*============================
            Module Constants
@@ -89,6 +93,12 @@ public final class Constants {
     public static final double FEEDER_D = 0.0;
     public static final double FEEDER_F = 0.0;
 
+    /* Shooter PIDF Values */
+    public static final double SHOOTER_P = 0.0;
+    public static final double SHOOTER_I = 0.0;
+    public static final double SHOOTER_D = 0.0;
+    public static final double SHOOTER_F = 0.0;
+
     /*============================
                Kinematics
     ==============================*/
@@ -139,6 +149,7 @@ public final class Constants {
      public static final NeutralMode AZIMUTH_NEUTRAL_MODE = NeutralMode.Coast;
      public static final NeutralMode DRIVE_NEUTRAL_MODE = NeutralMode.Brake;
      public static final NeutralMode FEEDER_NEUTRAL_MODE = NeutralMode.Brake; //???
+     public static final NeutralMode SHOOTER_NEUTRAL_MODE = NeutralMode.Coast; //this is coast in case i need to switch to bang bang
 
     /*============================
             TeleOp Constants
@@ -148,12 +159,18 @@ public final class Constants {
     public static final double STICK_DEADBAND = 0.1;
     public static final int DRIVER_PORT = 0;
     public static final int OPERATOR_PORT = 1;
+    public static final double OP_RUMBLE_PERCENT = 0.5;
+    public static final double DRIVER_RUMBLE_PERCENT = 0.5;
+    public static final RumbleType DRIVER_RUMBLE = RumbleType.kLeftRumble;
+    public static final RumbleType OP_RUMBLE = RumbleType.kLeftRumble;
 
     /* Inversions */
     public static final boolean INVERT_GYRO = true; // Always ensure Gyro is CCW+ CW- !!!!!
     public static final boolean INVERT_INTAKE = true; //opposite of intake_not_inverted
     public static final boolean RE_INVERT_INTAKE = false; //opposite of invert_intake
     public static final boolean INVERT_FEEDER = false;
+    public static final boolean INVERT_LEFT_SHOOTER = true;
+    public static final boolean INVERT_RIGHT_SHOOTER = false;
 
     /* Intake Constants */
     public static final double INTAKE_SPEED = 0.5;
@@ -161,6 +178,10 @@ public final class Constants {
 
     /* Feeder Constants */
     public static final double TARGET_FEEDER_RPM = 1000; //random
+
+    /* Shooter Constants */
+    public static final double SHOOTER_TARGET_RPM = 3000; //random
+    public static final double SHOOTER_ERROR = 100; //allowable shooter error from setpoint to be "spun up"
 
     /* Swerve Profiling Values */
     public static final double MAX_SPEED = Units.feetToMeters(16.2); //meters per second

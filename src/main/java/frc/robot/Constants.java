@@ -38,6 +38,8 @@ public final class Constants {
     public static final int LEFT_SHOOTER_FALCON = 0;
     public static final int RIGHT_SHOOTER_FALCON = 0;
 
+    public static final int CLIMBER_FALCON = 0;
+
     /*============================
            Module Constants
     ==============================*/
@@ -99,6 +101,12 @@ public final class Constants {
     public static final double SHOOTER_D = 0.0;
     public static final double SHOOTER_F = 0.0;
 
+    /* Climber PIDF Values */
+    public static final double CLIMBER_P = 0.0;
+    public static final double CLIMBER_I = 0.0;
+    public static final double CLIMBER_D = 0.0;
+    public static final double CLIMBER_F = 0.0;
+
     /*============================
                Kinematics
     ==============================*/
@@ -145,11 +153,17 @@ public final class Constants {
      public static final double SHOOTER_PEAK_CURRENT_DURATION = 0.1;
      public static final boolean SHOOTER_ENABLE_CURRENT_LIMIT = true;
 
+     public static final int CLIMBER_CONTINUOUS_CURRENT_LIMIT = 35;
+     public static final int CLIMBER_PEAK_CURRENT_LIMIT = 60;
+     public static final double CLIMBER_PEAK_CURRENT_DURATION = 0.1;
+     public static final boolean CLIMBER_ENABLE_CURRENT_LIMIT = true;
+
      /* Neutral Modes */
      public static final NeutralMode AZIMUTH_NEUTRAL_MODE = NeutralMode.Coast;
      public static final NeutralMode DRIVE_NEUTRAL_MODE = NeutralMode.Brake;
      public static final NeutralMode FEEDER_NEUTRAL_MODE = NeutralMode.Brake; //???
      public static final NeutralMode SHOOTER_NEUTRAL_MODE = NeutralMode.Coast; //this is coast in case i need to switch to bang bang
+     public static final NeutralMode CLIMBER_NEUTRAL_MODE = NeutralMode.Brake; //????
 
     /*============================
             TeleOp Constants
@@ -171,6 +185,7 @@ public final class Constants {
     public static final boolean INVERT_FEEDER = false;
     public static final boolean INVERT_LEFT_SHOOTER = true;
     public static final boolean INVERT_RIGHT_SHOOTER = false;
+    public static final boolean INVERT_CLIMBER = false;
 
     /* Intake Constants */
     public static final double INTAKE_SPEED = 0.5;
@@ -182,6 +197,11 @@ public final class Constants {
     /* Shooter Constants */
     public static final double SHOOTER_TARGET_RPM = 3000; //random
     public static final double SHOOTER_ERROR = 100; //allowable shooter error from setpoint to be "spun up"
+
+    /* Climber Constants */
+    public static final double CLIMBER_SPEED = 0.5;
+    public static final double CLIMBER_UP_SETPOINT = 5000; 
+    public static final double CLIMBER_DOWN_SETPOINT = 100;
 
     /* Swerve Profiling Values */
     public static final double MAX_SPEED = Units.feetToMeters(16.2); //meters per second

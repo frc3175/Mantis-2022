@@ -16,6 +16,7 @@ public final class CTREConfigs {
     public CANCoderConfiguration swerveCanCoderConfig;
     public static TalonFXConfiguration feederFXConfig;
     public static TalonFXConfiguration shooterFXConfig;
+    public static TalonFXConfiguration climberFXConfig;
 
 
     public CTREConfigs(){
@@ -24,6 +25,7 @@ public final class CTREConfigs {
         swerveCanCoderConfig = new CANCoderConfiguration();
         feederFXConfig = new TalonFXConfiguration();
         shooterFXConfig = new TalonFXConfiguration();
+        climberFXConfig = new TalonFXConfiguration();
 
         /* Swerve Angle Motor Configurations */
         SupplyCurrentLimitConfiguration angleSupplyLimit = new SupplyCurrentLimitConfiguration(
@@ -95,6 +97,23 @@ public final class CTREConfigs {
         shooterFXConfig.initializationStrategy = SensorInitializationStrategy.BootToZero;
         shooterFXConfig.openloopRamp = Constants.OPEN_LOOP_RAMP;
         shooterFXConfig.closedloopRamp = Constants.CLOSED_LOOP_RAMP; //change these for flywheel??
+
+        /* Climber Falcon Configuration */
+        SupplyCurrentLimitConfiguration climberSupplyLimit = new SupplyCurrentLimitConfiguration(
+            Constants.CLIMBER_ENABLE_CURRENT_LIMIT,
+            Constants.CLIMBER_CONTINUOUS_CURRENT_LIMIT,
+            Constants.CLIMBER_PEAK_CURRENT_LIMIT,
+            Constants.CLIMBER_PEAK_CURRENT_DURATION
+        );
+
+        climberFXConfig.slot0.kP = Constants.CLIMBER_P;
+        climberFXConfig.slot0.kI = Constants.CLIMBER_I;
+        climberFXConfig.slot0.kD = Constants.CLIMBER_D;
+        climberFXConfig.slot0.kF = Constants.CLIMBER_F;
+        climberFXConfig.supplyCurrLimit = climberSupplyLimit;
+        climberFXConfig.initializationStrategy = SensorInitializationStrategy.BootToZero;
+        climberFXConfig.openloopRamp = Constants.OPEN_LOOP_RAMP;
+        climberFXConfig.closedloopRamp = Constants.CLOSED_LOOP_RAMP; //change these for flywheel??
 
 
 

@@ -40,6 +40,16 @@ public class Shooter extends SubsystemBase {
         m_leftShooterFalcon.setSelectedSensorPosition(0);
         m_rightShooterFalcon.setSelectedSensorPosition(0);
     }
+
+    public boolean rightFalconAtSetpoint(double rpm) {
+        boolean isAtSetpoint = (rpm - getRightVelocity()) < Constants.SHOOTER_ERROR ? true : false;
+        return isAtSetpoint;
+    }
+
+    public boolean leftFalconAtSetpoint(double rpm) {
+        boolean isAtSetpoint = (rpm - getLeftVelocity()) < Constants.SHOOTER_ERROR ? true : false;
+        return isAtSetpoint;
+    }
     
     private void configShooterFalcons() {
         m_leftShooterFalcon.configFactoryDefault();

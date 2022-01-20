@@ -25,7 +25,9 @@ public class ShootCargo extends CommandBase {
 
     @Override
     public void initialize() {
+
         m_shooter.resetEncoders();
+
     }
 
     @Override
@@ -33,10 +35,7 @@ public class ShootCargo extends CommandBase {
 
         m_shooter.shoot(m_rpm);
 
-        boolean rightFalconAtSetpoint = (m_rpm - m_shooter.getRightVelocity()) < Constants.SHOOTER_ERROR ? true : false; 
-        boolean leftFalconAtSetpoint = (m_rpm - m_shooter.getLeftVelocity()) < Constants.SHOOTER_ERROR ? true : false;
-
-        if(rightFalconAtSetpoint && leftFalconAtSetpoint) {
+        if(m_shooter.rightFalconAtSetpoint(m_rpm) && m_shooter.leftFalconAtSetpoint(m_rpm)) {
             m_driveController.setRumble(Constants.DRIVER_RUMBLE, Constants.DRIVER_RUMBLE_PERCENT);
             m_opController.setRumble(Constants.OP_RUMBLE, Constants.OP_RUMBLE_PERCENT);
         }

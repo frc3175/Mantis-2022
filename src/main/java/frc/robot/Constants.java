@@ -158,12 +158,18 @@ public final class Constants {
      public static final double CLIMBER_PEAK_CURRENT_DURATION = 0.1;
      public static final boolean CLIMBER_ENABLE_CURRENT_LIMIT = true;
 
+     public static final int INTAKE_CONTINUOUS_CURRENT_LIMIT = 35;
+     public static final int INTAKE_PEAK_CURRENT_LIMIT = 60;
+     public static final double INTAKE_PEAK_CURRENT_DURATION = 0.1;
+     public static final boolean INTAKE_ENABLE_CURRENT_LIMIT = true;
+
      /* Neutral Modes */
      public static final NeutralMode AZIMUTH_NEUTRAL_MODE = NeutralMode.Coast;
      public static final NeutralMode DRIVE_NEUTRAL_MODE = NeutralMode.Brake;
      public static final NeutralMode FEEDER_NEUTRAL_MODE = NeutralMode.Brake; //???
      public static final NeutralMode SHOOTER_NEUTRAL_MODE = NeutralMode.Coast; //this is coast in case i need to switch to bang bang
      public static final NeutralMode CLIMBER_NEUTRAL_MODE = NeutralMode.Brake; //????
+     public static final NeutralMode INTAKE_NEUTRAL_MODE = NeutralMode.Brake;
 
     /*============================
             TeleOp Constants

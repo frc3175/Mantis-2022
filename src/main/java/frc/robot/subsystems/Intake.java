@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.CTREConfigs;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
@@ -20,6 +21,13 @@ public class Intake extends SubsystemBase {
         } else {
             m_intakeFalcon.set(ControlMode.PercentOutput, 0);
         }   
+    }
+
+    public void configIntakeMotor() {
+        m_intakeFalcon.configFactoryDefault();
+        m_intakeFalcon.configAllSettings(CTREConfigs.intakeFXConfig);
+        m_intakeFalcon.setInverted(Constants.INVERT_INTAKE);
+        m_intakeFalcon.setNeutralMode(Constants.INTAKE_NEUTRAL_MODE);
     }
 
 }

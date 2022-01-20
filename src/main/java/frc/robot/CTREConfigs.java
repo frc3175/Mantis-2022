@@ -17,6 +17,7 @@ public final class CTREConfigs {
     public static TalonFXConfiguration feederFXConfig;
     public static TalonFXConfiguration shooterFXConfig;
     public static TalonFXConfiguration climberFXConfig;
+    public static TalonFXConfiguration intakeFXConfig;
 
 
     public CTREConfigs(){
@@ -26,6 +27,7 @@ public final class CTREConfigs {
         feederFXConfig = new TalonFXConfiguration();
         shooterFXConfig = new TalonFXConfiguration();
         climberFXConfig = new TalonFXConfiguration();
+        intakeFXConfig = new TalonFXConfiguration();
 
         /* Swerve Angle Motor Configurations */
         SupplyCurrentLimitConfiguration angleSupplyLimit = new SupplyCurrentLimitConfiguration(
@@ -114,6 +116,22 @@ public final class CTREConfigs {
         climberFXConfig.initializationStrategy = SensorInitializationStrategy.BootToZero;
         climberFXConfig.openloopRamp = Constants.OPEN_LOOP_RAMP;
         climberFXConfig.closedloopRamp = Constants.CLOSED_LOOP_RAMP; //change these for flywheel??
+
+        /* Intake Falcon Configuration */
+        SupplyCurrentLimitConfiguration intakeSupplyLimit = new SupplyCurrentLimitConfiguration(
+            Constants.INTAKE_ENABLE_CURRENT_LIMIT,
+            Constants.INTAKE_CONTINUOUS_CURRENT_LIMIT,
+            Constants.INTAKE_PEAK_CURRENT_LIMIT,
+            Constants.INTAKE_PEAK_CURRENT_DURATION
+        );
+
+        intakeFXConfig.supplyCurrLimit = intakeSupplyLimit;
+
+        
+        
+
+
+
 
 
 

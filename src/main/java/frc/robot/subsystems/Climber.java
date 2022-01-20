@@ -6,6 +6,15 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import frc.robot.CTREConfigs;
 import frc.robot.Constants;
 
+//
+//Undecided if this should be state space or just have a regular setpoint
+//At the moment, just uses a setpoint and PID but it is also only partially done
+//PID is super important too here!!!! We do NOT want a robot bouncing up and down
+//
+//Note: have an override button so that if the position control doesn't work perfectly
+//we can still move up and down
+//
+
 public class Climber {
 
     private final TalonFX m_climberFalcon = new TalonFX(Constants.CLIMBER_FALCON);

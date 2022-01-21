@@ -17,10 +17,10 @@ public class Feeder extends SubsystemBase {
     public Feeder() {
 
         m_manager = new SubsystemManager(m_feederFalcon, 
-                                                        CTREConfigs.feederFXConfig, 
-                                                        Constants.INVERT_FEEDER, 
-                                                        Constants.FEEDER_NEUTRAL_MODE, 
-                                                        "feeder");
+                                         CTREConfigs.feederFXConfig, 
+                                         Constants.INVERT_FEEDER, 
+                                         Constants.FEEDER_NEUTRAL_MODE, 
+                                         "feeder");
 
         m_feederFalcon = new TalonFX(Constants.FEEDER_FALCON);
         

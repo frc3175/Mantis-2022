@@ -46,11 +46,13 @@ public class RobotContainer {
   /* Operator Buttons */
   private final JoystickButton m_intakeCargo = new JoystickButton(m_opController, XboxController.Axis.kLeftTrigger.value);
   private final JoystickButton m_outtakeCargo = new JoystickButton(m_opController, XboxController.Axis.kRightTrigger.value);
+  private final JoystickButton m_shootCargo = new JoystickButton(m_opController, XboxController.Button.kA.value);
 
   /* Subsystems */
   private final SwerveDrivetrain m_swerveDrivetrain = new SwerveDrivetrain();
   private final Intake m_intake = new Intake();
   private final Feeder m_feeder = new Feeder();
+  private final Shooter m_shooter = new Shooter();
 
   /* Autos */
   //private final Command m_auto = new FigureEightAuto(m_swerveDrivetrain);
@@ -95,6 +97,7 @@ public class RobotContainer {
     /* Operator Buttons */  
     m_intakeCargo.whenActive(new IntakeCargo(m_intake, Constants.INTAKE_SPEED));
     m_outtakeCargo.whenActive(new IntakeCargo(m_intake, Constants.OUTTAKE_SPEED));
+    m_shootCargo.whenPressed(new ShootCargo(m_shooter, Constants.SHOOTER_TARGET_RPM, m_driverController, m_opController));
 
 
   }

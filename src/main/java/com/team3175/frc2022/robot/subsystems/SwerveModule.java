@@ -1,18 +1,18 @@
-package frc.robot.subsystems;
+package com.team3175.frc2022.robot.subsystems;
 
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.lib.math.Conversions;
-import frc.lib.util.CTREModuleState;
-import frc.robot.Constants;
-import frc.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.CANCoder;
+import com.team3175.frc2022.lib.math.Conversions;
+import com.team3175.frc2022.lib.util.CTREModuleState;
+import com.team3175.frc2022.robot.Constants;
+import com.team3175.frc2022.robot.Robot;
 
 public class SwerveModule {
     public int m_moduleNumber;

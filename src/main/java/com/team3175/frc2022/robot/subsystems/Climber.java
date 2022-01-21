@@ -1,14 +1,13 @@
-package frc.robot.subsystems;
+package com.team3175.frc2022.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-
-import frc.robot.CTREConfigs;
-import frc.robot.Constants;
+import com.team3175.frc2022.robot.CTREConfigs;
+import com.team3175.frc2022.robot.Constants;
 
 //
 //Undecided if this should be state space or just have a regular setpoint
-//At the moment, just uses a setpoint and PID but it is also only partially done
+//At the moment, just uses a setpoint and PID but it is also only partially done.
 //PID is super important too here!!!! We do NOT want a robot bouncing up and down
 //
 //Note: have an override button so that if the position control doesn't work perfectly

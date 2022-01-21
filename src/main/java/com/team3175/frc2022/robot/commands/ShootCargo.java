@@ -1,9 +1,10 @@
-package frc.robot.commands;
+package com.team3175.frc2022.robot.commands;
+
+import com.team3175.frc2022.robot.Constants;
+import com.team3175.frc2022.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.subsystems.Shooter;
 
 public class ShootCargo extends CommandBase {
 

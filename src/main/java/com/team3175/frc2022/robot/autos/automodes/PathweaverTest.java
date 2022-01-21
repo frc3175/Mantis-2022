@@ -1,4 +1,8 @@
-package frc.robot.autos.automodes;
+package com.team3175.frc2022.robot.autos.automodes;
+
+import com.team3175.frc2022.robot.Constants;
+import com.team3175.frc2022.robot.RobotContainer;
+import com.team3175.frc2022.robot.subsystems.SwerveDrivetrain;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
@@ -6,9 +10,6 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
-import frc.robot.Constants;
-import frc.robot.RobotContainer;
-import frc.robot.subsystems.SwerveDrivetrain;
 
 public class PathweaverTest extends SequentialCommandGroup {
 

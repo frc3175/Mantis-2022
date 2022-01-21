@@ -1,4 +1,4 @@
-package frc.lib.util;
+package com.team3175.frc2022.lib.util;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;

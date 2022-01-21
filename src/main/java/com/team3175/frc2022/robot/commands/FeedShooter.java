@@ -1,7 +1,8 @@
-package frc.robot.commands;
+package com.team3175.frc2022.robot.commands;
+
+import com.team3175.frc2022.robot.subsystems.Feeder;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Feeder;
 
 public class FeedShooter extends CommandBase {
 

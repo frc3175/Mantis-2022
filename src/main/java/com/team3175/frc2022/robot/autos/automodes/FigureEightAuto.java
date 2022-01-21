@@ -1,6 +1,9 @@
-package frc.robot.autos.automodes;
+package com.team3175.frc2022.robot.autos.automodes;
 
 import java.util.ArrayList;
+
+import com.team3175.frc2022.robot.Constants;
+import com.team3175.frc2022.robot.subsystems.SwerveDrivetrain;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
@@ -12,8 +15,6 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
-import frc.robot.Constants;
-import frc.robot.subsystems.SwerveDrivetrain;
 
 public class FigureEightAuto extends SequentialCommandGroup {
 

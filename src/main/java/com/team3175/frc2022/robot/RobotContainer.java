@@ -4,9 +4,9 @@
 
 package com.team3175.frc2022.robot;
 
-import java.io.IOException;
 import java.nio.file.Path;
 
+import com.team3175.frc2022.robot.autos.automodes.FigureEightAuto;
 import com.team3175.frc2022.robot.autos.automodes.PathweaverTest;
 import com.team3175.frc2022.robot.commands.*;
 import com.team3175.frc2022.robot.subsystems.*;
@@ -59,22 +59,16 @@ public class RobotContainer {
   private final Command m_pathweaverAuto = new PathweaverTest(m_swerveDrivetrain);
 
   /* Trajectories */
-  String pathJSON = "paths/IntakeTrenchLineUp.wpilib.json";
-  public static Trajectory m_trajectory = new Trajectory();
+  //String pathJSON = "paths/IntakeTrenchLineUp.wpilib.json";
+  //public static Trajectory m_trajectory = new Trajectory();
 
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() {
+  // The container for the robot. Contains subsystems, OI devices, and commands. 
+ 
+  public RobotContainer(){
     boolean fieldRelative = true;
     boolean openLoop = true;
     m_swerveDrivetrain.setDefaultCommand(new SwerveDrive(m_swerveDrivetrain, m_driverController, m_translationAxis, m_strafeAxis, m_rotationAxis, fieldRelative, openLoop));
-
-    try {
-      Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(pathJSON);
-      m_trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
-    } catch (IOException ex) {
-      DriverStation.reportError("Unable to open trajectory: " + pathJSON, ex.getStackTrace());
-    }
     
     // Configure the button bindings
     configureButtonBindings();
@@ -110,10 +104,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return m_pathweaverAuto;
-  }
-
-  public static Trajectory getTrajectory() {
-    return m_trajectory;
   }
   
 }

@@ -12,15 +12,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Feeder extends SubsystemBase {
 
     private TalonFX m_feederFalcon;
-    private SubsystemManager m_manager;
+    //private SubsystemManager m_manager;
 
     public Feeder() {
 
-        m_manager = new SubsystemManager(m_feederFalcon, 
+        /*m_manager = new SubsystemManager(m_feederFalcon, 
                                          CTREConfigs.feederFXConfig, 
                                          Constants.INVERT_FEEDER, 
                                          Constants.FEEDER_NEUTRAL_MODE, 
-                                         "feeder");
+                                         "feeder"); */
 
         m_feederFalcon = new TalonFX(Constants.FEEDER_FALCON);
         
@@ -39,9 +39,9 @@ public class Feeder extends SubsystemBase {
         return m_feederFalcon.getSelectedSensorPosition();
     }
 
-    public SubsystemManager getManager() {
+    /*public SubsystemManager getManager() {
         return m_manager;
-    }
+    } */
 
     
     

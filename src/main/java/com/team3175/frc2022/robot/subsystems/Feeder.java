@@ -3,8 +3,6 @@ package com.team3175.frc2022.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.team3175.frc2022.lib.math.Conversions;
-import com.team3175.frc2022.lib.util.SubsystemManager;
-import com.team3175.frc2022.robot.CTREConfigs;
 import com.team3175.frc2022.robot.Constants;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;

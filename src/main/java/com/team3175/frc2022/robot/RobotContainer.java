@@ -4,17 +4,10 @@
 
 package com.team3175.frc2022.robot;
 
-import java.nio.file.Path;
-
-import com.team3175.frc2022.robot.autos.automodes.FigureEightAuto;
 import com.team3175.frc2022.robot.autos.automodes.PathweaverTest;
 import com.team3175.frc2022.robot.commands.*;
 import com.team3175.frc2022.robot.subsystems.*;
 
-import edu.wpi.first.math.trajectory.Trajectory;
-import edu.wpi.first.math.trajectory.TrajectoryUtil;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;

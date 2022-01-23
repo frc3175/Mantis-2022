@@ -7,6 +7,7 @@ package com.team3175.frc2022.robot;
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 import com.team3175.frc2022.robot.autos.autocommands.PathplannerCommand;
+import com.team3175.frc2022.robot.autos.automodes.PPSwerveControllerAuto;
 //import com.team3175.frc2022.robot.autos.automodes.PathplannerTesting;
 import com.team3175.frc2022.robot.commands.*;
 import com.team3175.frc2022.robot.subsystems.*;
@@ -57,6 +58,7 @@ public class RobotContainer {
   //private final Command m_pathweaverAuto = new PathweaverTest(m_swerveDrivetrain);
   //private final Command m_pathplannerAuto = new PathplannerTesting(m_swerveDrivetrain);
   private final Command m_pathplannerCommand;
+  private final Command m_PPSwerveControllerTest = new PPSwerveControllerAuto(m_swerveDrivetrain);
 
   /* Trajectories */
   //String pathJSON = "paths/IntakeTrenchLineUp.wpilib.json";
@@ -106,7 +108,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_pathplannerCommand;
+    return m_PPSwerveControllerTest;
   }
   
 }

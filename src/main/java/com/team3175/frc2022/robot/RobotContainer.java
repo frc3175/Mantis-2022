@@ -4,7 +4,13 @@
 
 package com.team3175.frc2022.robot;
 
+import com.pathplanner.lib.PathPlanner;
+import com.pathplanner.lib.PathPlannerTrajectory;
+import com.team3175.frc2022.robot.autos.autocommands.PathplannerCommand;
+import com.team3175.frc2022.robot.autos.automodes.FigureEightAuto;
+import com.team3175.frc2022.robot.autos.automodes.PPSwerveControllerAuto;
 import com.team3175.frc2022.robot.autos.automodes.PathweaverTest;
+//import com.team3175.frc2022.robot.autos.automodes.PathplannerTesting;
 import com.team3175.frc2022.robot.commands.*;
 import com.team3175.frc2022.robot.subsystems.*;
 
@@ -20,7 +26,11 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and button mappings) should be declared here.
  */
+
+@SuppressWarnings("unused")
 public class RobotContainer {
+
+  private final PathPlannerTrajectory m_trajectory;
 
   /* Controllers */
   private final XboxController m_driverController = new XboxController(Constants.DRIVER_PORT);
@@ -50,8 +60,11 @@ public class RobotContainer {
   private final Actuaters m_actuater = new Actuaters();
 
   /* Autos */
-  //private final Command m_auto = new FigureEightAuto(m_swerveDrivetrain);
-  private final Command m_pathweaverAuto = new PathweaverTest(m_swerveDrivetrain);
+  private final Command m_auto = new FigureEightAuto(m_swerveDrivetrain); //Uses manual trajectory generation, no theta updates
+  private final Command m_pathweaverAuto = new PathweaverTest(m_swerveDrivetrain); //Uses pathweaver, no theta updates
+  //private final Command m_pathplannerAuto = new PathplannerTesting(m_swerveDrivetrain); //Uses pathplanner, no theta updates, commented bc I don't have a command right now that will take my 3 args instead of a controller arg
+  private final Command m_pathplannerCommand; //handwritten command, doesn't quite work
+  private final Command m_PPSwerveControllerTest = new PPSwerveControllerAuto(m_swerveDrivetrain); //uses PPSwerveControllerCommand, not yet tested
 
   /* Trajectories */
   //String pathJSON = "paths/IntakeTrenchLineUp.wpilib.json";
@@ -64,6 +77,9 @@ public class RobotContainer {
     boolean fieldRelative = true;
     boolean openLoop = true;
     m_swerveDrivetrain.setDefaultCommand(new SwerveDrive(m_swerveDrivetrain, m_driverController, m_translationAxis, m_strafeAxis, m_rotationAxis, fieldRelative, openLoop));
+    
+    m_trajectory = PathPlanner.loadPath("Y-Loop", 8, 5);
+    m_pathplannerCommand = new PathplannerCommand(m_swerveDrivetrain, m_trajectory);
     
     // Configure the button bindings
     configureButtonBindings();
@@ -99,7 +115,12 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_pathweaverAuto;
+
+    //TODO: Create a sendable chooser to select command
+    //For now just type out the name of the command to be run
+
+      return m_pathplannerCommand;
+
   }
   
 }

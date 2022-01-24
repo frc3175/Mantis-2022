@@ -14,6 +14,8 @@ public final class Constants {
                CAN IDs
     ==============================*/
 
+    //TODO: Tune CAN Ids
+
      //CAN IDS
     public static final int BACK_LEFT_DRIVE = 13; //Josh
     public static final int BACK_LEFT_ENCODER = 4; //Gary 
@@ -75,8 +77,11 @@ public final class Constants {
         PIDF & Characterization
     ==============================*/
 
+    //TODO: Characterize drivetrain on new robot
+    //TODO: Tune TeleOp PID on new robot for drivetrain, feeder, shooter, and climber
+
     /* Angle Motor PID Values */
-    public static final double AZIMUTH_P = 0.2; //FIXME: Tune all of these (drive pidf too) at some point too
+    public static final double AZIMUTH_P = 0.2;
     public static final double AZIMUTH_I = 0.0;
     public static final double AZIMUTH_D = 0.1;
     public static final double AZIMUTH_F = 0.0;
@@ -114,6 +119,9 @@ public final class Constants {
                Kinematics
     ==============================*/
 
+    //TODO: Adjust kinematics for new robot
+    //TODO: Adjust motor ramps, potentially create new motor ramps for shooter and other subs
+
     public static final double DRIVETRAIN_WIDTH = Units.inchesToMeters(18);
     public static final double DRIVETRAIN_LENGTH = Units.inchesToMeters(18);
     public static final double WHEEL_DIAMETER = Units.inchesToMeters(4);
@@ -135,8 +143,11 @@ public final class Constants {
               CTRE Configs
     ==============================*/
 
+    //TODO: Adjust ALL current limits to what coopers calculations find reasonable
+    //TODO: Double check all neutral modes to make sure they are what they should be
+
      /* Current Limiting */
-     public static final int AZIMUTH_CONTINUOUS_CURRENT_LIMIT = 25; //FIXME: Adjust these to stop brownouts??
+     public static final int AZIMUTH_CONTINUOUS_CURRENT_LIMIT = 25;
      public static final int AZIMUTH_PEAK_CURRENT_LIMIT = 40;
      public static final double AZIMUTH_PEAK_CURRENT_DURATION = 0.1;
      public static final boolean AZIMUTH_ENABLE_CURRENT_LIMIT = true;
@@ -177,6 +188,10 @@ public final class Constants {
     /*============================
             TeleOp Constants
     ==============================*/
+
+    //TODO: Adjust controller constants to preferences
+    //TODO: Fix all inversions on new robot
+    //TODO: Change all max speeds based on testing and tuning
 
     /* Controller Constants */
     public static final double STICK_DEADBAND = 0.1;
@@ -221,9 +236,11 @@ public final class Constants {
             Auto Constants
     ==============================*/
 
+    //TODO: Adjust all auto P controllers on new robot
+
     //RPS IS RADIANS PER SECOND
     //MPS IS METERS PER SECOND
-    public static final double AUTO_MAX_SPEED = 4.9; //FIXME: Adjust this to whatever speed we want for auto
+    public static final double AUTO_MAX_SPEED = 4.9;
     public static final double AUTO_MAX_ACCELERATION_MPS_SQUARED = 3;
     
     public static final double AUTO_P_X_CONTROLLER = 0; 

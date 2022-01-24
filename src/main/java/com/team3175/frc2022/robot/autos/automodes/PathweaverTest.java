@@ -22,6 +22,7 @@ public class PathweaverTest extends SequentialCommandGroup {
 
     Trajectory m_trajectory = new Trajectory();
     String pathJSON = "paths/TestPath.wpilib.json";
+    
 
     public PathweaverTest(SwerveDrivetrain drivetrain) {
 

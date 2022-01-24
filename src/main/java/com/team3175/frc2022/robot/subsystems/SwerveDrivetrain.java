@@ -16,6 +16,7 @@ import com.team3175.frc2022.robot.Constants;
 import edu.wpi.first.wpilibj.SPI;
 
 public class SwerveDrivetrain extends SubsystemBase {
+
     public SwerveDriveOdometry m_swerveOdometry;
     public SwerveModule[] m_swerveModules;
     public AHRS m_gyro;
@@ -60,6 +61,7 @@ public class SwerveDrivetrain extends SubsystemBase {
                              Constants.BACK_RIGHT_DRIVE_REVERSED,
                              Constants.BACK_RIGHT_CANCODER_REVERSED)
         };
+
     }
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
@@ -76,7 +78,7 @@ public class SwerveDrivetrain extends SubsystemBase {
         }
 
 
-    }    
+    }
 
     public void setModuleStates(SwerveModuleState[] desiredStates) {
         SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, Constants.MAX_SPEED);
@@ -84,7 +86,11 @@ public class SwerveDrivetrain extends SubsystemBase {
         for(SwerveModule mod : m_swerveModules){
             mod.setDesiredState(desiredStates[mod.m_moduleNumber], false);
         }
-    }    
+    }
+    
+    public void setChassisSpeeds(ChassisSpeeds targetSpeeds) {
+        setModuleStates(Constants.swerveKinematics.toSwerveModuleStates(targetSpeeds));
+    }
 
     public Pose2d getPose() {
         return m_swerveOdometry.getPoseMeters();

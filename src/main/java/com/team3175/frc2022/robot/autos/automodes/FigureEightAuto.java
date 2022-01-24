@@ -28,8 +28,6 @@ public class FigureEightAuto extends SequentialCommandGroup {
         TrajectoryConfig m_config = new TrajectoryConfig(Constants.AUTO_MAX_SPEED, 
                                                          Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED)
                                                          .setKinematics(Constants.swerveKinematics);
-                                                         //TODO: figure out how to plot points and create a line of best fit to calculate max acceleration
-                                                         //also ask how to calculate theoretical max acceleration because thats good enough for now
 
         //Start point
         var startPoint = new Pose2d(0, 0, Rotation2d.fromDegrees(180));

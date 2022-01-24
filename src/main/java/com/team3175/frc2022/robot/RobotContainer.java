@@ -50,14 +50,14 @@ public class RobotContainer {
   private final JoystickButton m_intakeCargo = new JoystickButton(m_opController, XboxController.Axis.kLeftTrigger.value);
   private final JoystickButton m_outtakeCargo = new JoystickButton(m_opController, XboxController.Axis.kRightTrigger.value);
   private final JoystickButton m_shootCargo = new JoystickButton(m_opController, XboxController.Button.kA.value);
-  private final JoystickButton m_actuaterIntake = new JoystickButton(m_opController, XboxController.Button.kB.value);
+  private final JoystickButton m_actuateIntake = new JoystickButton(m_opController, XboxController.Button.kB.value);
 
   /* Subsystems */
   private final SwerveDrivetrain m_swerveDrivetrain = new SwerveDrivetrain();
   private final Intake m_intake = new Intake();
   private final Feeder m_feeder = new Feeder();
   private final Shooter m_shooter = new Shooter();
-  private final Actuaters m_actuater = new Actuaters();
+  private final Actuators m_actuator = new Actuators();
 
   /* Autos */
   private final Command m_auto = new FigureEightAuto(m_swerveDrivetrain); //Uses manual trajectory generation, no theta updates
@@ -103,7 +103,7 @@ public class RobotContainer {
     m_intakeCargo.whenActive(new IntakeCargo(m_intake, Constants.INTAKE_SPEED));
     m_outtakeCargo.whenActive(new IntakeCargo(m_intake, Constants.OUTTAKE_SPEED));
     m_shootCargo.whenPressed(new ShootCargo(m_shooter, Constants.SHOOTER_TARGET_RPM, m_driverController, m_opController));
-    m_actuaterIntake.whenPressed(new ActuateIntake(m_actuater));
+    m_actuateIntake.whenPressed(new ActuateIntake(m_actuator));
 
 
   }

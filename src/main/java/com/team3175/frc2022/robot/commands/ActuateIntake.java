@@ -1,23 +1,23 @@
 package com.team3175.frc2022.robot.commands;
 
-import com.team3175.frc2022.robot.subsystems.Actuaters;
+import com.team3175.frc2022.robot.subsystems.Actuators;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ActuateIntake extends CommandBase{
     
-    private  Actuaters m_actuaters;
+    private  Actuators m_actuators;
 
-    public ActuateIntake(Actuaters actuaters){
+    public ActuateIntake(Actuators actuators){
 
-        m_actuaters = actuaters;
+        m_actuators = actuators;
 
-        addRequirements(m_actuaters);
+        addRequirements(m_actuators);
     }
 
     @Override
     public void execute(){
 
-        m_actuaters.actuate();
+        m_actuators.actuate();
     }
 }

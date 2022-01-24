@@ -42,8 +42,8 @@ public final class Constants {
 
     public static final int CLIMBER_FALCON = 0;
 
-    public static final int ACTUATERS_LEFT = 1;
-    public static final int ACTUATERS_RIGHT = 2;
+    public static final int ACTUATORS_LEFT = 1;
+    public static final int ACTUATORS_RIGHT = 2;
 
     /*============================
            Module Constants

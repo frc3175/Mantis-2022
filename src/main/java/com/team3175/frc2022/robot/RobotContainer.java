@@ -58,7 +58,7 @@ public class RobotContainer {
   /* Autos */
   private final Command m_auto = new FigureEightAuto(m_swerveDrivetrain); //Uses manual trajectory generation, no theta updates
   private final Command m_pathweaverAuto = new PathweaverTest(m_swerveDrivetrain); //Uses pathweaver, no theta updates
-  //private final Command m_pathplannerAuto = new PathplannerTesting(m_swerveDrivetrain); //Uses pathplanner, no theta updates, commented bc unfinished
+  //private final Command m_pathplannerAuto = new PathplannerTesting(m_swerveDrivetrain); //Uses pathplanner, no theta updates, commented bc I don't have a command right now that will take my 3 args instead of a controller arg
   private final Command m_pathplannerCommand; //handwritten command, doesn't quite work
   private final Command m_PPSwerveControllerTest = new PPSwerveControllerAuto(m_swerveDrivetrain); //uses PPSwerveControllerCommand, not yet tested
 

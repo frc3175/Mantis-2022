@@ -21,14 +21,14 @@ public class PPSwerveControllerAuto extends SequentialCommandGroup {
 
         m_drivetrain = drivetrain;
 
-        m_trajectory = PathPlanner.loadPath("Y-Loop", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
+        m_trajectory = PathPlanner.loadPath("Rotation Path", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
 
         var m_translationController = new PIDController(Constants.AUTO_P_X_CONTROLLER, 0, 0);
         var m_strafeController = new PIDController(Constants.AUTO_P_Y_CONTROLLER, 0, 0);
         var m_thetaController = new ProfiledPIDController(Constants.AUTO_P_THETA_CONTROLLER, 0, 0, 
                                                         Constants.THETA_CONTROLLER_CONSTRAINTS);
         //enable continuous output because we use falcons and thats what you do apparantly
-        m_thetaController.enableContinuousInput(-Constants.MAX_ANGULAR_VELOCITY, Constants.MAX_ANGULAR_VELOCITY);
+        m_thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
         PPSwerveControllerCommand autoCommand = 
             new PPSwerveControllerCommand(

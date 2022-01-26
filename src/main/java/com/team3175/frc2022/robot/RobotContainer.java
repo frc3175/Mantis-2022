@@ -76,7 +76,7 @@ public class RobotContainer {
     boolean openLoop = true;
     m_swerveDrivetrain.setDefaultCommand(new SwerveDrive(m_swerveDrivetrain, m_driverController, m_translationAxis, m_strafeAxis, m_rotationAxis, fieldRelative, openLoop));
     
-    m_trajectory = PathPlanner.loadPath("Y-Loop", 8, 5);
+    m_trajectory = PathPlanner.loadPath("New Path", 8, 5);
     m_pathplannerCommand = new PathplannerCommand(m_swerveDrivetrain, m_trajectory);
     
     // Configure the button bindings
@@ -116,7 +116,7 @@ public class RobotContainer {
     //TODO: Create a sendable chooser to select command
     //For now just type out the name of the command to be run
 
-      return m_pathplannerCommand;
+      return m_PPSwerveControllerTest;
 
   }
   

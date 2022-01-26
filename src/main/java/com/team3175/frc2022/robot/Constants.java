@@ -31,7 +31,7 @@ public final class Constants {
 
     public static final int FRONT_LEFT_DRIVE = 5; //Chad
     public static final int FRONT_LEFT_ENCODER = 12; //Jonathan 
-    public static final int FRONT_LEFT_AZIMUTH = 3; //Geraldine
+    public static final int FRONT_LEFT_AZIMUTH = 3; //Geraldine //3
 
     public static final int INTAKE_FALCON = 0; //tune
 
@@ -225,7 +225,7 @@ public final class Constants {
     public static final double CLIMBER_DOWN_SETPOINT = 100;
 
     /* Swerve Profiling Values */
-    public static final double MAX_SPEED = Units.feetToMeters(16.2); //meters per second
+    public static final double MAX_SPEED = Units.feetToMeters(8); //meters per second //TODO: make 16
     public static final double MAX_ANGULAR_VELOCITY = Math.PI * 5.2 * 0.625; //actually 5.2
     public static final double TURN_IN_PLACE_SPEED = 0.5;
 
@@ -247,5 +247,5 @@ public final class Constants {
     // Constraint for the motion profilied robot angle controller
     public static final TrapezoidProfile.Constraints THETA_CONTROLLER_CONSTRAINTS =
         new TrapezoidProfile.Constraints(
-            MAX_ANGULAR_VELOCITY, (MAX_ANGULAR_VELOCITY * MAX_ANGULAR_VELOCITY));
+            Math.PI, (Math.PI * Math.PI));
     }

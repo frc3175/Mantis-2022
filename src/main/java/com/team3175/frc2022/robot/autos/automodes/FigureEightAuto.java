@@ -72,8 +72,6 @@ public class FigureEightAuto extends SequentialCommandGroup {
             new InstantCommand(() -> m_drivetrain.resetOdometry(m_trajectory.getInitialPose())), 
             swerveCommand
         );
-
     }   
-
 }
 

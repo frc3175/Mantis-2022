@@ -100,8 +100,8 @@ public class RobotContainer {
     m_feedShooter.whenPressed(new FeedShooter(m_feeder, Constants.TARGET_FEEDER_RPM));
     
     /* Operator Buttons */  
-    m_intakeCargo.whenActive(new IntakeCargo(m_intake, Constants.INTAKE_SPEED));
-    m_outtakeCargo.whenActive(new IntakeCargo(m_intake, Constants.OUTTAKE_SPEED));
+    m_intakeCargo.whenActive(new IntakeCargo(m_intake, Constants.INTAKE_SPEED , m_driverController));
+    m_outtakeCargo.whenActive(new IntakeCargo(m_intake, Constants.OUTTAKE_SPEED, m_driverController));
     m_shootCargo.whenPressed(new ShootCargo(m_shooter, Constants.SHOOTER_TARGET_RPM, m_driverController, m_opController));
     m_actuateIntake.whenPressed(new ActuateIntake(m_actuator));
 

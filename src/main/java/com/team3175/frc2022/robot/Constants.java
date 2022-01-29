@@ -197,10 +197,13 @@ public final class Constants {
     public static final double STICK_DEADBAND = 0.1;
     public static final int DRIVER_PORT = 0;
     public static final int OPERATOR_PORT = 1;
-    public static final double OP_RUMBLE_PERCENT = 0.5;
-    public static final double DRIVER_RUMBLE_PERCENT = 0.5;
-    public static final RumbleType DRIVER_RUMBLE = RumbleType.kLeftRumble;
-    public static final RumbleType OP_RUMBLE = RumbleType.kLeftRumble;
+    public static final double OP_RUMBLE_PERCENT = 0.4;
+    public static final double DRIVER_RUMBLE_PERCENT = 0.4;
+    public static final RumbleType DRIVER_RUMBLE_LEFT = RumbleType.kLeftRumble;
+    public static final RumbleType OP_RUMBLE_LEFT = RumbleType.kLeftRumble;
+    public static final RumbleType DRIVER_RUMBLE_RIGHT = RumbleType.kRightRumble;
+    public static final RumbleType OP_RUMBLE_RIGHT = RumbleType.kRightRumble;
+    public static final double DRIVING_INTAKE_RUMBLE = 0.3;
 
     /* Inversions */
     public static final boolean INVERT_GYRO = true; // Always ensure Gyro is CCW+ CW- !!!!!

@@ -15,6 +15,7 @@ import com.team3175.frc2022.robot.commands.*;
 import com.team3175.frc2022.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -43,14 +44,15 @@ public class RobotContainer {
 
   /* Driver Buttons */
   private final JoystickButton m_zeroGyro = new JoystickButton(m_driverController, XboxController.Button.kY.value);
-  private final JoystickButton m_turnTo90 = new JoystickButton(m_driverController, XboxController.Button.kB.value);
-  private final JoystickButton m_feedShooter = new JoystickButton(m_driverController, XboxController.Button.kLeftBumper.value);
+  //private final JoystickButton m_turnTo90 = new JoystickButton(m_driverController, XboxController.Button.kB.value);
+  private final JoystickButton m_feedShooter = new JoystickButton(m_driverController, XboxController.Button.kA.value);
 
   /* Operator Buttons */
-  private final JoystickButton m_intakeCargo = new JoystickButton(m_opController, XboxController.Axis.kLeftTrigger.value);
-  private final JoystickButton m_outtakeCargo = new JoystickButton(m_opController, XboxController.Axis.kRightTrigger.value);
+  private final JoystickButton m_intakeCargo = new JoystickButton(m_opController, XboxController.Button.kY.value);
+  private final JoystickButton m_outtakeCargo = new JoystickButton(m_opController, XboxController.Button.kX.value);
   private final JoystickButton m_shootCargo = new JoystickButton(m_opController, XboxController.Button.kA.value);
-  private final JoystickButton m_actuateIntake = new JoystickButton(m_opController, XboxController.Button.kB.value);
+  private final JoystickButton m_actuateIntake = new JoystickButton(m_opController, XboxController.Button.kRightBumper.value);
+  private final JoystickButton m_actuateBack = new JoystickButton(m_opController, XboxController.Button.kLeftBumper.value);
 
   /* Subsystems */
   private final SwerveDrivetrain m_swerveDrivetrain = new SwerveDrivetrain();
@@ -95,16 +97,21 @@ public class RobotContainer {
 
     /* Driver Buttons */
     m_zeroGyro.whenPressed(new InstantCommand(() -> m_swerveDrivetrain.resetGyro()));
-    m_turnTo90.whenPressed(new TurnToTheta(m_swerveDrivetrain, -90))
-              .whenReleased(new SwerveDrive(m_swerveDrivetrain, m_driverController, m_translationAxis, m_strafeAxis, m_rotationAxis, true, true));
-    m_feedShooter.whenPressed(new FeedShooter(m_feeder, Constants.TARGET_FEEDER_RPM));
-    //m_feedShooter.whenPressed(new InstantCommand(() -> m_feeder.feederRun(Constants.TARGET_FEEDER_RPM)));
-    
+    //m_turnTo90.whenPressed(new TurnToTheta(m_swerveDrivetrain, -90))
+              //.whenReleased(new SwerveDrive(m_swerveDrivetrain, m_driverController, m_translationAxis, m_strafeAxis, m_rotationAxis, true, true));
+    //m_feedShooter.whenPressed(new FeedShooter(m_feeder, 0.9))
+    //             .whenReleased(new FeedShooter(m_feeder, 0));
+    m_feedShooter.whenPressed(new InstantCommand(() -> m_feeder.feederRun(0.9)))
+                  .whenReleased(new InstantCommand(() -> m_feeder.feederRun(0)));
     /* Operator Buttons */  
-    m_intakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.INTAKE_SPEED));
-    m_outtakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.OUTTAKE_SPEED));
-    m_shootCargo.whenPressed(new ShootCargo(m_shooter, Constants.SHOOTER_TARGET_RPM, m_driverController, m_opController));
+    m_intakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.INTAKE_SPEED, m_opController))
+                 .whenReleased(new IntakeCargo(m_intake, 0, m_opController));
+    m_outtakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.OUTTAKE_SPEED, m_opController))
+                  .whenReleased(new IntakeCargo(m_intake, 0, m_opController));
+    m_shootCargo.whenPressed(new ShootCargo(m_shooter, Constants.SHOOTER_TARGET_RPM, m_driverController, m_opController))
+                .whenReleased(new StopShooter(m_shooter));
     m_actuateIntake.whenPressed(new ActuateIntake(m_actuator));
+    m_actuateBack.whenPressed(new ActuateBack(m_actuator));
 
 
   }

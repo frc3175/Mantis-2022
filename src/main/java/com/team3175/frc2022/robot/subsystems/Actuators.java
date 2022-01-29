@@ -18,9 +18,7 @@ public class Actuators extends SubsystemBase{
     }
 
     public void actuateBack() {
-
         m_actuators.set(Value.kReverse);
-
     }
 
 } 

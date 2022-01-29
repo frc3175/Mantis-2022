@@ -50,10 +50,10 @@ public final class Constants {
     ==============================*/
 
     //this is where you put the angle offsets
-    public static double FRONT_LEFT_OFFSET = 224.25; //temp value, normal is 224.25
-    public static double FRONT_RIGHT_OFFSET = 250.84;
-    public static double BACK_LEFT_OFFSET = 223.5; //temp value, normal is 223.50
-    public static double BACK_RIGHT_OFFSET = 202.43;
+    public static double FRONT_LEFT_OFFSET = 159.87; //temp value, normal is 224.25
+    public static double FRONT_RIGHT_OFFSET = 67.67;
+    public static double BACK_LEFT_OFFSET = 134.64; //temp value, normal is 223.50
+    public static double BACK_RIGHT_OFFSET = 226.66;
 
     //Turning motors reversed
     public static boolean FRONT_LEFT_AZIMUTH_REVERSED = false;
@@ -98,16 +98,16 @@ public final class Constants {
     public static final double DRIVE_A = (0.06921 / 12);
 
     /* Feeder PIDF Values */
-    public static final double FEEDER_P = 0.0;
+    /*public static final double FEEDER_P = 0.2;
     public static final double FEEDER_I = 0.0;
     public static final double FEEDER_D = 0.0;
-    public static final double FEEDER_F = 0.0;
+    public static final double FEEDER_F = 10.0; */
 
     /* Shooter PIDF Values */
-    public static final double SHOOTER_P = 0.0;
-    public static final double SHOOTER_I = 0.0;
-    public static final double SHOOTER_D = 0.0;
-    public static final double SHOOTER_F = 0.0;
+    public static final double SHOOTER_P = 0.1;
+    public static final double SHOOTER_I = 0.001;
+    public static final double SHOOTER_D = 5.0;
+    public static final double SHOOTER_F = 750.0;
 
     /* Climber PIDF Values */
     public static final double CLIMBER_P = 0.0;
@@ -122,8 +122,8 @@ public final class Constants {
     //TODO: Adjust kinematics for new robot
     //TODO: Adjust motor ramps, potentially create new motor ramps for shooter and other subs
 
-    public static final double DRIVETRAIN_WIDTH = Units.inchesToMeters(18);
-    public static final double DRIVETRAIN_LENGTH = Units.inchesToMeters(18);
+    public static final double DRIVETRAIN_WIDTH = Units.inchesToMeters(21.5);
+    public static final double DRIVETRAIN_LENGTH = Units.inchesToMeters(21);
     public static final double WHEEL_DIAMETER = Units.inchesToMeters(4);
     public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
 
@@ -215,14 +215,14 @@ public final class Constants {
     public static final boolean INVERT_CLIMBER = false;
 
     /* Intake Constants */
-    public static final double INTAKE_SPEED = 0.5;
-    public static final double OUTTAKE_SPEED = 0.5;
+    public static final double INTAKE_SPEED = 0.9;
+    public static final double OUTTAKE_SPEED = 0.9;
 
     /* Feeder Constants */
     public static final double TARGET_FEEDER_RPM = 1000; //random
 
     /* Shooter Constants */
-    public static final double SHOOTER_TARGET_RPM = 3000; //random
+    public static final double SHOOTER_TARGET_RPM = 50; //random
     public static final double SHOOTER_ERROR = 100; //allowable shooter error from setpoint to be "spun up"
 
     /* Climber Constants */

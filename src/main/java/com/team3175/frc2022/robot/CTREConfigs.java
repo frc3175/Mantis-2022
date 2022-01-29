@@ -70,12 +70,12 @@ public final class CTREConfigs {
             Constants.FEEDER_CONTINUOUS_CURRENT_LIMIT,
             Constants.FEEDER_PEAK_CURRENT_LIMIT,
             Constants.FEEDER_PEAK_CURRENT_DURATION
-        );
+        ); 
 
-        feederFXConfig.slot0.kP = Constants.FEEDER_P;
+        /*feederFXConfig.slot0.kP = Constants.FEEDER_P;
         feederFXConfig.slot0.kI = Constants.FEEDER_I;
         feederFXConfig.slot0.kD = Constants.FEEDER_D;
-        feederFXConfig.slot0.kF = Constants.FEEDER_F;
+        feederFXConfig.slot0.kF = Constants.FEEDER_F; */
         feederFXConfig.supplyCurrLimit = feederSupplyLimit;
         feederFXConfig.initializationStrategy = SensorInitializationStrategy.BootToZero;
         feederFXConfig.openloopRamp = Constants.OPEN_LOOP_RAMP; //maybe make this own ramp to spin up faster???

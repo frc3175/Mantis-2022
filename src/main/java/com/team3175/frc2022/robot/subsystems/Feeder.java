@@ -26,9 +26,13 @@ public class Feeder extends SubsystemBase {
         
     }
 
-    public void feederRun(double rpm) {
-        double falcon_units_100_ms = Conversions.RPMToFalcon(rpm, 1.0);
-        m_feederFalcon.set(ControlMode.Velocity, falcon_units_100_ms);
+    public void feederRun(double power) {
+        //double falcon_units_100_ms = Conversions.RPMToFalcon(rpm, 1.0);
+        m_feederFalcon.set(ControlMode.PercentOutput, power);
+    }
+
+    public void stopFeeder() {
+        m_feederFalcon.set(ControlMode.PercentOutput, 0);
     }
 
     public void resetEncoders() {

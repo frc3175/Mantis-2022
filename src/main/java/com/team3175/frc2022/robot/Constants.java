@@ -17,33 +17,33 @@ public final class Constants {
     //TODO: Tune CAN Ids
 
      //CAN IDS
-    public static final int BACK_LEFT_DRIVE = 13; //Josh
-    public static final int BACK_LEFT_ENCODER = 4; //Gary 
-    public static final int BACK_LEFT_AZIMUTH = 14; //Tracy
+    public static final int BACK_LEFT_DRIVE = 5; //Josh
+    public static final int BACK_LEFT_ENCODER = 12; //Gary 
+    public static final int BACK_LEFT_AZIMUTH = 3; //Tracy
 
-    public static final int BACK_RIGHT_DRIVE = 8; //Happy
-    public static final int BACK_RIGHT_ENCODER = 10; //Bre
-    public static final int BACK_RIGHT_AZIMUTH = 6; //Samuel
+    public static final int BACK_RIGHT_DRIVE = 13; //Happy
+    public static final int BACK_RIGHT_ENCODER = 4; //Bre
+    public static final int BACK_RIGHT_AZIMUTH = 14; //Samuel
 
-    public static final int FRONT_RIGHT_DRIVE = 11; //Keith
-    public static final int FRONT_RIGHT_ENCODER = 7; //Freddy Mercury
-    public static final int FRONT_RIGHT_AZIMUTH = 9; //Beth
+    public static final int FRONT_RIGHT_DRIVE = 8; //Keith
+    public static final int FRONT_RIGHT_ENCODER = 10; //Freddy Mercury
+    public static final int FRONT_RIGHT_AZIMUTH = 6; //Beth
 
-    public static final int FRONT_LEFT_DRIVE = 5; //Chad
-    public static final int FRONT_LEFT_ENCODER = 12; //Jonathan 
-    public static final int FRONT_LEFT_AZIMUTH = 3; //Geraldine //3
+    public static final int FRONT_LEFT_DRIVE = 11; //Chad
+    public static final int FRONT_LEFT_ENCODER = 7; //Jonathan 
+    public static final int FRONT_LEFT_AZIMUTH = 9; //Geraldine
 
-    public static final int INTAKE_FALCON = 0; //tune
+    public static final int INTAKE_FALCON = 17;
 
-    public static final int FEEDER_FALCON = 0;
+    public static final int FEEDER_FALCON = 19;
 
-    public static final int LEFT_SHOOTER_FALCON = 0;
-    public static final int RIGHT_SHOOTER_FALCON = 0;
+    public static final int LEFT_SHOOTER_FALCON = 2;
+    public static final int RIGHT_SHOOTER_FALCON = 20;
 
-    public static final int CLIMBER_FALCON = 0;
+    public static final int CLIMBER_FALCON = 18;
 
-    public static final int ACTUATORS_LEFT = 1;
-    public static final int ACTUATORS_RIGHT = 2;
+    public static final int ACTUATORS_LEFT = 0;
+    public static final int ACTUATORS_RIGHT = 1;
 
     /*============================
            Module Constants

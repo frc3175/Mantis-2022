@@ -98,10 +98,11 @@ public class RobotContainer {
     m_turnTo90.whenPressed(new TurnToTheta(m_swerveDrivetrain, -90))
               .whenReleased(new SwerveDrive(m_swerveDrivetrain, m_driverController, m_translationAxis, m_strafeAxis, m_rotationAxis, true, true));
     m_feedShooter.whenPressed(new FeedShooter(m_feeder, Constants.TARGET_FEEDER_RPM));
+    //m_feedShooter.whenPressed(new InstantCommand(() -> m_feeder.feederRun(Constants.TARGET_FEEDER_RPM)));
     
     /* Operator Buttons */  
-    m_intakeCargo.whenActive(new IntakeCargo(m_intake, Constants.INTAKE_SPEED));
-    m_outtakeCargo.whenActive(new IntakeCargo(m_intake, Constants.OUTTAKE_SPEED));
+    m_intakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.INTAKE_SPEED));
+    m_outtakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.OUTTAKE_SPEED));
     m_shootCargo.whenPressed(new ShootCargo(m_shooter, Constants.SHOOTER_TARGET_RPM, m_driverController, m_opController));
     m_actuateIntake.whenPressed(new ActuateIntake(m_actuator));
 

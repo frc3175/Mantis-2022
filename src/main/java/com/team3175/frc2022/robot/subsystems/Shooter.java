@@ -7,6 +7,8 @@ import com.team3175.frc2022.lib.math.Conversions;
 import com.team3175.frc2022.robot.CTREConfigs;
 import com.team3175.frc2022.robot.Constants;
 
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -17,7 +19,7 @@ public class Shooter extends SubsystemBase {
 
     public Shooter() {
 
-        //m_rightShooterFalcon.follow(m_leftShooterFalcon);
+        m_leftShooterFalcon.follow(m_rightShooterFalcon);
 
         configShooterFalcons();
 
@@ -25,21 +27,18 @@ public class Shooter extends SubsystemBase {
 
     public void shoot(double rpm) {
 
-        //m_rightShooterFalcon.set(ControlMode.PercentOutput, 0.5);
-        //m_leftShooterFalcon.set(ControlMode.PercentOutput, 0.5);
-        SmartDashboard.putNumber("shooter velocity", getLeftVelocity());
-
         double target_velocity_units_100ms = Conversions.RPMToFalcon(rpm, 1.0);
-        m_leftShooterFalcon.set(TalonFXControlMode.Velocity, target_velocity_units_100ms);
         m_rightShooterFalcon.set(TalonFXControlMode.Velocity, target_velocity_units_100ms);
+        //m_rightShooterFalcon.set(TalonFXControlMode.Velocity, target_velocity_units_100ms);
 
-        SmartDashboard.putNumber("shooter", target_velocity_units_100ms);
+        SmartDashboard.putNumber("shooter setpoint falcon units*", target_velocity_units_100ms);
+        SmartDashboard.putNumber("shooter setpoint rpm*", Conversions.falconToRPM(target_velocity_units_100ms, 1.0));
 
     }
 
     public void stopShooter() {
-        m_leftShooterFalcon.set(ControlMode.PercentOutput, 0);
         m_rightShooterFalcon.set(ControlMode.PercentOutput, 0);
+        m_leftShooterFalcon.set(ControlMode.PercentOutput, 0);
     }
 
     public double getLeftVelocity() {

@@ -96,10 +96,10 @@ public final class Constants {
     public static final double DRIVE_A = (0.06921 / 12);
 
     /* Shooter PIDF Values */
-    public static final double SHOOTER_P = 0.1;
-    public static final double SHOOTER_I = 0.001;
-    public static final double SHOOTER_D = 5.0;
-    public static final double SHOOTER_F = 750.0;
+    public static final double SHOOTER_P = 1.0;
+    public static final double SHOOTER_I = 0.0;
+    public static final double SHOOTER_D = 0.01;
+    public static final double SHOOTER_F = 0.052;
 
     /* Climber PIDF Values */
     public static final double CLIMBER_P = 0.0;
@@ -148,8 +148,8 @@ public final class Constants {
      public static final double DRIVE_PEAK_CURRENT_DURATION = 0.1;
      public static final boolean DRIVE_ENABLE_CURRENT_LIMIT = true;
 
-     public static final int FEEDER_CONTINUOUS_CURRENT_LIMIT = 35; //absolutely no clue what these should be, fix!!
-     public static final int FEEDER_PEAK_CURRENT_LIMIT = 60;
+     public static final int FEEDER_CONTINUOUS_CURRENT_LIMIT = 15;
+     public static final int FEEDER_PEAK_CURRENT_LIMIT = 20;
      public static final double FEEDER_PEAK_CURRENT_DURATION = 0.1;
      public static final boolean FEEDER_ENABLE_CURRENT_LIMIT = true;
 
@@ -159,12 +159,12 @@ public final class Constants {
      public static final boolean SHOOTER_ENABLE_CURRENT_LIMIT = true;
 
      public static final int CLIMBER_CONTINUOUS_CURRENT_LIMIT = 35;
-     public static final int CLIMBER_PEAK_CURRENT_LIMIT = 60;
+     public static final int CLIMBER_PEAK_CURRENT_LIMIT = 50;
      public static final double CLIMBER_PEAK_CURRENT_DURATION = 0.1;
      public static final boolean CLIMBER_ENABLE_CURRENT_LIMIT = true;
 
-     public static final int INTAKE_CONTINUOUS_CURRENT_LIMIT = 35;
-     public static final int INTAKE_PEAK_CURRENT_LIMIT = 60;
+     public static final int INTAKE_CONTINUOUS_CURRENT_LIMIT = 15;
+     public static final int INTAKE_PEAK_CURRENT_LIMIT = 20;
      public static final double INTAKE_PEAK_CURRENT_DURATION = 0.1;
      public static final boolean INTAKE_ENABLE_CURRENT_LIMIT = true;
 
@@ -213,8 +213,8 @@ public final class Constants {
     public static final double TARGET_FEEDER_RPM = 1000; //random
 
     /* Shooter Constants */
-    public static final double SHOOTER_TARGET_RPM = 50; //random
-    public static final double SHOOTER_ERROR = 100; //allowable shooter error from setpoint to be "spun up"
+    public static final double SHOOTER_TARGET_RPM = 3000;
+    public static final double SHOOTER_ERROR = 10; //allowable shooter error from setpoint to be "spun up"
 
     /* Climber Constants */
     public static final double CLIMBER_SPEED = 0.5;

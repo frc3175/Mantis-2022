@@ -2,7 +2,6 @@ package com.team3175.frc2022.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import com.team3175.frc2022.lib.math.Conversions;
 import com.team3175.frc2022.robot.CTREConfigs;
 import com.team3175.frc2022.robot.Constants;
 
@@ -27,7 +26,6 @@ public class Feeder extends SubsystemBase {
     }
 
     public void feederRun(double power) {
-        //double falcon_units_100_ms = Conversions.RPMToFalcon(rpm, 1.0);
         m_feederFalcon.set(ControlMode.PercentOutput, power);
     }
 

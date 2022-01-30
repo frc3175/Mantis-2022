@@ -97,12 +97,9 @@ public class RobotContainer {
 
     /* Driver Buttons */
     m_zeroGyro.whenPressed(new InstantCommand(() -> m_swerveDrivetrain.resetGyro()));
-    //m_turnTo90.whenPressed(new TurnToTheta(m_swerveDrivetrain, -90))
-              //.whenReleased(new SwerveDrive(m_swerveDrivetrain, m_driverController, m_translationAxis, m_strafeAxis, m_rotationAxis, true, true));
-    //m_feedShooter.whenPressed(new FeedShooter(m_feeder, 0.9))
-    //             .whenReleased(new FeedShooter(m_feeder, 0));
     m_feedShooter.whenPressed(new InstantCommand(() -> m_feeder.feederRun(0.9)))
                   .whenReleased(new InstantCommand(() -> m_feeder.feederRun(0)));
+                  
     /* Operator Buttons */  
     m_intakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.INTAKE_SPEED, m_opController))
                  .whenReleased(new IntakeCargo(m_intake, 0, m_opController));

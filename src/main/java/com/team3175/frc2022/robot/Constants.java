@@ -14,8 +14,6 @@ public final class Constants {
                CAN IDs
     ==============================*/
 
-    //TODO: Tune CAN Ids
-
      //CAN IDS
     public static final int BACK_LEFT_DRIVE = 5; //Josh
     public static final int BACK_LEFT_ENCODER = 12; //Gary 
@@ -78,7 +76,7 @@ public final class Constants {
     ==============================*/
 
     //TODO: Characterize drivetrain on new robot
-    //TODO: Tune TeleOp PID on new robot for drivetrain, feeder, shooter, and climber
+    //TODO: Tune TeleOp PID on new robot for drivetrain, shooter, and climber
 
     /* Angle Motor PID Values */
     public static final double AZIMUTH_P = 0.2;
@@ -97,12 +95,6 @@ public final class Constants {
     public static final double DRIVE_V = (2.4132 / 12);
     public static final double DRIVE_A = (0.06921 / 12);
 
-    /* Feeder PIDF Values */
-    /*public static final double FEEDER_P = 0.2;
-    public static final double FEEDER_I = 0.0;
-    public static final double FEEDER_D = 0.0;
-    public static final double FEEDER_F = 10.0; */
-
     /* Shooter PIDF Values */
     public static final double SHOOTER_P = 0.1;
     public static final double SHOOTER_I = 0.001;
@@ -119,7 +111,6 @@ public final class Constants {
                Kinematics
     ==============================*/
 
-    //TODO: Adjust kinematics for new robot
     //TODO: Adjust motor ramps, potentially create new motor ramps for shooter and other subs
 
     public static final double DRIVETRAIN_WIDTH = Units.inchesToMeters(21.5);
@@ -190,7 +181,7 @@ public final class Constants {
     ==============================*/
 
     //TODO: Adjust controller constants to preferences
-    //TODO: Fix all inversions on new robot
+    //TODO: Fix intake inversion
     //TODO: Change all max speeds based on testing and tuning
 
     /* Controller Constants */

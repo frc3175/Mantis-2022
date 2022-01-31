@@ -207,7 +207,7 @@ public final class Constants {
 
     /* Intake Constants */
     public static final double INTAKE_SPEED = 0.9;
-    public static final double OUTTAKE_SPEED = 0.9;
+    public static final double OUTTAKE_SPEED = -0.9;
 
     /* Feeder Constants */
     public static final double TARGET_FEEDER_RPM = 1000; //random

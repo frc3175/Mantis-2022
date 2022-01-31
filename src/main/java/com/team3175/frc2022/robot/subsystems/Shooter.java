@@ -7,8 +7,6 @@ import com.team3175.frc2022.lib.math.Conversions;
 import com.team3175.frc2022.robot.CTREConfigs;
 import com.team3175.frc2022.robot.Constants;
 
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 

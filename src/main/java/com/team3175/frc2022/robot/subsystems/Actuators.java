@@ -13,12 +13,12 @@ public class Actuators extends SubsystemBase{
 
     public void actuate(){
 
-        m_actuators.set(Value.kForward);
+        m_actuators.set(Value.kReverse);
 
     }
 
     public void actuateBack() {
-        m_actuators.set(Value.kReverse);
+        m_actuators.set(Value.kForward);
     }
 
 } 

@@ -12,12 +12,13 @@ public class Intake extends SubsystemBase {
     private final TalonFX m_intakeFalcon = new TalonFX(Constants.INTAKE_FALCON);
 
     public void intakeCargo(double power) {
+        double absolutePower = Math.abs(power);
         if(power > 0) {
             m_intakeFalcon.setInverted(Constants.INVERT_INTAKE);
-            m_intakeFalcon.set(ControlMode.PercentOutput, power);
+            m_intakeFalcon.set(ControlMode.PercentOutput, absolutePower);
         } else if(power < 0) {
             m_intakeFalcon.setInverted(Constants.RE_INVERT_INTAKE);
-            m_intakeFalcon.set(ControlMode.PercentOutput, power);
+            m_intakeFalcon.set(ControlMode.PercentOutput, absolutePower);
         } else {
             m_intakeFalcon.set(ControlMode.PercentOutput, 0);
         }   

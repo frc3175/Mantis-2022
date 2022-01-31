@@ -50,9 +50,9 @@ public class RobotContainer {
   /* Operator Buttons */
   private final JoystickButton m_intakeCargo = new JoystickButton(m_opController, XboxController.Button.kY.value);
   private final JoystickButton m_outtakeCargo = new JoystickButton(m_opController, XboxController.Button.kX.value);
-  private final JoystickButton m_shootCargo = new JoystickButton(m_opController, XboxController.Button.kA.value);
-  private final JoystickButton m_actuateIntake = new JoystickButton(m_opController, XboxController.Button.kRightBumper.value);
-  private final JoystickButton m_actuateBack = new JoystickButton(m_opController, XboxController.Button.kLeftBumper.value);
+  private final JoystickButton m_shootCargo = new JoystickButton(m_opController, XboxController.Button.kLeftBumper.value);
+  //private final JoystickButton m_actuateIntake = new JoystickButton(m_opController, XboxController.Button.kRightBumper.value);
+  //private final JoystickButton m_actuateBack = new JoystickButton(m_opController, XboxController.Button.kLeftBumper.value);
 
   /* Subsystems */
   private final SwerveDrivetrain m_swerveDrivetrain = new SwerveDrivetrain();
@@ -107,8 +107,12 @@ public class RobotContainer {
                   .whenReleased(new IntakeCargo(m_intake, 0, m_opController));
     m_shootCargo.whenPressed(new ShootCargo(m_shooter, Constants.SHOOTER_TARGET_RPM, m_driverController, m_opController))
                 .whenReleased(new StopShooter(m_shooter));
-    m_actuateIntake.whenPressed(new ActuateIntake(m_actuator));
-    m_actuateBack.whenPressed(new ActuateBack(m_actuator));
+    m_intakeCargo.whenPressed(new ActuateIntake(m_actuator))
+                 .whenReleased(new ActuateBack(m_actuator));
+    //m_intakeCargo.whenPressed(new DeployIntake(m_intake, m_actuator, m_driverController))
+                 //.whenReleased(new StopIntake(m_intake, m_actuator, m_driverController));
+    //m_actuateIntake.whenPressed(new ActuateIntake(m_actuator));
+    //m_actuateBack.whenPressed(new ActuateBack(m_actuator));
 
 
   }

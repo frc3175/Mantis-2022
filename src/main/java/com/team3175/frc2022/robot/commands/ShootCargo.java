@@ -44,10 +44,15 @@ public class ShootCargo extends CommandBase {
         SmartDashboard.putNumber("right shooter velocity falcon units*", m_shooter.getRightVelocity());
 
         if(m_shooter.rightFalconAtSetpoint(m_rpm) && m_shooter.leftFalconAtSetpoint(m_rpm)) {
-            //m_driveController.setRumble(Constants.DRIVER_RUMBLE_LEFT, Constants.DRIVER_RUMBLE_PERCENT);
+            m_driveController.setRumble(Constants.DRIVER_RUMBLE_LEFT, Constants.DRIVER_RUMBLE_PERCENT);
             m_opController.setRumble(Constants.OP_RUMBLE_LEFT, Constants.OP_RUMBLE_PERCENT);
-            //m_driveController.setRumble(Constants.DRIVER_RUMBLE_RIGHT, Constants.DRIVER_RUMBLE_PERCENT);
+            m_driveController.setRumble(Constants.DRIVER_RUMBLE_RIGHT, Constants.DRIVER_RUMBLE_PERCENT);
             m_opController.setRumble(Constants.OP_RUMBLE_RIGHT, Constants.OP_RUMBLE_PERCENT);
+        } else {
+            m_driveController.setRumble(Constants.DRIVER_RUMBLE_LEFT, 0);
+            m_opController.setRumble(Constants.OP_RUMBLE_LEFT, 0);
+            m_driveController.setRumble(Constants.DRIVER_RUMBLE_RIGHT, 0);
+            m_opController.setRumble(Constants.OP_RUMBLE_RIGHT, 0);
         }
     }    
 }

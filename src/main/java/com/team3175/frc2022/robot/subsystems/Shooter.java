@@ -61,6 +61,13 @@ public class Shooter extends SubsystemBase {
         boolean isAtSetpoint = (rpm - getLeftVelocity()) < Constants.SHOOTER_ERROR ? true : false;
         return isAtSetpoint;
     }
+
+    public double getEncoders() {
+        double left = m_leftShooterFalcon.getSelectedSensorPosition();
+        double right = m_rightShooterFalcon.getSelectedSensorPosition();
+        double total = (left + right);
+        return total / 2;
+    }
     
     private void configShooterFalcons() {
         m_leftShooterFalcon.configFactoryDefault();

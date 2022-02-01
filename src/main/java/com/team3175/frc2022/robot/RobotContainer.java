@@ -44,15 +44,12 @@ public class RobotContainer {
 
   /* Driver Buttons */
   private final JoystickButton m_zeroGyro = new JoystickButton(m_driverController, XboxController.Button.kY.value);
-  //private final JoystickButton m_turnTo90 = new JoystickButton(m_driverController, XboxController.Button.kB.value);
   private final JoystickButton m_feedShooter = new JoystickButton(m_driverController, XboxController.Button.kA.value);
 
   /* Operator Buttons */
   private final JoystickButton m_intakeCargo = new JoystickButton(m_opController, XboxController.Button.kY.value);
   private final JoystickButton m_outtakeCargo = new JoystickButton(m_opController, XboxController.Button.kX.value);
   private final JoystickButton m_shootCargo = new JoystickButton(m_opController, XboxController.Button.kLeftBumper.value);
-  //private final JoystickButton m_actuateIntake = new JoystickButton(m_opController, XboxController.Button.kRightBumper.value);
-  //private final JoystickButton m_actuateBack = new JoystickButton(m_opController, XboxController.Button.kLeftBumper.value);
 
   /* Subsystems */
   private final SwerveDrivetrain m_swerveDrivetrain = new SwerveDrivetrain();
@@ -72,9 +69,6 @@ public class RobotContainer {
   //String pathJSON = "paths/IntakeTrenchLineUp.wpilib.json";
   //public static Trajectory m_trajectory = new Trajectory();
 
-
-  // The container for the robot. Contains subsystems, OI devices, and commands. 
- 
   public RobotContainer(){
     boolean fieldRelative = true;
     boolean openLoop = true;
@@ -111,8 +105,6 @@ public class RobotContainer {
                  .whenReleased(new ActuateBack(m_actuator));
     //m_intakeCargo.whenPressed(new DeployIntake(m_intake, m_actuator, m_driverController))
                  //.whenReleased(new StopIntake(m_intake, m_actuator, m_driverController));
-    //m_actuateIntake.whenPressed(new ActuateIntake(m_actuator));
-    //m_actuateBack.whenPressed(new ActuateBack(m_actuator));
 
 
   }

@@ -134,9 +134,6 @@ public final class Constants {
               CTRE Configs
     ==============================*/
 
-    //TODO: Adjust ALL current limits to what coopers calculations find reasonable
-    //TODO: Double check all neutral modes to make sure they are what they should be
-
      /* Current Limiting */
      public static final int AZIMUTH_CONTINUOUS_CURRENT_LIMIT = 25;
      public static final int AZIMUTH_PEAK_CURRENT_LIMIT = 40;
@@ -182,7 +179,6 @@ public final class Constants {
 
     //TODO: Adjust controller constants to preferences
     //TODO: Fix intake inversion
-    //TODO: Change all max speeds based on testing and tuning
 
     /* Controller Constants */
     public static final double STICK_DEADBAND = 0.1;

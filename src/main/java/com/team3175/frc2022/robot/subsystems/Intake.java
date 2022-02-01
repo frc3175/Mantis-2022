@@ -24,6 +24,18 @@ public class Intake extends SubsystemBase {
         }   
     }
 
+    public void resetEncoders() {
+        m_intakeFalcon.setSelectedSensorPosition(0);
+    }
+
+    public double getEncoders() {
+        return m_intakeFalcon.getSelectedSensorPosition();
+    }
+
+    public void stopIntake() {
+        m_intakeFalcon.set(ControlMode.PercentOutput, 0);
+    }
+
     public void configIntakeMotor() {
         m_intakeFalcon.configFactoryDefault();
         m_intakeFalcon.configAllSettings(CTREConfigs.intakeFXConfig);

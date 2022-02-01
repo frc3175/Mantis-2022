@@ -7,6 +7,7 @@ import com.team3175.frc2022.lib.math.Conversions;
 import com.team3175.frc2022.robot.CTREConfigs;
 import com.team3175.frc2022.robot.Constants;
 
+//import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -14,6 +15,9 @@ public class Shooter extends SubsystemBase {
 
     private final TalonFX m_leftShooterFalcon = new TalonFX(Constants.LEFT_SHOOTER_FALCON);
     private final TalonFX m_rightShooterFalcon = new TalonFX(Constants.RIGHT_SHOOTER_FALCON);
+
+    //private final XboxController m_driveController = new XboxController(0);
+    //private final XboxController m_opController = new XboxController(1);
 
     public Shooter() {
 
@@ -32,6 +36,18 @@ public class Shooter extends SubsystemBase {
         SmartDashboard.putNumber("shooter setpoint falcon units*", target_velocity_units_100ms);
         SmartDashboard.putNumber("shooter setpoint rpm*", Conversions.falconToRPM(target_velocity_units_100ms, 1.0));
 
+        /*if(rightFalconAtSetpoint(rpm) && leftFalconAtSetpoint(rpm)) {
+            m_driveController.setRumble(Constants.DRIVER_RUMBLE_LEFT, Constants.DRIVER_RUMBLE_PERCENT);
+            m_opController.setRumble(Constants.OP_RUMBLE_LEFT, Constants.OP_RUMBLE_PERCENT);
+            m_driveController.setRumble(Constants.DRIVER_RUMBLE_RIGHT, Constants.DRIVER_RUMBLE_PERCENT);
+            m_opController.setRumble(Constants.OP_RUMBLE_RIGHT, Constants.OP_RUMBLE_PERCENT);
+        } else {
+            m_driveController.setRumble(Constants.DRIVER_RUMBLE_LEFT, 0);
+            m_opController.setRumble(Constants.OP_RUMBLE_LEFT, 0);
+            m_driveController.setRumble(Constants.DRIVER_RUMBLE_RIGHT, 0);
+            m_opController.setRumble(Constants.OP_RUMBLE_RIGHT, 0);
+        } */
+
     }
 
     public void stopShooter() {
@@ -40,11 +56,15 @@ public class Shooter extends SubsystemBase {
     }
 
     public double getLeftVelocity() {
-        return m_leftShooterFalcon.getSelectedSensorVelocity();
+        double falconUnits = m_leftShooterFalcon.getSelectedSensorVelocity();
+        double rpm = Conversions.falconToRPM(falconUnits, 1.0);
+        return rpm;
     }
 
     public double getRightVelocity() {
-        return m_rightShooterFalcon.getSelectedSensorVelocity();
+        double falconUnits = m_rightShooterFalcon.getSelectedSensorVelocity();
+        double rpm = Conversions.falconToRPM(falconUnits, 1.0);
+        return rpm;
     }
 
     public void resetEncoders() {

@@ -21,6 +21,14 @@ public class SwerveDrivetrain extends SubsystemBase {
     public SwerveModule[] m_swerveModules;
     public AHRS m_gyro;
 
+    /**
+     * 
+     * Constructor for the entire Swerve Drivetrain
+     * 
+     * Creates all 4 module instances in addition to gyro and odometry configuration
+     * 
+     */
+
     public SwerveDrivetrain() {
         m_gyro = new AHRS(SPI.Port.kMXP);
         m_gyro.reset();
@@ -64,6 +72,17 @@ public class SwerveDrivetrain extends SubsystemBase {
 
     }
 
+    /**
+     * 
+     * The drive method for the drivetrain
+     * 
+     * @param translation Translation2d object containing a vector which represents the distance to be traveled in x and y axes
+     * @param rotation The holonomic rotation value from the rotation joystick axis
+     * @param fieldRelative If the robot is driving field relative or not, should only be false in the case of a brownout
+     * @param isOpenLoop Whether or not the robot is driving using open loop control, almost always false
+     * 
+     */
+
     public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
 
         SwerveModuleState[] swerveModuleStates =
@@ -80,6 +99,14 @@ public class SwerveDrivetrain extends SubsystemBase {
 
     }
 
+    /**
+     * 
+     * Sets all 4 modules to the desired states using an array of SwerveModuleStates based on calculations
+     * 
+     * @param desiredStates An array of all 4 desired states
+     * 
+     */
+
     public void setModuleStates(SwerveModuleState[] desiredStates) {
         SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, Constants.MAX_SPEED);
         
@@ -87,23 +114,59 @@ public class SwerveDrivetrain extends SubsystemBase {
             mod.setDesiredState(desiredStates[mod.m_moduleNumber], false);
         }
     }
+
+    /**
+     * 
+     * Sets all 4 modules to the desired states using a ChassisSpeeds object
+     * 
+     * @param targetSpeeds The target speeds for all modules in ChassisSpeeds form
+     * 
+     */
     
     public void setChassisSpeeds(ChassisSpeeds targetSpeeds) {
         setModuleStates(Constants.swerveKinematics.toSwerveModuleStates(targetSpeeds));
     }
 
+    /**
+     * 
+     * @return Pose of the robot in meters 
+     * 
+     */
+
     public Pose2d getPose() {
         return m_swerveOdometry.getPoseMeters();
     }
+
+    /**
+     * 
+     * Sets the robot odometry to the current known pose
+     * 
+     * @param pose Current pose of the robot
+     * 
+     */
 
     public void resetOdometry(Pose2d pose) {
         m_swerveOdometry.resetPosition(pose, getYaw());
     }
 
+    /**
+     * 
+     * Gets the theta angle of the robot
+     * 
+     * @return Current gyro Yaw value in degrees -180-180
+     * 
+     */
+
     public double getAngle() {
         double angle = m_gyro.getYaw();
         return angle;
     }
+
+    /**
+     * 
+     * @return Array of SwerveModuleStates containing the states of all 4 robots
+     * 
+     */
 
     public SwerveModuleState[] getStates(){
         SwerveModuleState[] states = new SwerveModuleState[4];
@@ -113,22 +176,34 @@ public class SwerveDrivetrain extends SubsystemBase {
         return states;
     }
 
+    /**
+     * 
+     * Returns the theta angle of the robot as a Rotation2d object
+     * 
+     * @return Gyro angle as Rotation2d
+     * 
+     */
+
     public Rotation2d getYaw() {
         return (Constants.INVERT_GYRO) ? Rotation2d.fromDegrees(360 - m_gyro.getYaw()) 
                                              : Rotation2d.fromDegrees(m_gyro.getYaw());
     }
 
+    /**
+     * 
+     * Sets the current gyro angle to 0 no matter the robot orientation
+     * 
+     */
+
     public void resetGyro() {
         m_gyro.reset();
     }
 
-    public void keepModulesWhereTheyAre() {
-
-        for(SwerveModule mod : m_swerveModules) {
-            mod.keepModuleWhereItIs(mod.m_moduleNumber);
-        }
-
-    }
+    /**
+     * 
+     * Sets all module positions to 0 no matter their orientation
+     * 
+     */
 
     public void zeroModules() {
 
@@ -138,8 +213,18 @@ public class SwerveDrivetrain extends SubsystemBase {
 
     }
 
-    //true = left, false = right
-    //Note: WILL ALWAYS RETURN A VALUE, EVEN IF CURRENT = DESIRED SO MAKE SURE TO ONLY RUN THIS METHOD WHEN CURRENT != DESIRED
+    /**
+     * 
+     * Optimizes the holonomic rotation of the robot
+     * 
+     * @param currentAngle current theta orientation of the robot
+     * @param desiredAngle desired theta orientation of the robot
+     * @return which direction the robot should turn: true = left, false = right
+     * 
+     * Note: WILL ALWAYS RETURN A VALUE, EVEN IF CURRENT = DESIRED SO MAKE SURE TO ONLY RUN THIS METHOD WHEN CURRENT != DESIRED
+     * 
+     */
+
     public boolean optimizeTurning(double currentAngle, double desiredAngle) {
 
         boolean isDesiredPositive = desiredAngle > 0;
@@ -173,6 +258,14 @@ public class SwerveDrivetrain extends SubsystemBase {
 
     }
 
+    /**
+     * 
+     * Updates odometry with current theta angle and module states
+     * 
+     * Pushes module cancoder and integrated encoder values, module velocities, and gyro angle to SmartDashboard
+     * 
+     */
+
     @Override
     public void periodic(){
         m_swerveOdometry.update(getYaw(), getStates());  
@@ -185,8 +278,6 @@ public class SwerveDrivetrain extends SubsystemBase {
         }
 
         SmartDashboard.putNumber("Gyro Yaw: ", m_gyro.getYaw());
-
-        SmartDashboard.putNumber("Test value", SmartDashboard.getNumber("Mod 1 Azimuth from Cancoder", 0));
 
     }
 

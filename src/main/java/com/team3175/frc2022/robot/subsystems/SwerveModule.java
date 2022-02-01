@@ -3,7 +3,6 @@ package com.team3175.frc2022.robot.subsystems;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
@@ -27,6 +26,21 @@ public class SwerveModule {
 
     SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.DRIVE_S, Constants.DRIVE_V, Constants.DRIVE_A);
 
+    /**
+     * 
+     * The constructor for each swerve module on the robot
+     * 
+     * @param moduleNumber FL -> 0 FR -> 1 BL -> 2 BR -> 3
+     * @param offset Cancoder offset for the module
+     * @param azimuthMotor Azimuth motor CAN ID
+     * @param driveMotor Drive motor CAN ID
+     * @param canCoder CANCoder CAN ID
+     * @param azimuthInverted Is the azimuth motor inverted in the forward direction
+     * @param driveInverted Is the drive motor inverted in the forward direction
+     * @param canCoderInverted Is the CANCoder inverted in the forward direction
+     * 
+     */
+
     public SwerveModule(int moduleNumber, double offset, int azimuthMotor, int driveMotor, int canCoder, boolean azimuthInverted, boolean driveInverted, boolean canCoderInverted){
         m_moduleNumber = moduleNumber;
         m_offset = offset;
@@ -44,6 +58,15 @@ public class SwerveModule {
 
         m_lastAngle = getState().angle.getDegrees();
     }
+
+    /**
+     * 
+     * Set the state of the individual module to the desired position 
+     * 
+     * @param desiredState the SwerveModuleState for the individual module to go to
+     * @param openLoop should almost always be false, whether driving is open loop or not
+     * 
+     */
 
     public void setDesiredState(SwerveModuleState desiredState, boolean openLoop) {
 
@@ -65,15 +88,33 @@ public class SwerveModule {
         m_lastAngle = angle;
     }
 
+    /**
+     * 
+     * Sets the azimuth integrated encoder to absolute based on the current CANCoder position
+     * 
+     */
+
     private void resetToAbsolute() {
         m_azimuthMotor.setSelectedSensorPosition(Conversions.degreesToFalcon(getCanCoder().getDegrees() - m_offset, Constants.AZIMUTH_GEAR_RATIO));
     }
+
+    /**
+     * 
+     * Configures the CANCoder to the configuration set in CTREConfigs.java
+     * 
+     */
 
     private void configCanCoder() {        
         m_canCoder.configFactoryDefault();
         m_canCoder.configAllSettings(Robot.ctreConfigs.swerveCanCoderConfig);
         m_canCoder.configSensorDirection(m_canCoderInverted);
     }
+
+    /**
+     * 
+     * Configures the Azimuth motor to the configuration set in CTREConfigs.java
+     * 
+     */
 
     private void configTurningMotor() {
         m_azimuthMotor.configFactoryDefault();
@@ -83,6 +124,12 @@ public class SwerveModule {
         resetToAbsolute();
     }
 
+    /**
+     * 
+     * Configures the Drive motor to the configuration set in CTREConfigs.java
+     * 
+     */
+
     private void configDriveMotor() {        
         m_driveMotor.configFactoryDefault();
         m_driveMotor.configAllSettings(Robot.ctreConfigs.swerveDriveFXConfig);
@@ -91,13 +138,31 @@ public class SwerveModule {
         m_driveMotor.setSelectedSensorPosition(0);
     }
 
+    /**
+     * 
+     * @return Rotation2d CANCoder position
+     * 
+     */
+
     public Rotation2d getCanCoder() {
         return Rotation2d.fromDegrees(m_canCoder.getAbsolutePosition());
     }
 
+    /**
+     * 
+     * @return drive motor integrated encoder position
+     * 
+     */
+
     public double getDriveEncoder() {
         return m_driveMotor.getSelectedSensorPosition();
     }
+
+    /**
+     * 
+     * @return SwerveModuleState state of the individual module
+     * 
+     */
 
     public SwerveModuleState getState() {
 
@@ -107,12 +172,11 @@ public class SwerveModule {
 
     }
 
-    //not actually using this anymore
-    public void keepModuleWhereItIs(int moduleNumber) {
-        m_azimuthMotor.setSelectedSensorPosition(Conversions.degreesToFalcon(
-                                                 (SmartDashboard.getNumber("Mod " + moduleNumber + " Azimuth angle", 0) - m_offset), 
-                                                 Constants.AZIMUTH_GEAR_RATIO));
-    }
+    /**
+     * 
+     * Sets the position of the azimuth integrated encoder to the zero position of the CANCoder
+     * 
+     */
 
     public void zeroModule() {
         m_azimuthMotor.setSelectedSensorPosition(Conversions.degreesToFalcon(m_offset, Constants.AZIMUTH_GEAR_RATIO));

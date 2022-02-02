@@ -59,7 +59,6 @@ public final class Constants {
     public static final boolean INVERT_GYRO = true; // Always ensure Gyro is CCW+ CW- !!!!!
 
     //TODO: Characterize drivetrain on new robot
-    //TODO: Tune TeleOp PID on new robot for drivetrain, shooter, and climber
 
     /* Angle Motor PID Values */
     public static final double AZIMUTH_P = 0.2;
@@ -99,11 +98,9 @@ public final class Constants {
     public static final double AZIMUTH_GEAR_RATIO = (12.8 / 1.0); //12.8:1
 
     /* Swerve Profiling Values */
-    public static final double MAX_SPEED = Units.feetToMeters(16.2); //meters per second //TODO: make 16
+    public static final double MAX_SPEED = Units.feetToMeters(16.2); //meters per second
     public static final double MAX_ANGULAR_VELOCITY = Math.PI * 5.2 * 0.625; //actually 5.2
     public static final double TURN_IN_PLACE_SPEED = 0.5;
-
-    //TODO: Adjust all auto P controllers on new robot
 
     /* Auto Swerve profiling */
     public static final double AUTO_MAX_SPEED = 4.9;
@@ -223,7 +220,6 @@ public final class Constants {
     public static final boolean INVERT_FEEDER = false;
 
     /* Feeder Constants */
-    //TODO: fix this to percent output
     public static final double TARGET_FEEDER_RPM = 1000; //random
     public static final double FEEDER_PERCENT_OUTPUT = 0.9;
 
@@ -262,9 +258,6 @@ public final class Constants {
     /*============================
          Controller Constants
     ==============================*/
-
-    //TODO: Adjust controller constants to preferences
-    //TODO: Fix intake inversion
 
     /* Controller Constants */
     public static final double STICK_DEADBAND = 0.1;

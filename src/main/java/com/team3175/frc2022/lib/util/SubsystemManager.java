@@ -42,6 +42,12 @@ public class SubsystemManager {
 
     }
 
+    /**
+     * 
+     * @return whether the motor is moving
+     * 
+     */
+
     public boolean isMotorAlive() {
 
         if(m_motor.getMotorOutputPercent() > 0) {
@@ -52,17 +58,35 @@ public class SubsystemManager {
 
     }
 
+    /**
+     * 
+     * @return temperature of the motor
+     * 
+     */
+
     public double getTemp() {
 
         return m_motor.getTemperature();
 
     }
 
+    /**
+     * 
+     * @return motor velocity in falcon native units 
+     * 
+     */
+
     public double getVelocity() {
 
         return m_motor.getSelectedSensorVelocity();
 
     }
+
+    /**
+     * 
+     * Pushes whether the motor is active, temperature, and velocity
+     * 
+     */
 
     public void manageSubsystem() {
 

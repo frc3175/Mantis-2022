@@ -11,14 +11,28 @@ public class Actuators extends SubsystemBase{
 
     DoubleSolenoid m_actuators = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.ACTUATORS_LEFT, Constants.ACTUATORS_RIGHT);
 
+    /**
+     * 
+     * Puts intake into down position
+     * 
+     */
+
     public void actuate(){
 
         m_actuators.set(Value.kReverse);
 
     }
 
+    /**
+     * 
+     * Puts intake into up position
+     * 
+     */
+
     public void actuateBack() {
+
         m_actuators.set(Value.kForward);
+
     }
 
 } 

@@ -23,7 +23,7 @@ public class FeedShooter extends CommandBase {
 
     @Override
     public void execute() {
-        m_feeder.feederRun(m_rpm);
+        m_feeder.feederRunVelocity(m_rpm);
     }
 
 

@@ -91,8 +91,8 @@ public class RobotContainer {
 
     /* Driver Buttons */
     m_zeroGyro.whenPressed(new InstantCommand(() -> m_swerveDrivetrain.resetGyro()));
-    m_feedShooter.whenPressed(new InstantCommand(() -> m_feeder.feederRun(0.9)))
-                  .whenReleased(new InstantCommand(() -> m_feeder.feederRun(0)));
+    m_feedShooter.whenPressed(new InstantCommand(() -> m_feeder.feederRunPercentOutput(Constants.FEEDER_PERCENT_OUTPUT)))
+                  .whenReleased(new InstantCommand(() -> m_feeder.feederRunPercentOutput(0)));
                   
     /* Operator Buttons */  
     m_intakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.INTAKE_SPEED, m_opController))

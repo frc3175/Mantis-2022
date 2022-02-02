@@ -11,6 +11,14 @@ public class Intake extends SubsystemBase {
     
     private final TalonFX m_intakeFalcon = new TalonFX(Constants.INTAKE_FALCON);
 
+    /**
+     * 
+     * Sets intake speed in PercentOutput mode, takes negative or positive values
+     * 
+     * @param power PercentOutput at which the intake motor should run, negative if should be reversed
+     * 
+     */
+
     public void intakeCargo(double power) {
         double absolutePower = Math.abs(power);
         if(power > 0) {
@@ -24,9 +32,21 @@ public class Intake extends SubsystemBase {
         }   
     }
 
+    /**
+     * 
+     * Resets falcon integrated encoder to absolute
+     * 
+     */
+
     public void resetEncoders() {
         m_intakeFalcon.setSelectedSensorPosition(0);
     }
+
+    /**
+     * 
+     * @return Absolute position of falcon integrated encoder
+     * 
+     */
 
     public double getEncoders() {
         return m_intakeFalcon.getSelectedSensorPosition();

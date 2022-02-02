@@ -224,6 +224,7 @@ public final class Constants {
     /* Feeder Constants */
     //TODO: fix this to percent output
     public static final double TARGET_FEEDER_RPM = 1000; //random
+    public static final double FEEDER_PERCENT_OUTPUT = 0.9;
 
     /*============================
                Actuators

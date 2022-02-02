@@ -43,7 +43,7 @@ public class AutonShoot extends CommandBase {
 
         if(isLeftAtSetpoint && isRightAtSetpoint) {
             if(m_shooter.getEncoders() < m_ticks) {
-                m_feeder.feederRun(m_feederPower);
+                m_feeder.feederRunPercentOutput(m_feederPower);
                 m_shooter.shoot(m_setpoint);
             } else {
                 isDone = true;

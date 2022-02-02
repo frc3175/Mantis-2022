@@ -94,6 +94,10 @@ public final class Constants {
     public static final NeutralMode AZIMUTH_NEUTRAL_MODE = NeutralMode.Coast;
     public static final NeutralMode DRIVE_NEUTRAL_MODE = NeutralMode.Brake;
 
+    /* Swerve Gear Ratios */
+    public static final double DRIVE_GEAR_RATIO = (6.86 / 1.0); //6.86:1
+    public static final double AZIMUTH_GEAR_RATIO = (12.8 / 1.0); //12.8:1
+
     /* Swerve Profiling Values */
     public static final double MAX_SPEED = Units.feetToMeters(8); //meters per second //TODO: make 16
     public static final double MAX_ANGULAR_VELOCITY = Math.PI * 5.2 * 0.625; //actually 5.2
@@ -240,18 +244,18 @@ public final class Constants {
     public static final double WHEEL_DIAMETER = Units.inchesToMeters(4);
     public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
 
-    public static final double OPEN_LOOP_RAMP = 0.25; //tune this as well??
-    public static final double CLOSED_LOOP_RAMP = 0.0;
-
-    public static final double DRIVE_GEAR_RATIO = (6.86 / 1.0); //6.86:1
-    public static final double AZIMUTH_GEAR_RATIO = (12.8 / 1.0); //12.8:1
-
     public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKinematics(
         new Translation2d(DRIVETRAIN_LENGTH / 2.0, DRIVETRAIN_WIDTH / 2.0),
         new Translation2d(DRIVETRAIN_LENGTH / 2.0, -DRIVETRAIN_WIDTH / 2.0),
         new Translation2d(-DRIVETRAIN_LENGTH / 2.0, DRIVETRAIN_WIDTH / 2.0),
         new Translation2d(-DRIVETRAIN_LENGTH / 2.0, -DRIVETRAIN_WIDTH / 2.0));
 
+    /*============================
+                Misc.
+    ==============================*/
+
+    public static final double OPEN_LOOP_RAMP = 0.25; //tune this as well??
+    public static final double CLOSED_LOOP_RAMP = 0.0;
 
     /*============================
          Controller Constants

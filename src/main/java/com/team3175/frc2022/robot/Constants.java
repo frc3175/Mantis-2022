@@ -99,7 +99,7 @@ public final class Constants {
     public static final double AZIMUTH_GEAR_RATIO = (12.8 / 1.0); //12.8:1
 
     /* Swerve Profiling Values */
-    public static final double MAX_SPEED = Units.feetToMeters(8); //meters per second //TODO: make 16
+    public static final double MAX_SPEED = Units.feetToMeters(16.2); //meters per second //TODO: make 16
     public static final double MAX_ANGULAR_VELOCITY = Math.PI * 5.2 * 0.625; //actually 5.2
     public static final double TURN_IN_PLACE_SPEED = 0.5;
 
@@ -172,6 +172,7 @@ public final class Constants {
 
     /* Invert climber */
     public static final boolean INVERT_CLIMBER = false;
+    public static final boolean RE_INVERT_CLIMBER = INVERT_CLIMBER ? false : true;
 
     /* Climber speeds */
     public static final double CLIMBER_SPEED = 0.5;
@@ -193,7 +194,7 @@ public final class Constants {
 
     /* Intake inversions */
     public static final boolean INVERT_INTAKE = true; //opposite of intake_not_inverted
-    public static final boolean RE_INVERT_INTAKE = false; //opposite of invert_intake
+    public static final boolean RE_INVERT_INTAKE = INVERT_INTAKE ? false : true;
 
     /* Intake neutral mode */
     public static final NeutralMode INTAKE_NEUTRAL_MODE = NeutralMode.Brake;

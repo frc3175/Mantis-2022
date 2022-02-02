@@ -5,29 +5,113 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.team3175.frc2022.robot.CTREConfigs;
 import com.team3175.frc2022.robot.Constants;
 
-//
-//Undecided if this should be state space or just have a regular setpoint
-//At the moment, just uses a setpoint and PID but it is also only partially done.
-//PID is super important too here!!!! We do NOT want a robot bouncing up and down
-//
-//Note: have an override button so that if the position control doesn't work perfectly
-//we can still move up and down
-//
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Climber {
+public class Climber extends SubsystemBase {
 
     private final TalonFX m_climberFalcon = new TalonFX(Constants.CLIMBER_FALCON);
+    private boolean stageOne = false;
+    private boolean stageTwo = false;
 
     public Climber() {
         configureClimberMotor();
     }
 
-    public void climbUp() {
-        m_climberFalcon.set(ControlMode.Position, Constants.CLIMBER_UP_SETPOINT);
+    /**
+     * 
+     * Automatically brings climbers up
+     * 
+     * @param setpoint Final encoder position when the climbers are up
+     * @param speed PercentOutput to climb at
+     * 
+     */
+
+    public void climbUp(double setpoint, double speed) {
+        if(stageOne) {
+            m_climberFalcon.setInverted(Constants.INVERT_CLIMBER);
+            if(getClimberEncoder() < setpoint) {
+                m_climberFalcon.set(ControlMode.PercentOutput, speed);
+            } else {
+                m_climberFalcon.set(ControlMode.PercentOutput, 0);
+                stageOne = false;
+            }
+        }
     }
 
-    public void climbDown() {
-        m_climberFalcon.set(ControlMode.Position, Constants.CLIMBER_DOWN_SETPOINT);
+    /**
+     * 
+     * Automatically pulls the robot up by pulling climbers down
+     * 
+     * @param setpoint Final encoder position when the climbers are down
+     * @param speed PercentOutput to climb at
+     * 
+     */
+
+    public void climbDown(double setpoint, double speed) {
+        if(stageTwo) {
+            m_climberFalcon.setInverted(Constants.RE_INVERT_CLIMBER);
+            if(getClimberEncoder() > setpoint) {
+                m_climberFalcon.set(ControlMode.PercentOutput, speed);
+            } else {
+                m_climberFalcon.set(ControlMode.PercentOutput, 0);
+            }
+        }
+    }
+
+    /**
+     * 
+     * Manually brings the climbers up, only used in emergencies
+     * 
+     * @param speed PercentOutput to climb
+     * 
+     */
+
+    public void overrideUp(double speed) {
+        m_climberFalcon.setInverted(Constants.INVERT_CLIMBER);
+        m_climberFalcon.set(ControlMode.PercentOutput, speed);
+    }
+
+    /**
+     * 
+     * Manually brings the climbers down, only used in emergencies
+     * 
+     * @param speed PercentOutput to climb
+     * 
+     */
+
+    public void overrideDown(double speed) {
+        m_climberFalcon.setInverted(Constants.RE_INVERT_CLIMBER);
+        m_climberFalcon.set(ControlMode.PercentOutput, speed);
+    }
+
+    /**
+     * 
+     * Estop the climber
+     * 
+     */
+
+    public void overrideStop() {
+        m_climberFalcon.set(ControlMode.PercentOutput, 0);
+    }
+
+    /**
+     * 
+     * @return Position of the climber encoder
+     * 
+     */
+
+    public double getClimberEncoder() {
+        return m_climberFalcon.getSelectedSensorPosition();
+    }
+
+    /**
+     * 
+     * Set climber integrated encoder to 0
+     * 
+     */
+
+    public void resetEncoders() {
+        m_climberFalcon.setSelectedSensorPosition(0);
     }
 
     public void configureClimberMotor() {

@@ -87,16 +87,15 @@ public class RobotContainer {
     UsbCamera m_camera = CameraServer.startAutomaticCapture();
     m_camera.setResolution(400, 400);
 
-    Shuffleboard.getTab("Drive")
-                .add("gyro", m_swerveDrivetrain.getAngle());
+    Shuffleboard.getTab("Drive").add("gyro", m_swerveDrivetrain.getAngle());
 
     Shuffleboard.getTab("Drive")
                     .add("intake running", m_intake.isIntakeRunning())
                     .withWidget(BuiltInWidgets.kBooleanBox)
-                    .withProperties(Map.of("green", true, "red", false))
+                    .withProperties(Map.of("colorWhenTrue", "red", "colorWhenFalse", "black"))
                     .getEntry();
 
-    //SmartDashboard.putNumber("intake", m_intake.isIntakeRunningInt());   
+    Shuffleboard.getTab("Drive").add("shooter speed", m_shooter.getLeftVelocityRPM());
     
     // Configure the button bindings
     configureButtonBindings();

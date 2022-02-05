@@ -41,7 +41,7 @@ public final class Constants {
     public static boolean FRONT_LEFT_AZIMUTH_REVERSED = false;
     public static boolean FRONT_RIGHT_AZIMUTH_REVERSED = false;
     public static boolean BACK_LEFT_AZIMUTH_REVERSED = false;
-    public static boolean BACK_RIGHT_AZIMUTH_REVERSED = false; //
+    public static boolean BACK_RIGHT_AZIMUTH_REVERSED = false;
 
     /* Drive motors reversed */
     public static boolean FRONT_LEFT_DRIVE_REVERSED = true; //temp, normally true
@@ -271,4 +271,11 @@ public final class Constants {
     public static final RumbleType OP_RUMBLE_RIGHT = RumbleType.kRightRumble;
     public static final double DRIVING_INTAKE_RUMBLE = 0.3;
 
-    } 
+    /*============================
+            Auto Constants
+    ==============================*/
+
+    public static final double SHOOT_TICKS = 2000;
+    public static final double TWO_BALL_INTAKE_TICKS = 100000;
+
+} 

@@ -5,7 +5,7 @@ import com.team3175.frc2022.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class AutonShoot extends CommandBase {
+public class AutonShootAndFeed extends CommandBase {
 
     private Shooter m_shooter;
     private Feeder m_feeder;
@@ -14,7 +14,7 @@ public class AutonShoot extends CommandBase {
     private double m_setpoint;
     private boolean isDone = false;
 
-    public AutonShoot(Shooter shooter, Feeder feeder, double ticks, double setpoint, double feederPower) {
+    public AutonShootAndFeed(Shooter shooter, Feeder feeder, double ticks, double setpoint, double feederPower) {
 
         m_shooter = shooter;
         m_feeder = feeder;
@@ -48,6 +48,8 @@ public class AutonShoot extends CommandBase {
             } else {
                 isDone = true;
             }
+        } else {
+            m_shooter.shoot(m_setpoint);
         }
 
     }

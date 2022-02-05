@@ -64,7 +64,8 @@ public class TwoBallTerminalCenter extends SequentialCommandGroup {
         addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(m_trajectory.getInitialPose())),
                     m_spinUp,
                     m_shootAndFeed,
-                    new ParallelCommandGroup(m_trajectoryCommand, m_intakeCargo, m_spinUp));
+                    new ParallelCommandGroup(m_trajectoryCommand, m_intakeCargo, m_spinUp),
+                    m_shootAndFeed);
 
     }
 

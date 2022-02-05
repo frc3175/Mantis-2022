@@ -28,7 +28,7 @@ public class OneBallAuto extends SequentialCommandGroup {
         m_feeder = feeder;
         m_drivetrain = drivetrain;
 
-        m_driveBack = PathPlanner.loadPath("tbd", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
+        m_driveBack = PathPlanner.loadPath("1BallAuto", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
 
         var m_translationController = new PIDController(Constants.AUTO_P_X_CONTROLLER, 0, 0);
         var m_strafeController = new PIDController(Constants.AUTO_P_Y_CONTROLLER, 0, 0);

@@ -4,9 +4,9 @@ import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.commands.PPSwerveControllerCommand;
 import com.team3175.frc2022.robot.Constants;
-import com.team3175.frc2022.robot.autos.autocommands.AutonIntake;
 import com.team3175.frc2022.robot.autos.autocommands.AutonShootAndFeed;
 import com.team3175.frc2022.robot.autos.autocommands.AutonSpinUp;
+import com.team3175.frc2022.robot.commands.SetIntakeState;
 import com.team3175.frc2022.robot.subsystems.Actuators;
 import com.team3175.frc2022.robot.subsystems.Feeder;
 import com.team3175.frc2022.robot.subsystems.Intake;
@@ -59,13 +59,15 @@ public class TwoBallTerminalCenter extends SequentialCommandGroup {
 
         AutonShootAndFeed m_shootAndFeed = new AutonShootAndFeed(m_shooter, m_feeder, Constants.SHOOT_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
 
-        AutonIntake m_intakeCargo = new AutonIntake(m_intake, m_actuators, Constants.TWO_BALL_INTAKE_TICKS, Constants.INTAKE_SPEED);
+        SetIntakeState m_intakeDeploy = new SetIntakeState(m_intake, m_actuators, "deploy", Constants.INTAKE_SPEED);
+
+        SetIntakeState m_intakeRetract = new SetIntakeState(m_intake, m_actuators, "retract", Constants.INTAKE_SPEED);
 
         addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(m_trajectory.getInitialPose())),
                     m_spinUp,
                     m_shootAndFeed,
-                    new ParallelCommandGroup(m_trajectoryCommand, m_intakeCargo, m_spinUp),
-                    m_shootAndFeed);
+                    new ParallelCommandGroup(m_trajectoryCommand, m_intakeDeploy, m_spinUp),
+                    new ParallelCommandGroup(m_shootAndFeed, m_intakeRetract));
 
     }
 

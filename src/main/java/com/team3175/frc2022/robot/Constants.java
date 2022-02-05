@@ -41,7 +41,7 @@ public final class Constants {
     public static boolean FRONT_LEFT_AZIMUTH_REVERSED = false;
     public static boolean FRONT_RIGHT_AZIMUTH_REVERSED = false;
     public static boolean BACK_LEFT_AZIMUTH_REVERSED = false;
-    public static boolean BACK_RIGHT_AZIMUTH_REVERSED = false;
+    public static boolean BACK_RIGHT_AZIMUTH_REVERSED = false; //
 
     /* Drive motors reversed */
     public static boolean FRONT_LEFT_DRIVE_REVERSED = true; //temp, normally true

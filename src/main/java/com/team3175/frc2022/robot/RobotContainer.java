@@ -4,6 +4,8 @@
 
 package com.team3175.frc2022.robot;
 
+import java.util.Map;
+
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 import com.team3175.frc2022.robot.autos.autocommands.PathplannerCommand;
@@ -14,9 +16,14 @@ import com.team3175.frc2022.robot.autos.automodes.PathweaverTest;
 import com.team3175.frc2022.robot.commands.*;
 import com.team3175.frc2022.robot.subsystems.*;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -76,6 +83,20 @@ public class RobotContainer {
     
     m_trajectory = PathPlanner.loadPath("New Path", 8, 5);
     m_pathplannerCommand = new PathplannerCommand(m_swerveDrivetrain, m_trajectory);
+
+    UsbCamera m_camera = CameraServer.startAutomaticCapture();
+    m_camera.setResolution(400, 400);
+
+    Shuffleboard.getTab("Drive")
+                .add("gyro", m_swerveDrivetrain.getAngle());
+
+    Shuffleboard.getTab("Drive")
+                    .add("intake running", m_intake.isIntakeRunning())
+                    .withWidget(BuiltInWidgets.kBooleanBox)
+                    .withProperties(Map.of("green", true, "red", false))
+                    .getEntry();
+
+    //SmartDashboard.putNumber("intake", m_intake.isIntakeRunningInt());   
     
     // Configure the button bindings
     configureButtonBindings();

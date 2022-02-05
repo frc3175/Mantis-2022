@@ -56,6 +56,22 @@ public class Intake extends SubsystemBase {
         m_intakeFalcon.set(ControlMode.PercentOutput, 0);
     }
 
+    public boolean isIntakeRunning() {
+        if(m_intakeFalcon.getSelectedSensorVelocity() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int isIntakeRunningInt() {
+        if(m_intakeFalcon.getSelectedSensorVelocity() > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
     public void configIntakeMotor() {
         m_intakeFalcon.configFactoryDefault();
         m_intakeFalcon.configAllSettings(CTREConfigs.intakeFXConfig);

@@ -24,7 +24,9 @@ public class SwerveDrive extends CommandBase {
     private int m_rotationAxis;
 
     /**
+     * 
      * Driver control
+     * 
      */
     public SwerveDrive(SwerveDrivetrain swerveDrivetrain, XboxController driverController, int driveAxis, int strafeAxis, int rotationAxis, boolean fieldRelative, boolean openLoop) {
         m_swerveDrivetrain = swerveDrivetrain;
@@ -55,8 +57,10 @@ public class SwerveDrive extends CommandBase {
 
         //double rAxisSquared = (rAxis * rAxis) * (rAxis / Math.abs(rAxis));
         double rAxisSquared = rAxis > 0 ? rAxis * rAxis : rAxis * rAxis * -1;
+        double xAxisSquared = xAxis > 0 ? xAxis * xAxis : xAxis * xAxis * -1;
+        double yAxisSquared = yAxis > 0 ? yAxis * yAxis : yAxis * yAxis * -1;
 
-        m_translation = new Translation2d(yAxis, xAxis).times(Constants.MAX_SPEED);
+        m_translation = new Translation2d(yAxisSquared, xAxisSquared).times(Constants.MAX_SPEED);
         m_rotation = rAxisSquared * Constants.MAX_ANGULAR_VELOCITY;
         m_swerveDrivetrain.drive(m_translation, m_rotation, m_fieldRelative, m_openLoop);
 

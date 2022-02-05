@@ -3,6 +3,8 @@ package com.team3175.frc2022.robot.commands;
 import com.team3175.frc2022.robot.Constants;
 import com.team3175.frc2022.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 @SuppressWarnings("unused")
@@ -11,6 +13,7 @@ public class IntakeCargo extends CommandBase {
     private final Intake m_intake;
     private final double m_speed;
     private final XboxController m_driveController;
+    private boolean intakeRunning;
     
     public IntakeCargo(Intake intake, double speed, XboxController driveController) {
 
@@ -24,9 +27,23 @@ public class IntakeCargo extends CommandBase {
 
     @Override
     public void execute() {
+
+        intakeRunning = true;
        
         m_intake.intakeCargo(m_speed);
 
+    }
+
+    @Override
+    public void end(boolean isFinished) {
+
+        intakeRunning = false;
+
+    }
+
+    @Override
+    public boolean isFinished() {
+        return true;
     }
 
 }

@@ -3,6 +3,7 @@ package com.team3175.frc2022.robot.autos.autocommands;
 import com.team3175.frc2022.robot.subsystems.Feeder;
 import com.team3175.frc2022.robot.subsystems.Shooter;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class AutonShootAndFeed extends CommandBase {
@@ -51,6 +52,8 @@ public class AutonShootAndFeed extends CommandBase {
         } else {
             m_shooter.shoot(m_setpoint);
         }
+
+        SmartDashboard.putNumber("shooter encoder", m_shooter.getEncoders());
 
     }
 

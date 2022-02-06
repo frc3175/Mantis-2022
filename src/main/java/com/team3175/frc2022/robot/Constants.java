@@ -105,7 +105,7 @@ public final class Constants {
     /* Auto Swerve profiling */
     public static final double AUTO_MAX_SPEED = 4.9;
     public static final double AUTO_MAX_ACCELERATION_MPS_SQUARED = 3;
-    public static final double AUTO_P_X_CONTROLLER = 0; 
+    public static final double AUTO_P_X_CONTROLLER = 0.1; 
     public static final double AUTO_P_Y_CONTROLLER = 1.4884;
     public static final double AUTO_P_THETA_CONTROLLER = 0.01;
     

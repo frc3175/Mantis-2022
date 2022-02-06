@@ -36,7 +36,7 @@ public class TwoBallTerminalCenter extends SequentialCommandGroup {
         m_intake = intake;
         m_actuators = actuators;
 
-        m_trajectory = PathPlanner.loadPath("2BallTerminalCenter", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
+        m_trajectory = PathPlanner.loadPath("Y-Loop", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
 
         var m_translationController = new PIDController(Constants.AUTO_P_X_CONTROLLER, 0, 0);
         var m_strafeController = new PIDController(Constants.AUTO_P_Y_CONTROLLER, 0, 0);

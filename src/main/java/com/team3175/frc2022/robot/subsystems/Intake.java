@@ -5,7 +5,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.team3175.frc2022.robot.CTREConfigs;
 import com.team3175.frc2022.robot.Constants;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
@@ -30,9 +29,8 @@ public class Intake extends SubsystemBase {
             m_intakeFalcon.set(ControlMode.PercentOutput, absolutePower);
         } else {
             m_intakeFalcon.set(ControlMode.PercentOutput, 0);
-        }  
-        
-        SmartDashboard.putBoolean("Intake Down?", isIntakeRunning());
+        }
+
     }
 
     /**
@@ -69,9 +67,9 @@ public class Intake extends SubsystemBase {
 
     public int isIntakeRunningInt() {
         if(m_intakeFalcon.getSelectedSensorVelocity() > 0) {
-            return 1;
-        } else {
             return 0;
+        } else {
+            return 1;
         }
     }
 

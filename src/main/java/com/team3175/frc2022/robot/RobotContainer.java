@@ -10,8 +10,10 @@ import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 import com.team3175.frc2022.robot.autos.autocommands.PathplannerCommand;
 import com.team3175.frc2022.robot.autos.automodes.FigureEightAuto;
+import com.team3175.frc2022.robot.autos.automodes.OneBallAuto;
 import com.team3175.frc2022.robot.autos.automodes.PPSwerveControllerAuto;
 import com.team3175.frc2022.robot.autos.automodes.PathweaverTest;
+import com.team3175.frc2022.robot.autos.automodes.TwoBallTerminalCenter;
 //import com.team3175.frc2022.robot.autos.automodes.PathplannerTesting;
 import com.team3175.frc2022.robot.commands.*;
 import com.team3175.frc2022.robot.subsystems.*;
@@ -71,6 +73,7 @@ public class RobotContainer {
   //private final Command m_pathplannerAuto = new PathplannerTesting(m_swerveDrivetrain); //Uses pathplanner, no theta updates, commented bc I don't have a command right now that will take my 3 args instead of a controller arg
   private final Command m_pathplannerCommand; //handwritten command, doesn't quite work
   private final Command m_PPSwerveControllerTest = new PPSwerveControllerAuto(m_swerveDrivetrain); //uses PPSwerveControllerCommand, not yet tested
+  private final Command m_oneBall = new OneBallAuto(m_shooter, m_feeder, m_swerveDrivetrain);
 
   /* Trajectories */
   //String pathJSON = "paths/IntakeTrenchLineUp.wpilib.json";
@@ -89,11 +92,11 @@ public class RobotContainer {
 
     Shuffleboard.getTab("Drive").add("gyro", m_swerveDrivetrain.getAngle());
 
-    Shuffleboard.getTab("Drive")
-                    .add("intake running", m_intake.isIntakeRunning())
-                    .withWidget(BuiltInWidgets.kBooleanBox)
-                    .withProperties(Map.of("colorWhenTrue", "red", "colorWhenFalse", "black"))
-                    .getEntry();
+    /* Shuffleboard.getTab("Drive")
+                .add("intake running", m_intake.isIntakeRunning())
+                .withWidget(BuiltInWidgets.kBooleanBox)
+                .withProperties(Map.of("colorWhenTrue", "red", "colorWhenFalse", "black"))
+                .getEntry(); */
 
     Shuffleboard.getTab("Drive").add("shooter speed", m_shooter.getLeftVelocityRPM());
     
@@ -140,7 +143,7 @@ public class RobotContainer {
     //TODO: Create a sendable chooser to select command
     //For now just type out the name of the command to be run
 
-      return m_PPSwerveControllerTest;
+      return m_oneBall;
 
   }
   

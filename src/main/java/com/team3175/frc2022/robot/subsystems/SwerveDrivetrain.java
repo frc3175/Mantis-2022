@@ -149,6 +149,10 @@ public class SwerveDrivetrain extends SubsystemBase {
         m_swerveOdometry.resetPosition(pose, getYaw());
     }
 
+    public void resetOdometryWithYaw(Pose2d pose, Rotation2d degrees) {
+        m_swerveOdometry.resetPosition(pose, degrees);
+    }
+
     /**
      * 
      * Gets the theta angle of the robot

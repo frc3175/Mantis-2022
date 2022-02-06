@@ -12,6 +12,8 @@ import com.team3175.frc2022.robot.subsystems.SwerveDrivetrain;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
@@ -49,9 +51,9 @@ public class OneBallAuto extends SequentialCommandGroup {
 
         AutonSpinUp m_spinUp = new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM);
 
-        AutonShootAndFeed m_shootAndFeed = new AutonShootAndFeed(m_shooter, m_feeder, Constants.SHOOT_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
+        AutonShootAndFeed m_shootAndFeed = new AutonShootAndFeed(m_shooter, m_feeder, 150000, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
 
-        addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(m_driveBack.getInitialPose())),
+        addCommands(new InstantCommand(() -> m_drivetrain.resetOdometryWithYaw(new Pose2d(7.11, 4.57, Rotation2d.fromDegrees(0.0)), Rotation2d.fromDegrees(0.0))),
                     m_spinUp,
                     m_shootAndFeed,
                     m_driveBackCommand);

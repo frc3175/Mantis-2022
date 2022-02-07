@@ -55,19 +55,21 @@ public class TwoBallTerminalCenter extends SequentialCommandGroup {
             m_drivetrain::setModuleStates, 
             m_drivetrain);
 
-        AutonSpinUp m_spinUp = new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM);
+        AutonSpinUp m_spinUp1 = new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM);
+        AutonSpinUp m_spinUp2 = new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM);
 
-        AutonShootAndFeed m_shootAndFeed = new AutonShootAndFeed(m_shooter, m_feeder, Constants.SHOOT_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
+        AutonShootAndFeed m_shootAndFeed1 = new AutonShootAndFeed(m_shooter, m_feeder, Constants.SHOOT_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
+        AutonShootAndFeed m_shootAndFeed2 = new AutonShootAndFeed(m_shooter, m_feeder, Constants.SHOOT_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
 
         SetIntakeState m_intakeDeploy = new SetIntakeState(m_intake, m_actuators, "deploy", Constants.INTAKE_SPEED);
 
         SetIntakeState m_intakeRetract = new SetIntakeState(m_intake, m_actuators, "retract", Constants.INTAKE_SPEED);
 
         addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(m_trajectory.getInitialPose())),
-                    m_spinUp,
-                    m_shootAndFeed,
-                    new ParallelCommandGroup(m_trajectoryCommand, m_intakeDeploy, m_spinUp),
-                    new ParallelCommandGroup(m_shootAndFeed, m_intakeRetract));
+                    m_spinUp1,
+                    m_shootAndFeed1,
+                    new ParallelCommandGroup(m_trajectoryCommand, m_intakeDeploy, m_spinUp2),
+                    new ParallelCommandGroup(m_shootAndFeed2, m_intakeRetract));
 
     }
 

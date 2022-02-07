@@ -75,6 +75,12 @@ public class Conversions {
         return wheelVelocity;
     }
 
+    /**
+     * 
+     * @return A trajectory generated from a JSON csv file
+     * 
+     */
+
     public static Trajectory toTrajectory() {
         String trajectoryJSON = "paths/firstPath.wpilib.json";
         try {

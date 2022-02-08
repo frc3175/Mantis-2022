@@ -3,6 +3,8 @@ package com.team3175.frc2022.lib.math;
 import java.io.IOException;
 import java.nio.file.Path;
 
+import com.team3175.frc2022.robot.Constants;
+
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.Filesystem;
@@ -91,6 +93,17 @@ public class Conversions {
             SmartDashboard.putString("conversion error", e.toString());
             return null;
         }
+    }
+
+    public static double climberInchesToEncoders(double climberInches) {
+        double encoders = (2048 * climberInches * Constants.CLIMBER_GEAR_RATIO) / (Constants.CLIMBER_PULLEY_CIRCUMFERENCE);
+        return encoders;
+    }
+
+    //TODO: write method
+
+    public double encodersToClimberInches(double encoder) {
+        return 1;
     }
 
     

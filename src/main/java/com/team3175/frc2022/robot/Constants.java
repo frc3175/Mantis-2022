@@ -165,16 +165,21 @@ public final class Constants {
      public static final boolean CLIMBER_ENABLE_CURRENT_LIMIT = true;
 
     /* Climber neutral mode */
-    public static final NeutralMode CLIMBER_NEUTRAL_MODE = NeutralMode.Brake; //????
+    public static final NeutralMode CLIMBER_NEUTRAL_MODE = NeutralMode.Coast; //TODO: switch to brake
 
     /* Invert climber */
     public static final boolean INVERT_CLIMBER = false;
     public static final boolean RE_INVERT_CLIMBER = INVERT_CLIMBER ? false : true;
 
     /* Climber speeds */
-    public static final double CLIMBER_SPEED = 0.5;
-    public static final double CLIMBER_UP_SETPOINT = 5000; 
-    public static final double CLIMBER_DOWN_SETPOINT = 100;
+    public static final double CLIMBER_SPEED = 0.3;
+    public static final double CLIMBER_UP_DISTANCE = 20;
+    public static final double CLIMBER_DOWN_DISTANCE = CLIMBER_UP_DISTANCE - 0;
+    public static final double CLIMBER_DOWN_SETPOINT = 1000;
+    
+    /* Climber mechanics */
+    public static final double CLIMBER_PULLEY_CIRCUMFERENCE = 0.6 * Math.PI;
+    public static final double CLIMBER_GEAR_RATIO = 9;
 
     /*============================
                Intake

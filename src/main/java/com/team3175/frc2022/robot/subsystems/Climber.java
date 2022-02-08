@@ -10,8 +10,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Climber extends SubsystemBase {
 
     private final TalonFX m_climberFalcon = new TalonFX(Constants.CLIMBER_FALCON);
-    private boolean stageOne = false;
-    private boolean stageTwo = false;
 
     public Climber() {
         configureClimberMotor();
@@ -27,14 +25,11 @@ public class Climber extends SubsystemBase {
      */
 
     public void climbUp(double setpoint, double speed) {
-        if(stageOne) {
-            m_climberFalcon.setInverted(Constants.INVERT_CLIMBER);
-            if(getClimberEncoder() < setpoint) {
-                m_climberFalcon.set(ControlMode.PercentOutput, speed);
-            } else {
-                m_climberFalcon.set(ControlMode.PercentOutput, 0);
-                stageOne = false;
-            }
+        m_climberFalcon.setInverted(Constants.INVERT_CLIMBER);
+        if(getClimberEncoder() < setpoint) {
+            m_climberFalcon.set(ControlMode.PercentOutput, speed);
+        } else {
+            m_climberFalcon.set(ControlMode.PercentOutput, 0);
         }
     }
 
@@ -48,13 +43,11 @@ public class Climber extends SubsystemBase {
      */
 
     public void climbDown(double setpoint, double speed) {
-        if(stageTwo) {
-            m_climberFalcon.setInverted(Constants.RE_INVERT_CLIMBER);
-            if(getClimberEncoder() > setpoint) {
-                m_climberFalcon.set(ControlMode.PercentOutput, speed);
-            } else {
-                m_climberFalcon.set(ControlMode.PercentOutput, 0);
-            }
+        m_climberFalcon.setInverted(Constants.RE_INVERT_CLIMBER);
+        if(getClimberEncoder() < setpoint) {
+            m_climberFalcon.set(ControlMode.PercentOutput, speed);
+        } else {
+            m_climberFalcon.set(ControlMode.PercentOutput, 0);
         }
     }
 

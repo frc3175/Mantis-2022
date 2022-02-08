@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
+import com.team3175.frc2022.lib.math.Conversions;
 import com.team3175.frc2022.robot.autos.autocommands.PathplannerCommand;
 import com.team3175.frc2022.robot.autos.automodes.FigureEightAuto;
 import com.team3175.frc2022.robot.autos.automodes.OneBallAuto;
@@ -59,6 +60,8 @@ public class RobotContainer {
   private final JoystickButton m_intakeCargo = new JoystickButton(m_opController, XboxController.Button.kY.value);
   private final JoystickButton m_outtakeCargo = new JoystickButton(m_opController, XboxController.Button.kX.value);
   private final JoystickButton m_shootCargo = new JoystickButton(m_opController, XboxController.Button.kLeftBumper.value);
+  private final JoystickButton m_climbUp = new JoystickButton(m_opController, XboxController.Button.kA.value);
+  private final JoystickButton m_climbDown = new JoystickButton(m_opController,XboxController.Button.kB.value);
 
   /* Subsystems */
   private final SwerveDrivetrain m_swerveDrivetrain = new SwerveDrivetrain();
@@ -66,6 +69,7 @@ public class RobotContainer {
   private final Feeder m_feeder = new Feeder();
   private final Shooter m_shooter = new Shooter();
   private final Actuators m_actuator = new Actuators();
+  private final Climber m_climber = new Climber();
 
   /* Autos */
   private final Command m_auto = new FigureEightAuto(m_swerveDrivetrain); //Uses manual trajectory generation, no theta updates
@@ -126,6 +130,10 @@ public class RobotContainer {
                 .whenReleased(new StopShooter(m_shooter));
     m_intakeCargo.whenPressed(new ActuateIntake(m_actuator))
                  .whenReleased(new ActuateBack(m_actuator));
+    m_climbUp.whenPressed(new ClimbUp(m_climber, Conversions.climberInchesToEncoders(Constants.CLIMBER_UP_DISTANCE), 0.4))
+             .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
+    m_climbDown.whenPressed(new ClimbDown(m_climber, Conversions.climberInchesToEncoders(Constants.CLIMBER_DOWN_DISTANCE), 0.4))
+               .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
     //m_intakeCargo.whenPressed(new DeployIntake(m_intake, m_actuator, m_driverController))
                  //.whenReleased(new StopIntake(m_intake, m_actuator, m_driverController));
 

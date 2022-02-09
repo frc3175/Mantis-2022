@@ -13,7 +13,6 @@ import com.kauailabs.navx.frc.AHRS;
 import com.team3175.frc2022.robot.Constants;
 
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SwerveDrivetrain extends SubsystemBase {
 

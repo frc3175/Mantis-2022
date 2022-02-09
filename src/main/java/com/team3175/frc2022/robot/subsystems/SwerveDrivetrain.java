@@ -13,6 +13,7 @@ import com.kauailabs.navx.frc.AHRS;
 import com.team3175.frc2022.robot.Constants;
 
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SwerveDrivetrain extends SubsystemBase {
 
@@ -281,7 +282,18 @@ public class SwerveDrivetrain extends SubsystemBase {
 
     @Override
     public void periodic(){
-        m_swerveOdometry.update(getYaw(), getStates());  
+        
+        m_swerveOdometry.update(getYaw(), getStates());
+
+        /* for(SwerveModule mod : m_swerveModules){
+            SmartDashboard.putNumber("Mod " + mod.m_moduleNumber + " Cancoder", mod.getCanCoder().getDegrees());
+            SmartDashboard.putNumber("Mod " + mod.m_moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
+            SmartDashboard.putNumber("Mod " + mod.m_moduleNumber + " Drive Encoder", mod.getDriveEncoder());    
+            SmartDashboard.putNumber("Mod " + mod.m_moduleNumber + " Azimuth angle", mod.getState().angle.getDegrees());
+        }
+
+        SmartDashboard.putNumber("Gyro Yaw: ", m_gyro.getYaw());  */ 
+
     }
 
     

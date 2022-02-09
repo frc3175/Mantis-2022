@@ -23,19 +23,19 @@ public final class Constants {
     public static final int BACK_RIGHT_ENCODER = 4; //Bre
     public static final int BACK_RIGHT_AZIMUTH = 14; //Samuel
 
-    public static final int FRONT_RIGHT_DRIVE = 8; //Keith
-    public static final int FRONT_RIGHT_ENCODER = 10; //Freddy Mercury
-    public static final int FRONT_RIGHT_AZIMUTH = 6; //Beth
+    public static final int FRONT_RIGHT_DRIVE = 11; //Keith
+    public static final int FRONT_RIGHT_ENCODER = 7; //Freddy Mercury
+    public static final int FRONT_RIGHT_AZIMUTH = 9; //Beth
 
-    public static final int FRONT_LEFT_DRIVE = 11; //Chad
-    public static final int FRONT_LEFT_ENCODER = 7; //Jonathan 
-    public static final int FRONT_LEFT_AZIMUTH = 9; //Geraldine
+    public static final int FRONT_LEFT_DRIVE = 8; //Chad
+    public static final int FRONT_LEFT_ENCODER = 10; //Jonathan 
+    public static final int FRONT_LEFT_AZIMUTH = 6; //Geraldine
 
     /* CANCoder offsets */
-    public static double FRONT_LEFT_OFFSET = 159.87; //temp value, normal is 224.25
-    public static double FRONT_RIGHT_OFFSET = 67.67;
-    public static double BACK_LEFT_OFFSET = 134.64; //temp value, normal is 223.50
-    public static double BACK_RIGHT_OFFSET = 226.66;
+    public static double FRONT_LEFT_OFFSET = 155.21;
+    public static double FRONT_RIGHT_OFFSET = 68.1;
+    public static double BACK_LEFT_OFFSET = 133.33;
+    public static double BACK_RIGHT_OFFSET = 224.29;
 
     /* Azimuth reversed */
     public static boolean FRONT_LEFT_AZIMUTH_REVERSED = false;
@@ -165,21 +165,21 @@ public final class Constants {
      public static final boolean CLIMBER_ENABLE_CURRENT_LIMIT = true;
 
     /* Climber neutral mode */
-    public static final NeutralMode CLIMBER_NEUTRAL_MODE = NeutralMode.Coast; //TODO: switch to brake
+    public static final NeutralMode CLIMBER_NEUTRAL_MODE = NeutralMode.Brake; //TODO: switch to brake
 
     /* Invert climber */
     public static final boolean INVERT_CLIMBER = false;
     public static final boolean RE_INVERT_CLIMBER = INVERT_CLIMBER ? false : true;
 
     /* Climber speeds */
-    public static final double CLIMBER_SPEED = 0.3;
-    public static final double CLIMBER_UP_DISTANCE = 20;
-    public static final double CLIMBER_DOWN_DISTANCE = CLIMBER_UP_DISTANCE - 0;
+    public static final double CLIMBER_SPEED = 1.0;
+    public static final double CLIMBER_UP_DISTANCE = 18;
+    public static final double CLIMBER_DOWN_DISTANCE = CLIMBER_UP_DISTANCE - 0.25;
     public static final double CLIMBER_DOWN_SETPOINT = 1000;
     
     /* Climber mechanics */
     public static final double CLIMBER_PULLEY_CIRCUMFERENCE = 0.6 * Math.PI;
-    public static final double CLIMBER_GEAR_RATIO = 9;
+    public static final double CLIMBER_GEAR_RATIO = 20;
 
     /*============================
                Intake

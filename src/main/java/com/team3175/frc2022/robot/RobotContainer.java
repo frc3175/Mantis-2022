@@ -30,6 +30,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -60,8 +61,10 @@ public class RobotContainer {
   private final JoystickButton m_intakeCargo = new JoystickButton(m_opController, XboxController.Button.kY.value);
   private final JoystickButton m_outtakeCargo = new JoystickButton(m_opController, XboxController.Button.kX.value);
   private final JoystickButton m_shootCargo = new JoystickButton(m_opController, XboxController.Button.kLeftBumper.value);
-  private final JoystickButton m_climbUp = new JoystickButton(m_opController, XboxController.Button.kA.value);
-  private final JoystickButton m_climbDown = new JoystickButton(m_opController,XboxController.Button.kB.value);
+  //private final JoystickButton m_climbUp = new JoystickButton(m_opController, XboxController.Button.kA.value);
+  //private final JoystickButton m_climbDown = new JoystickButton(m_opController,XboxController.Button.kB.value);
+  private final POVButton m_climbUp = new POVButton(m_opController, 0);
+  private final POVButton m_climbDown = new POVButton(m_opController, 180);
 
   /* Subsystems */
   private final SwerveDrivetrain m_swerveDrivetrain = new SwerveDrivetrain();

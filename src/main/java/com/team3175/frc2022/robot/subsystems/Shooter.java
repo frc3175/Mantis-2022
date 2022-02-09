@@ -17,9 +17,9 @@ public class Shooter extends SubsystemBase {
 
     public Shooter() {
 
-        m_leftShooterFalcon.follow(m_rightShooterFalcon);
-
         configShooterFalcons();
+
+        m_leftShooterFalcon.follow(m_rightShooterFalcon);
 
     }
 

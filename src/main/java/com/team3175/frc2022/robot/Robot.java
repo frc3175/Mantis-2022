@@ -21,6 +21,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+  private Diagnostics m_diagnostics;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -34,6 +35,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
   
     m_robotContainer = new RobotContainer();
+    m_diagnostics = new Diagnostics();
 
   }
 
@@ -51,6 +53,11 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    m_diagnostics.pushDrivetrainDiagnostics();
+    m_diagnostics.pushClimberDiagnostics();
+    m_diagnostics.pushFeederDiagnostics();
+    m_diagnostics.pushIntakeDiagnostics();
+    m_diagnostics.pushShooterDiagnostics();
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

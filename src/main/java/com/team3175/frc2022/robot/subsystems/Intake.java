@@ -73,6 +73,33 @@ public class Intake extends SubsystemBase {
         }
     }
 
+    /**
+     * 
+     * @return falcon temperature
+     * 
+     */
+    public double getTemp() {
+        return m_intakeFalcon.getTemperature();
+    }
+
+    /**
+     * 
+     * @return current draw of the falcon (amps)
+     * 
+     */
+    public double getCurrent() {
+        return m_intakeFalcon.getSupplyCurrent();
+    }
+
+    /**
+     * 
+     * @return if the falcon is drawing any voltage
+     * 
+     */
+    public boolean isAlive() {
+        return (m_intakeFalcon.getBusVoltage() != 0.0);
+    }
+
     public void configIntakeMotor() {
         m_intakeFalcon.configFactoryDefault();
         m_intakeFalcon.configAllSettings(CTREConfigs.intakeFXConfig);

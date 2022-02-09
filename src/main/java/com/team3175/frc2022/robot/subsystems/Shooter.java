@@ -152,6 +152,78 @@ public class Shooter extends SubsystemBase {
 
     /**
      * 
+     * @return left encoder pos
+     * 
+     */
+    public double getLeftEncoder() {
+        return m_leftShooterFalcon.getSelectedSensorPosition();
+    }
+
+    /**
+     * 
+     * @return right encoder pos
+     * 
+     */
+    public double getRightEncoder() {
+        return m_rightShooterFalcon.getSelectedSensorPosition();
+    }
+
+    /**
+     * 
+     * @return falcon temperature
+     * 
+     */
+    public double getLeftTemp() {
+        return m_leftShooterFalcon.getTemperature();
+    }
+
+    /**
+     * 
+     * @return falcon temperature
+     * 
+     */
+    public double getRightTemp() {
+        return m_rightShooterFalcon.getTemperature();
+    }
+
+    /**
+     * 
+     * @return current draw of the falcon (amps)
+     * 
+     */
+    public double getLeftCurrent() {
+        return m_leftShooterFalcon.getSupplyCurrent();
+    }
+
+    /**
+     * 
+     * @return current draw of the falcon (amps)
+     * 
+     */
+    public double getRightCurrent() {
+        return m_rightShooterFalcon.getSupplyCurrent();
+    }
+
+    /**
+     * 
+     * @return if the falcon is drawing any voltage
+     * 
+     */
+    public boolean isLeftAlive() {
+        return (m_leftShooterFalcon.getBusVoltage() != 0.0);
+    }
+
+    /**
+     * 
+     * @return if the falcon is drawing any voltage
+     * 
+     */
+    public boolean isRightAlive() {
+        return (m_rightShooterFalcon.getBusVoltage() != 0.0);
+    }
+
+    /**
+     * 
      * Sets both shooter falcons to the configuration set in CTREConfigs.java
      * 
      */

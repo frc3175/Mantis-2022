@@ -76,7 +76,7 @@ public class Feeder extends SubsystemBase {
      * 
      */
 
-    public double getEncoderPos() {
+    public double getEncoder() {
         return m_feederFalcon.getSelectedSensorPosition();
     }
 
@@ -89,6 +89,33 @@ public class Feeder extends SubsystemBase {
         m_feederFalcon.configAllSettings(CTREConfigs.feederFXConfig);
         m_feederFalcon.setInverted(Constants.INVERT_FEEDER);
         m_feederFalcon.setNeutralMode(Constants.FEEDER_NEUTRAL_MODE);
+    }
+
+    /**
+     * 
+     * @return falcon temperature
+     * 
+     */
+    public double getTemp() {
+        return m_feederFalcon.getTemperature();
+    }
+
+    /**
+     * 
+     * @return current draw of the falcon (amps)
+     * 
+     */
+    public double getCurrent() {
+        return m_feederFalcon.getSupplyCurrent();
+    }
+
+    /**
+     * 
+     * @return if the falcon is drawing any voltage
+     * 
+     */
+    public boolean isAlive() {
+        return (m_feederFalcon.getBusVoltage() != 0.0);
     }
 
     

@@ -114,6 +114,33 @@ public class Climber extends SubsystemBase {
         m_climberFalcon.setSelectedSensorPosition(0);
     }
 
+    /**
+     * 
+     * @return falcon temperature
+     * 
+     */
+    public double getTemp() {
+        return m_climberFalcon.getTemperature();
+    }
+
+    /**
+     * 
+     * @return current draw of the falcon (amps)
+     * 
+     */
+    public double getCurrent() {
+        return m_climberFalcon.getSupplyCurrent();
+    }
+
+    /**
+     * 
+     * @return if the falcon is drawing any voltage
+     * 
+     */
+    public boolean isAlive() {
+        return (m_climberFalcon.getBusVoltage() != 0.0);
+    }
+
     public void configureClimberMotor() {
         m_climberFalcon.configFactoryDefault();
         m_climberFalcon.configAllSettings(CTREConfigs.climberFXConfig);

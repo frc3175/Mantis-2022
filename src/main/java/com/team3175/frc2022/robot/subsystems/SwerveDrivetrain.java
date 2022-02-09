@@ -7,7 +7,6 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -264,6 +263,16 @@ public class SwerveDrivetrain extends SubsystemBase {
 
     /**
      * 
+     * @return array of SwerveModules
+     * 
+     */
+
+    public SwerveModule[] getModules() {
+        return m_swerveModules;
+    }
+
+    /**
+     * 
      * Updates odometry with current theta angle and module states
      * 
      * Pushes module cancoder and integrated encoder values, module velocities, and gyro angle to SmartDashboard
@@ -273,16 +282,6 @@ public class SwerveDrivetrain extends SubsystemBase {
     @Override
     public void periodic(){
         m_swerveOdometry.update(getYaw(), getStates());  
-
-        for(SwerveModule mod : m_swerveModules){
-            SmartDashboard.putNumber("Mod " + mod.m_moduleNumber + " Cancoder", mod.getCanCoder().getDegrees());
-            SmartDashboard.putNumber("Mod " + mod.m_moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
-            SmartDashboard.putNumber("Mod " + mod.m_moduleNumber + " Drive Encoder", mod.getDriveEncoder());    
-            SmartDashboard.putNumber("Mod " + mod.m_moduleNumber + " Azimuth angle", mod.getState().angle.getDegrees());
-        }
-
-        SmartDashboard.putNumber("Gyro Yaw: ", m_gyro.getYaw());
-
     }
 
     

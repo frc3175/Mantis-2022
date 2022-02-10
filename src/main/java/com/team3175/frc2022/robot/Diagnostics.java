@@ -1,7 +1,6 @@
 package com.team3175.frc2022.robot;
 
 import com.team3175.frc2022.lib.math.Conversions;
-import com.team3175.frc2022.robot.subsystems.Actuators;
 import com.team3175.frc2022.robot.subsystems.Climber;
 import com.team3175.frc2022.robot.subsystems.Feeder;
 import com.team3175.frc2022.robot.subsystems.Intake;
@@ -28,7 +27,7 @@ public class Diagnostics {
     private Intake m_intake = new Intake();
     private Feeder m_feeder = new Feeder();
     private Shooter m_shooter = new Shooter();
-    private Actuators m_actuators = new Actuators();
+    //private Actuators m_actuators = new Actuators();
 
     private ShuffleboardTab driveTab;
     private NetworkTableEntry gyroEntry;
@@ -50,7 +49,7 @@ public class Diagnostics {
                             .withWidget("kGyro")
                             .getEntry();
     
-        intakeActuationEntry = driveTab.add("intake down", m_actuators.isIntakeDown())
+        intakeActuationEntry = driveTab.add("intake down", m_intake.isIntakeRunning())
                                        .withWidget("kBooleanBox")
                                        .getEntry();
 
@@ -61,7 +60,7 @@ public class Diagnostics {
         double gyro = m_drivetrain.getAngle();
         gyroEntry.setDouble(gyro);
 
-        boolean isIntakeDown = m_actuators.isIntakeDown();
+        boolean isIntakeDown = m_intake.isIntakeRunning();
         intakeActuationEntry.setBoolean(isIntakeDown);
 
     }

@@ -83,8 +83,8 @@ public class Conversions {
      * 
      */
 
-    public static Trajectory toTrajectory() {
-        String trajectoryJSON = "paths/firstPath.wpilib.json";
+    public static Trajectory toTrajectory(String path) {
+        String trajectoryJSON = path;
         try {
             Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
             Trajectory trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);

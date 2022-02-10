@@ -46,13 +46,12 @@ public class Diagnostics {
         driveTab = Shuffleboard.getTab("Match Dashboard");
         
         gyroEntry = driveTab.add("Gyro", m_drivetrain.getAngle())
-                            .withWidget("kGyro")
+                            .withWidget("kDial")
                             .getEntry();
     
         intakeActuationEntry = driveTab.add("intake down", m_intake.isIntakeRunning())
                                        .withWidget("kBooleanBox")
                                        .getEntry();
-
     }
 
     public void pushMatchDashboardDiagnostics() {

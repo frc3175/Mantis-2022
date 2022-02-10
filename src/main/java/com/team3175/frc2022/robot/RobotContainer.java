@@ -126,9 +126,9 @@ public class RobotContainer {
                 .whenReleased(new StopShooter(m_shooter));
     m_intakeCargo.whenPressed(new ActuateIntake(m_actuator))
                  .whenReleased(new ActuateBack(m_actuator));
-    m_climbUp.whenPressed(new ClimbUp(m_climber, Conversions.climberInchesToEncoders(Constants.CLIMBER_UP_DISTANCE), 0.4))
+    m_climbUp.whenPressed(new ClimbUp(m_climber, Conversions.climberInchesToEncoders(Constants.CLIMBER_UP_DISTANCE), Constants.CLIMBER_SPEED))
              .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
-    m_climbDown.whenPressed(new ClimbDown(m_climber, Conversions.climberInchesToEncoders(Constants.CLIMBER_DOWN_DISTANCE), 0.4))
+    m_climbDown.whenPressed(new ClimbDown(m_climber, Conversions.climberInchesToEncoders(Constants.CLIMBER_DOWN_DISTANCE), Constants.CLIMBER_SPEED))
                .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
     //m_intakeCargo.whenPressed(new DeployIntake(m_intake, m_actuator, m_driverController))
                  //.whenReleased(new StopIntake(m_intake, m_actuator, m_driverController));

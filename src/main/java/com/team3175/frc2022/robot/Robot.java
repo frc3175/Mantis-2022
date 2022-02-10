@@ -58,6 +58,7 @@ public class Robot extends TimedRobot {
     m_diagnostics.pushFeederDiagnostics();
     m_diagnostics.pushIntakeDiagnostics();
     m_diagnostics.pushShooterDiagnostics();
+    m_diagnostics.pushMatchDashboardDiagnostics();
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

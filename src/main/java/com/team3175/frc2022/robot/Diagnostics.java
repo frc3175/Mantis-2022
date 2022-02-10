@@ -1,5 +1,6 @@
 package com.team3175.frc2022.robot;
 
+import com.team3175.frc2022.robot.subsystems.Actuators;
 import com.team3175.frc2022.robot.subsystems.Climber;
 import com.team3175.frc2022.robot.subsystems.Feeder;
 import com.team3175.frc2022.robot.subsystems.Intake;
@@ -7,11 +8,16 @@ import com.team3175.frc2022.robot.subsystems.Shooter;
 import com.team3175.frc2022.robot.subsystems.SwerveDrivetrain;
 import com.team3175.frc2022.robot.subsystems.SwerveModule;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Diagnostics{
+public class Diagnostics {
 
     private static NetworkTableInstance inst;
     private static NetworkTable diagnosticTable;
@@ -21,13 +27,41 @@ public class Diagnostics{
     private Intake m_intake = new Intake();
     private Feeder m_feeder = new Feeder();
     private Shooter m_shooter = new Shooter();
+    private Actuators m_actuators = new Actuators();
+
+    private ShuffleboardTab driveTab;
+    private NetworkTableEntry gyroEntry;
+    private NetworkTableEntry intakeActuationEntry;
 
     // creates a diagnostic table
     public Diagnostics(){
 
+        UsbCamera m_camera = CameraServer.startAutomaticCapture();
+        m_camera.setResolution(400, 400);
+
         inst = NetworkTableInstance.getDefault();
         diagnosticTable = inst.getTable("datatable");
         inst.setUpdateRate(0.01);
+
+        driveTab = Shuffleboard.getTab("Match Dashboard");
+        
+        gyroEntry = driveTab.add("Gyro", m_drivetrain.getAngle())
+                            .withWidget("kGyro")
+                            .getEntry();
+    
+        intakeActuationEntry = driveTab.add("intake down", m_actuators.isIntakeDown())
+                                       .withWidget("kBooleanBox")
+                                       .getEntry();
+
+    }
+
+    public void pushMatchDashboardDiagnostics() {
+
+        double gyro = m_drivetrain.getAngle();
+        gyroEntry.setDouble(gyro);
+
+        boolean isIntakeDown = m_actuators.isIntakeDown();
+        intakeActuationEntry.setBoolean(isIntakeDown);
 
     }
 

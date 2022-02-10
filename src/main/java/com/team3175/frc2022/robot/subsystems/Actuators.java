@@ -11,6 +11,8 @@ public class Actuators extends SubsystemBase{
 
     DoubleSolenoid m_actuators = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.ACTUATORS_LEFT, Constants.ACTUATORS_RIGHT);
 
+    private boolean isDown = false;
+
     /**
      * 
      * Puts intake into down position
@@ -20,6 +22,8 @@ public class Actuators extends SubsystemBase{
     public void actuate(){
 
         m_actuators.set(Value.kReverse);
+        isDown = true;
+
 
     }
 
@@ -32,7 +36,17 @@ public class Actuators extends SubsystemBase{
     public void actuateBack() {
 
         m_actuators.set(Value.kForward);
+        isDown = false;
 
+    }
+
+    /**
+     * 
+     * @return if the intake is down
+     * 
+     */
+    public boolean isIntakeDown() {
+        return isDown;
     }
 
 } 

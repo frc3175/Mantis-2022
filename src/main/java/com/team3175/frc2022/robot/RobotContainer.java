@@ -94,18 +94,11 @@ public class RobotContainer {
     m_trajectory = PathPlanner.loadPath("New Path", 8, 5);
     m_pathplannerCommand = new PathplannerCommand(m_swerveDrivetrain, m_trajectory);
 
-    UsbCamera m_camera = CameraServer.startAutomaticCapture();
-    m_camera.setResolution(400, 400);
-
-    Shuffleboard.getTab("Drive").add("gyro", m_swerveDrivetrain.getAngle());
-
     /* Shuffleboard.getTab("Drive")
                 .add("intake running", m_intake.isIntakeRunning())
                 .withWidget(BuiltInWidgets.kBooleanBox)
                 .withProperties(Map.of("colorWhenTrue", "red", "colorWhenFalse", "black"))
                 .getEntry(); */
-
-    Shuffleboard.getTab("Drive").add("shooter speed", m_shooter.getLeftVelocityRPM());
     
     // Configure the button bindings
     configureButtonBindings();

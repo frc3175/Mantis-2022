@@ -1,5 +1,6 @@
 package com.team3175.frc2022.robot;
 
+import com.team3175.frc2022.lib.math.Conversions;
 import com.team3175.frc2022.robot.subsystems.Actuators;
 import com.team3175.frc2022.robot.subsystems.Climber;
 import com.team3175.frc2022.robot.subsystems.Feeder;
@@ -91,6 +92,7 @@ public class Diagnostics {
         pushDouble("climber temp", m_climber.getTemp());
         pushDouble("climber current", m_climber.getCurrent());
         pushBoolean("climber alive", m_climber.isAlive());
+        pushDouble("climber velocity rpm", Conversions.falconToRPM(m_climber.getVelocity(), 1.0));
 
     }
 
@@ -100,6 +102,7 @@ public class Diagnostics {
         pushDouble("intake temp", m_intake.getTemp());
         pushDouble("intake current", m_intake.getCurrent());
         pushBoolean("intake alive", m_intake.isAlive());
+        pushDouble("intake velocity rpm", Conversions.falconToRPM(m_intake.getVelocity(), 1.0));
 
     }
 
@@ -109,6 +112,7 @@ public class Diagnostics {
         pushDouble("feeder temp", m_feeder.getTemp());
         pushDouble("feeder current", m_feeder.getCurrent());
         pushBoolean("feeder alive", m_feeder.isAlive());
+        pushDouble("feeder velocity rpm", Conversions.falconToRPM(m_feeder.getVelocity(), 1.0));
 
     }
 
@@ -118,10 +122,12 @@ public class Diagnostics {
         pushDouble("shooter left temp", m_shooter.getLeftTemp());
         pushDouble("shooter left current", m_shooter.getLeftCurrent());
         pushBoolean("shooter left alive", m_shooter.isLeftAlive());
+        pushDouble("shooter left velocity rpm", m_shooter.getLeftVelocityRPM());
         pushDouble("shooter right encoder", m_shooter.getRightEncoder());
         pushDouble("shooter right temp", m_shooter.getRightTemp());
         pushDouble("shooter right current", m_shooter.getRightCurrent());
         pushBoolean("shooter right alive", m_shooter.isRightAlive());
+        pushDouble("shooter right velocity rpm", m_shooter.getRightVelocityRPM());
 
 
     }

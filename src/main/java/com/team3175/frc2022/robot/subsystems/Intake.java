@@ -100,6 +100,15 @@ public class Intake extends SubsystemBase {
         return (m_intakeFalcon.getBusVoltage() != 0.0);
     }
 
+    /**
+     * 
+     * @return velocity of the motor in native falcon units
+     * 
+     */
+    public double getVelocity() {
+        return m_intakeFalcon.getSelectedSensorVelocity();
+    }
+
     public void configIntakeMotor() {
         m_intakeFalcon.configFactoryDefault();
         m_intakeFalcon.configAllSettings(CTREConfigs.intakeFXConfig);

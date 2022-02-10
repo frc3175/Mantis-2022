@@ -118,6 +118,15 @@ public class Feeder extends SubsystemBase {
         return (m_feederFalcon.getBusVoltage() != 0.0);
     }
 
+        /**
+     * 
+     * @return velocity of the motor in native falcon units
+     * 
+     */
+    public double getVelocity() {
+        return m_feederFalcon.getSelectedSensorVelocity();
+    }
+
     
     
 }

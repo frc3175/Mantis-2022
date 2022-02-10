@@ -134,6 +134,15 @@ public class Climber extends SubsystemBase {
         return (m_climberFalcon.getBusVoltage() != 0.0);
     }
 
+        /**
+     * 
+     * @return velocity of the motor in native falcon units
+     * 
+     */
+    public double getVelocity() {
+        return m_climberFalcon.getSelectedSensorVelocity();
+    }
+
     public void configureClimberMotor() {
         m_climberFalcon.configFactoryDefault();
         m_climberFalcon.configAllSettings(CTREConfigs.climberFXConfig);

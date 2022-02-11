@@ -13,10 +13,12 @@ import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+@SuppressWarnings("unused")
 public class Diagnostics {
 
     private static NetworkTableInstance inst;
@@ -30,7 +32,7 @@ public class Diagnostics {
     //private Actuators m_actuators = new Actuators();
 
     private ShuffleboardTab driveTab;
-    private NetworkTableEntry gyroEntry;
+    private ComplexWidget gyroEntry;
     private NetworkTableEntry intakeActuationEntry;
 
     // creates a diagnostic table
@@ -45,19 +47,16 @@ public class Diagnostics {
 
         driveTab = Shuffleboard.getTab("Match Dashboard");
         
-        gyroEntry = driveTab.add("Gyro", m_drivetrain.getAngle())
-                            .withWidget("kDial")
-                            .getEntry();
+        gyroEntry = driveTab.add("Gyro", m_drivetrain.m_gyro);
     
         intakeActuationEntry = driveTab.add("intake down", m_intake.isIntakeRunning())
-                                       .withWidget("kBooleanBox")
                                        .getEntry();
     }
 
     public void pushMatchDashboardDiagnostics() {
 
-        double gyro = m_drivetrain.getAngle();
-        gyroEntry.setDouble(gyro);
+        //double gyro = m_drivetrain.getAngle();
+        //gyroEntry.setDouble(gyro);
 
         boolean isIntakeDown = m_intake.isIntakeRunning();
         intakeActuationEntry.setBoolean(isIntakeDown);

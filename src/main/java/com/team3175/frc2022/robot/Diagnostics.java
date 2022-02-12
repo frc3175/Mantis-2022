@@ -80,7 +80,7 @@ public class Diagnostics {
             pushDouble(azimuth, mod.getState().angle.getDegrees());
         }
 
-        //SmartDashboard.putNumber("Gyro Yaw: ", m_drivetrain.getAngle());
+        SmartDashboard.putNumber("Gyro Yaw: ", m_drivetrain.getYaw().getDegrees());
 
         diagnosticTable.getEntry("pose x").setDouble(m_drivetrain.getPose().getX());
         diagnosticTable.getEntry("pose y").setDouble(m_drivetrain.getPose().getY());

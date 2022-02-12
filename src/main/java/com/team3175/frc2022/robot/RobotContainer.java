@@ -76,7 +76,7 @@ public class RobotContainer {
   private final Climber m_climber = new Climber();
 
   /* Autos */
-  private final Command m_auto = new FigureEightAuto(m_swerveDrivetrain); //Uses manual trajectory generation, no theta updates
+  //private final Command m_auto = new FigureEightAuto(m_swerveDrivetrain); //Uses manual trajectory generation, no theta updates
   private final Command m_pathweaverAuto = new PathweaverTest(m_swerveDrivetrain); //Uses pathweaver, no theta updates
   private final Command m_twoBallHangar = new TwoBallHangar(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
   private final Command m_twoBallTerminalCenter = new TwoBallTerminalCenter(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
@@ -150,7 +150,7 @@ public class RobotContainer {
     //TODO: Create a sendable chooser to select command
     //For now just type out the name of the command to be run
 
-      return m_twoBallTerminalCenter;
+      return m_oneBall;
 
   }
   

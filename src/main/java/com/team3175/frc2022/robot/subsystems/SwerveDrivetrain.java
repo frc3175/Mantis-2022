@@ -284,7 +284,7 @@ public class SwerveDrivetrain extends SubsystemBase {
         
         m_swerveOdometry.update(getYaw(), getStates());
 
-    }
+    } 
 
     
 }

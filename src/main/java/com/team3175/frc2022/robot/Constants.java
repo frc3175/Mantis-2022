@@ -33,9 +33,9 @@ public final class Constants {
 
     /* CANCoder offsets */
     public static double FRONT_LEFT_OFFSET = 155.21;
-    public static double FRONT_RIGHT_OFFSET = 68.1;
+    public static double FRONT_RIGHT_OFFSET = 68.1; //Temp, normally 68.1
     public static double BACK_LEFT_OFFSET = 133.33;
-    public static double BACK_RIGHT_OFFSET = 224.29;
+    public static double BACK_RIGHT_OFFSET = 224.29; //Temp, normally 224.29
 
     /* Azimuth reversed */
     public static boolean FRONT_LEFT_AZIMUTH_REVERSED = false;
@@ -44,10 +44,10 @@ public final class Constants {
     public static boolean BACK_RIGHT_AZIMUTH_REVERSED = false;
 
     /* Drive motors reversed */
-    public static boolean FRONT_LEFT_DRIVE_REVERSED = true; //temp, normally true
-    public static boolean FRONT_RIGHT_DRIVE_REVERSED = true;
-    public static boolean BACK_LEFT_DRIVE_REVERSED = true; //temp, normally true
-    public static boolean BACK_RIGHT_DRIVE_REVERSED = true; 
+    public static boolean FRONT_LEFT_DRIVE_REVERSED = true;
+    public static boolean FRONT_RIGHT_DRIVE_REVERSED = true; //temp, normally true
+    public static boolean BACK_LEFT_DRIVE_REVERSED = true;
+    public static boolean BACK_RIGHT_DRIVE_REVERSED = true; //temp, normally true
 
     /* CANCoders reversed */
     public static boolean FRONT_LEFT_CANCODER_REVERSED = false;
@@ -107,7 +107,7 @@ public final class Constants {
     public static final double AUTO_MAX_ACCELERATION_MPS_SQUARED = 3;
     public static final double AUTO_P_X_CONTROLLER = 0.1; 
     public static final double AUTO_P_Y_CONTROLLER = 1.4884;
-    public static final double AUTO_P_THETA_CONTROLLER = 0.01;
+    public static final double AUTO_P_THETA_CONTROLLER = 2.55; //DO NOT RAISE
     
     /* Constraint for the motion profilied robot angle controller */
     public static final TrapezoidProfile.Constraints THETA_CONTROLLER_CONSTRAINTS =
@@ -142,7 +142,7 @@ public final class Constants {
     public static final boolean INVERT_RIGHT_SHOOTER = false;
 
     /* Shooter setpoint */
-    public static final double SHOOTER_TARGET_RPM = 3000;
+    public static final double SHOOTER_TARGET_RPM = 3000; //TODO: make 3000
     public static final double SHOOTER_ERROR = 10; //allowable shooter error from setpoint to be "spun up"
 
     /*============================
@@ -173,7 +173,7 @@ public final class Constants {
 
     /* Climber speeds */
     public static final double CLIMBER_SPEED = 1.0;
-    public static final double CLIMBER_UP_DISTANCE = 21;
+    public static final double CLIMBER_UP_DISTANCE = 19;
     public static final double CLIMBER_DOWN_DISTANCE = CLIMBER_UP_DISTANCE - 0.25;
     public static final double CLIMBER_DOWN_SETPOINT = 1000;
     

@@ -30,7 +30,7 @@ public class OneBallAuto extends SequentialCommandGroup {
         m_shooter = shooter;
         m_feeder = feeder;
         m_drivetrain = drivetrain;
-        m_initialPose = new Pose2d(7.11, 4.57, Rotation2d.fromDegrees(0.0));
+        m_initialPose = new Pose2d(7.11, 4.57, Rotation2d.fromDegrees(-20.56));
 
         m_driveBack = PathPlanner.loadPath("1BallAuto", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
 

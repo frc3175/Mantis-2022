@@ -10,6 +10,7 @@ import com.team3175.frc2022.robot.subsystems.SwerveModule;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -79,7 +80,12 @@ public class Diagnostics {
             pushDouble(azimuth, mod.getState().angle.getDegrees());
         }
 
-        SmartDashboard.putNumber("Gyro Yaw: ", m_drivetrain.getAngle());
+        //SmartDashboard.putNumber("Gyro Yaw: ", m_drivetrain.getAngle());
+
+        diagnosticTable.getEntry("pose x").setDouble(m_drivetrain.getPose().getX());
+        diagnosticTable.getEntry("pose y").setDouble(m_drivetrain.getPose().getY());
+        diagnosticTable.getEntry("pose rot").setDouble((m_drivetrain.getPose().getRotation().getDegrees()));
+        
 
     }
 

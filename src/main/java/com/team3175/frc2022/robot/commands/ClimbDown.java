@@ -2,7 +2,6 @@ package com.team3175.frc2022.robot.commands;
 
 import com.team3175.frc2022.robot.subsystems.Climber;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ClimbDown extends CommandBase {
@@ -28,8 +27,15 @@ public class ClimbDown extends CommandBase {
 
     @Override
     public void execute() {
+
         m_climber.climbDown(m_setpoint, m_speed);
-        SmartDashboard.putNumber("climber encoder", m_climber.getClimberEncoder());
+
+        if(m_climber.getVelocity() > 0) {
+            m_climber.unlockPneumatics();
+        } else {
+            m_climber.lockPneumatics();
+        }
+
     }
 
     @Override

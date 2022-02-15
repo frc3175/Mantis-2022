@@ -5,11 +5,15 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.team3175.frc2022.robot.CTREConfigs;
 import com.team3175.frc2022.robot.Constants;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
 
     private final TalonFX m_climberFalcon = new TalonFX(Constants.CLIMBER_FALCON);
+
+    private final DoubleSolenoid m_solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.CLIMBER_SOLENOID_LEFT, Constants.CLIMBER_SOLENOID_RIGHT);
 
     public Climber() {
         configureClimberMotor();
@@ -141,6 +145,26 @@ public class Climber extends SubsystemBase {
      */
     public double getVelocity() {
         return m_climberFalcon.getSelectedSensorVelocity();
+    }
+
+    /**
+     * 
+     * Set the pneumatic brake to the locked position
+     * 
+     */
+
+    public void lockPneumatics() {
+        m_solenoid.set(Constants.CLIMBER_LOCK);
+    }
+
+    /**
+     * 
+     * Set the pneumatic brake to the unlocked position
+     * 
+     */
+
+    public void unlockPneumatics() {
+        m_solenoid.set(Constants.CLIMBER_UNLOCK);
     }
 
     public void configureClimberMotor() {

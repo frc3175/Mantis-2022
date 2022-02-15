@@ -6,6 +6,8 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 
 public final class Constants {
@@ -180,6 +182,12 @@ public final class Constants {
     /* Climber mechanics */
     public static final double CLIMBER_PULLEY_CIRCUMFERENCE = 0.6 * Math.PI;
     public static final double CLIMBER_GEAR_RATIO = 9;
+
+    /* Climber solenoid */
+    public static final int CLIMBER_SOLENOID_LEFT = 4;
+    public static final int CLIMBER_SOLENOID_RIGHT = 5;
+    public static final DoubleSolenoid.Value CLIMBER_LOCK = Value.kForward;
+    public static final DoubleSolenoid.Value CLIMBER_UNLOCK = Value.kReverse;
 
     /*============================
                Intake

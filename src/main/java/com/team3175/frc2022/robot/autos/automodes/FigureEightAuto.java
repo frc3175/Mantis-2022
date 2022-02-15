@@ -30,18 +30,18 @@ public class FigureEightAuto extends SequentialCommandGroup {
                                                          .setKinematics(Constants.swerveKinematics);
 
         //Start point
-        var startPoint = new Pose2d(0, 0, Rotation2d.fromDegrees(180));
+        var startPoint = new Pose2d(0, 0, Rotation2d.fromDegrees(90));
 
         //Waypoints (using clamped quintic splines) (the basic kind)
         var interiorWaypoints = new ArrayList<Pose2d>();
-        var waypoint1 = new Pose2d(Units.feetToMeters(-4), Units.feetToMeters(-2), Rotation2d.fromDegrees(180));
-        var waypoint2 = new Pose2d(Units.feetToMeters(-8), Units.feetToMeters(0), Rotation2d.fromDegrees(90));
-        var waypoint3 = new Pose2d(Units.feetToMeters(-11), Units.feetToMeters(5), Rotation2d.fromDegrees(180));
-        var realEndPoint = new Pose2d(Units.feetToMeters(-18), Units.feetToMeters(0), Rotation2d.fromDegrees(90));
+        //var waypoint1 = new Pose2d(Units.feetToMeters(-4), Units.feetToMeters(-2), Rotation2d.fromDegrees(180));
+       // var waypoint2 = new Pose2d(Units.feetToMeters(-8), Units.feetToMeters(0), Rotation2d.fromDegrees(90));
+       // var waypoint3 = new Pose2d(Units.feetToMeters(-11), Units.feetToMeters(5), Rotation2d.fromDegrees(180));
+        var realEndPoint = new Pose2d(Units.feetToMeters(0), Units.feetToMeters(-2), Rotation2d.fromDegrees(90));
         interiorWaypoints.add(startPoint);
-        interiorWaypoints.add(waypoint1);
-        interiorWaypoints.add(waypoint2);
-        interiorWaypoints.add(waypoint3);
+        //interiorWaypoints.add(waypoint1);
+        //interiorWaypoints.add(waypoint2);
+        //interiorWaypoints.add(waypoint3);
         interiorWaypoints.add(realEndPoint);
 
         //creates a trajectory

@@ -47,9 +47,9 @@ public final class Constants {
 
     /* Drive motors reversed */
     public static boolean FRONT_LEFT_DRIVE_REVERSED = true;
-    public static boolean FRONT_RIGHT_DRIVE_REVERSED = true; //temp, normally true
+    public static boolean FRONT_RIGHT_DRIVE_REVERSED = false; //temp, normally true
     public static boolean BACK_LEFT_DRIVE_REVERSED = true;
-    public static boolean BACK_RIGHT_DRIVE_REVERSED = true; //temp, normally true
+    public static boolean BACK_RIGHT_DRIVE_REVERSED = false; //temp, normally true
 
     /* CANCoders reversed */
     public static boolean FRONT_LEFT_CANCODER_REVERSED = false;
@@ -109,7 +109,7 @@ public final class Constants {
     public static final double AUTO_MAX_ACCELERATION_MPS_SQUARED = 3;
     public static final double AUTO_P_X_CONTROLLER = 0.1; 
     public static final double AUTO_P_Y_CONTROLLER = 1.4884;
-    public static final double AUTO_P_THETA_CONTROLLER = 2.55; //DO NOT RAISE
+    public static final double AUTO_P_THETA_CONTROLLER = 2.55; //DO NOT RAISE (2.55 works)
     
     /* Constraint for the motion profilied robot angle controller */
     public static final TrapezoidProfile.Constraints THETA_CONTROLLER_CONSTRAINTS =

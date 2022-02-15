@@ -29,6 +29,7 @@ public class TwoBallTerminalCenter extends SequentialCommandGroup {
     private Actuators m_actuators;
     private SwerveDrivetrain m_drivetrain;
     private PathPlannerTrajectory m_trajectory;
+    private PathPlannerTrajectory m_trajectory2;
 
     public TwoBallTerminalCenter(Shooter shooter, Feeder feeder, Intake intake, Actuators actuators, SwerveDrivetrain drivetrain) {
 
@@ -39,6 +40,7 @@ public class TwoBallTerminalCenter extends SequentialCommandGroup {
         m_actuators = actuators;
 
         m_trajectory = PathPlanner.loadPath("2BallRotation", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
+        m_trajectory2 = PathPlanner.loadPath("2BallRotation2", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
 
         var m_translationController = new PIDController(Constants.AUTO_P_X_CONTROLLER, 0, 0);
         var m_strafeController = new PIDController(Constants.AUTO_P_Y_CONTROLLER, 0, 0);
@@ -49,6 +51,17 @@ public class TwoBallTerminalCenter extends SequentialCommandGroup {
         PPSwerveControllerCommand m_trajectoryCommand = 
             new PPSwerveControllerCommand(
             m_trajectory, 
+            m_drivetrain::getPose, 
+            Constants.swerveKinematics, 
+            m_translationController, 
+            m_strafeController, 
+            m_thetaController, 
+            m_drivetrain::setModuleStates, 
+            m_drivetrain);
+
+        PPSwerveControllerCommand m_trajectoryCommand2 = 
+            new PPSwerveControllerCommand(
+            m_trajectory2, 
             m_drivetrain::getPose, 
             Constants.swerveKinematics, 
             m_translationController, 
@@ -70,8 +83,9 @@ public class TwoBallTerminalCenter extends SequentialCommandGroup {
         addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(new Pose2d(7.11, 4.57, Rotation2d.fromDegrees(-20.56)))),
                     m_spinUp1,
                     m_shootAndFeed1,
-                    new ParallelCommandGroup(m_trajectoryCommand, m_intakeDeploy, m_spinUp2)
-                    //new ParallelCommandGroup(m_shootAndFeed2, m_intakeRetract)
+                    new ParallelCommandGroup(m_trajectoryCommand, m_intakeDeploy),
+                    new ParallelCommandGroup(m_trajectoryCommand2, m_intakeRetract, m_spinUp2),
+                    m_shootAndFeed2
                     );
 
     }

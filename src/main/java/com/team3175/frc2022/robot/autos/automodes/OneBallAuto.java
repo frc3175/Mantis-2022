@@ -36,7 +36,7 @@ public class OneBallAuto extends SequentialCommandGroup {
 
         var m_translationController = new PIDController(Constants.AUTO_P_X_CONTROLLER, 0, 0);
         var m_strafeController = new PIDController(Constants.AUTO_P_Y_CONTROLLER, 0, 0);
-        var m_thetaController = new ProfiledPIDController(Constants.AUTO_P_THETA_CONTROLLER, 0, 0, 
+        var m_thetaController = new ProfiledPIDController(0.1, 0, 0, 
                                                         Constants.THETA_CONTROLLER_CONSTRAINTS);
         m_thetaController.enableContinuousInput(-Math.PI, Math.PI);
 

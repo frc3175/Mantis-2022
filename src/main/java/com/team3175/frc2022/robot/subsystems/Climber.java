@@ -7,13 +7,12 @@ import com.team3175.frc2022.robot.Constants;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
 
     private final TalonFX m_climberFalcon = new TalonFX(Constants.CLIMBER_FALCON);
-    private Timer m_timer = new Timer();
+    private boolean isDone = false;
 
     private final DoubleSolenoid m_solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.CLIMBER_SOLENOID_LEFT, Constants.CLIMBER_SOLENOID_RIGHT);
 
@@ -33,6 +32,7 @@ public class Climber extends SubsystemBase {
 
     public void climbUp(double setpoint, double speed) {
         m_climberFalcon.setInverted(Constants.INVERT_CLIMBER);
+        unlockPneumatics();
         if(getClimberEncoder() < setpoint) {
             m_climberFalcon.set(ControlMode.PercentOutput, speed);
         } else {
@@ -53,16 +53,19 @@ public class Climber extends SubsystemBase {
         m_climberFalcon.setInverted(Constants.RE_INVERT_CLIMBER);
         if(getClimberEncoder() < setpoint) {
             m_climberFalcon.set(ControlMode.PercentOutput, speed);
-            m_timer.reset();
+            isDone = false;
         } else {
-            m_timer.start();
-            if(m_timer.get() > 0.25) {
-                lockPneumatics();
-            } else {
-                m_climberFalcon.set(ControlMode.PercentOutput, 0);
-            }
-            
+            overrideStop();
+            isDone = true;
         }
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
     }
 
     /**

@@ -1,7 +1,5 @@
 package com.team3175.frc2022.robot.commands;
 
-import com.team3175.frc2022.lib.math.Conversions;
-import com.team3175.frc2022.robot.Constants;
 import com.team3175.frc2022.robot.subsystems.Climber;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -36,18 +34,11 @@ public class ClimbUp extends CommandBase {
     @Override
     public void execute() {
 
-        /*if(m_climber.getVelocity() > 0) {
-            m_climber.unlockPneumatics();
-        } else {
-            m_climber.lockPneumatics();
-        } */
-
         if(m_timer.get() > 0.25) {
             m_climber.climbUp(m_setpoint, m_speed);
         } else {
             m_climber.overrideStop();
         }
-
 
     }
 
@@ -58,11 +49,7 @@ public class ClimbUp extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        if(m_climber.getClimberEncoder() > Conversions.climberInchesToEncoders(Constants.CLIMBER_UP_DISTANCE)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+        return false;
+    } 
     
 }

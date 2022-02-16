@@ -125,10 +125,10 @@ public final class Constants {
     public static final int RIGHT_SHOOTER_FALCON = 20;
 
     /* Shooter PIDF Values */
-    public static final double SHOOTER_P = 1.0;
+    public static final double SHOOTER_P = 0.1;
     public static final double SHOOTER_I = 0.0;
-    public static final double SHOOTER_D = 0.01;
-    public static final double SHOOTER_F = 0.052;
+    public static final double SHOOTER_D = 0.0;
+    public static final double SHOOTER_F = 0.07;
 
     /* CTRE Configs */
     public static final int SHOOTER_CONTINUOUS_CURRENT_LIMIT = 35;
@@ -144,7 +144,7 @@ public final class Constants {
     public static final boolean INVERT_RIGHT_SHOOTER = false;
 
     /* Shooter setpoint */
-    public static final double SHOOTER_TARGET_RPM = 3000; //TODO: make 3000
+    public static final double SHOOTER_TARGET_RPM = 3500;
     public static final double SHOOTER_ERROR = 10; //allowable shooter error from setpoint to be "spun up"
 
     /*============================
@@ -186,8 +186,8 @@ public final class Constants {
     /* Climber solenoid */
     public static final int CLIMBER_SOLENOID_LEFT = 4;
     public static final int CLIMBER_SOLENOID_RIGHT = 5;
-    public static final DoubleSolenoid.Value CLIMBER_LOCK = Value.kForward;
-    public static final DoubleSolenoid.Value CLIMBER_UNLOCK = Value.kReverse;
+    public static final DoubleSolenoid.Value CLIMBER_LOCK = Value.kReverse;
+    public static final DoubleSolenoid.Value CLIMBER_UNLOCK = Value.kForward;
 
     /*============================
                Intake

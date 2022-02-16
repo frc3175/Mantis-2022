@@ -25,11 +25,13 @@ import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 
@@ -131,8 +133,12 @@ public class RobotContainer {
                  .whenReleased(new ActuateBack(m_actuator));
     m_climbUp.whenPressed(new ClimbUp(m_climber, Conversions.climberInchesToEncoders(Constants.CLIMBER_UP_DISTANCE), Constants.CLIMBER_SPEED))
              .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
+    //m_climbUp.whenPressed(new InstantCommand(() -> m_climber.unlockPneumatics()))
+             //.whenReleased(new InstantCommand(() -> m_climber.lockPneumatics()));
     m_climbDown.whenPressed(new ClimbDown(m_climber, Conversions.climberInchesToEncoders(Constants.CLIMBER_DOWN_DISTANCE), Constants.CLIMBER_SPEED))
                .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
+   // m_climbDown.whenPressed(new InstantCommand(() -> m_climber.unlockPneumatics()))
+               //.whenReleased(new InstantCommand(() -> m_climber.lockPneumatics()));
     //m_intakeCargo.whenPressed(new DeployIntake(m_intake, m_actuator, m_driverController))
                  //.whenReleased(new StopIntake(m_intake, m_actuator, m_driverController));
 

@@ -35,6 +35,7 @@ public class Shooter extends SubsystemBase {
 
         double target_velocity_units_100ms = Conversions.RPMToFalcon(rpm, 1.0);
         m_rightShooterFalcon.set(TalonFXControlMode.Velocity, target_velocity_units_100ms);
+        m_leftShooterFalcon.set(TalonFXControlMode.Velocity, target_velocity_units_100ms);
 
         SmartDashboard.putNumber("shooter setpoint falcon units*", target_velocity_units_100ms);
         SmartDashboard.putNumber("shooter setpoint rpm*", Conversions.falconToRPM(target_velocity_units_100ms, 1.0));

@@ -54,7 +54,7 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     m_diagnostics.pushDrivetrainDiagnostics();
-    m_diagnostics.pushClimberDiagnostics();
+    //m_diagnostics.pushClimberDiagnostics();
     m_diagnostics.pushFeederDiagnostics();
     m_diagnostics.pushIntakeDiagnostics();
     m_diagnostics.pushShooterDiagnostics();

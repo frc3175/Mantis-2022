@@ -26,7 +26,7 @@ public class Diagnostics {
     private static NetworkTable diagnosticTable;
 
     private SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
-    private Climber m_climber = new Climber();
+    //private Climber m_climber = new Climber();
     private Intake m_intake = new Intake();
     private Feeder m_feeder = new Feeder();
     private Shooter m_shooter = new Shooter();
@@ -89,7 +89,7 @@ public class Diagnostics {
 
     }
 
-    public void pushClimberDiagnostics() {
+   /*public void pushClimberDiagnostics() {
 
         pushDouble("climber encoder", m_climber.getClimberEncoder());
         pushDouble("climber temp", m_climber.getTemp());
@@ -97,7 +97,7 @@ public class Diagnostics {
         pushBoolean("climber alive", m_climber.isAlive());
         pushDouble("climber velocity rpm", Conversions.falconToRPM(m_climber.getVelocity(), 1.0));
 
-    }
+    } */
 
     public void pushIntakeDiagnostics() {
 

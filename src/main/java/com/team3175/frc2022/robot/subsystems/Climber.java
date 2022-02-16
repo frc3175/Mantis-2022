@@ -7,16 +7,19 @@ import com.team3175.frc2022.robot.Constants;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
 
     private final TalonFX m_climberFalcon = new TalonFX(Constants.CLIMBER_FALCON);
+    private Timer m_timer = new Timer();
 
     private final DoubleSolenoid m_solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.CLIMBER_SOLENOID_LEFT, Constants.CLIMBER_SOLENOID_RIGHT);
 
     public Climber() {
         configureClimberMotor();
+        lockPneumatics();
     }
 
     /**
@@ -50,8 +53,15 @@ public class Climber extends SubsystemBase {
         m_climberFalcon.setInverted(Constants.RE_INVERT_CLIMBER);
         if(getClimberEncoder() < setpoint) {
             m_climberFalcon.set(ControlMode.PercentOutput, speed);
+            m_timer.reset();
         } else {
-            m_climberFalcon.set(ControlMode.PercentOutput, 0);
+            m_timer.start();
+            if(m_timer.get() > 0.25) {
+                lockPneumatics();
+            } else {
+                m_climberFalcon.set(ControlMode.PercentOutput, 0);
+            }
+            
         }
     }
 
@@ -164,7 +174,7 @@ public class Climber extends SubsystemBase {
      */
 
     public void unlockPneumatics() {
-        m_solenoid.set(Constants.CLIMBER_UNLOCK);
+       m_solenoid.set(Constants.CLIMBER_UNLOCK);
     }
 
     public void configureClimberMotor() {

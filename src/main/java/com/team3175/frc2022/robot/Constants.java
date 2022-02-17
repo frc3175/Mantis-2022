@@ -34,10 +34,10 @@ public final class Constants {
     public static final int FRONT_LEFT_AZIMUTH = 6; //Geraldine
 
     /* CANCoder offsets */
-    public static double FRONT_LEFT_OFFSET = 155.21;
-    public static double FRONT_RIGHT_OFFSET = 68.1; //Temp, normally 68.1
-    public static double BACK_LEFT_OFFSET = 133.33;
-    public static double BACK_RIGHT_OFFSET = 224.29; //Temp, normally 224.29
+    public static double FRONT_LEFT_OFFSET = 158.99;
+    public static double FRONT_RIGHT_OFFSET = 69.43; //Temp, normally 68.1
+    public static double BACK_LEFT_OFFSET = 134.38;
+    public static double BACK_RIGHT_OFFSET = 225.17; //Temp, normally 224.29
 
     /* Azimuth reversed */
     public static boolean FRONT_LEFT_AZIMUTH_REVERSED = false;
@@ -47,9 +47,9 @@ public final class Constants {
 
     /* Drive motors reversed */
     public static boolean FRONT_LEFT_DRIVE_REVERSED = true;
-    public static boolean FRONT_RIGHT_DRIVE_REVERSED = false; //temp, normally true
+    public static boolean FRONT_RIGHT_DRIVE_REVERSED = true; //temp, normally true
     public static boolean BACK_LEFT_DRIVE_REVERSED = true;
-    public static boolean BACK_RIGHT_DRIVE_REVERSED = false; //temp, normally true
+    public static boolean BACK_RIGHT_DRIVE_REVERSED = true; //temp, normally true
 
     /* CANCoders reversed */
     public static boolean FRONT_LEFT_CANCODER_REVERSED = false;

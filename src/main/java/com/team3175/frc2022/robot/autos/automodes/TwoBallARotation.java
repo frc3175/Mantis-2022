@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
-public class TwoBallB extends SequentialCommandGroup {
+public class TwoBallARotation extends SequentialCommandGroup {
 
     private Shooter m_shooter;
     private Feeder m_feeder;
@@ -31,7 +31,7 @@ public class TwoBallB extends SequentialCommandGroup {
     private PathPlannerTrajectory m_trajectory;
     private PathPlannerTrajectory m_trajectory2;
 
-    public TwoBallB(Shooter shooter, Feeder feeder, Intake intake, Actuators actuators, SwerveDrivetrain drivetrain) {
+    public TwoBallARotation(Shooter shooter, Feeder feeder, Intake intake, Actuators actuators, SwerveDrivetrain drivetrain) {
 
         m_shooter = shooter;
         m_feeder = feeder;
@@ -39,8 +39,8 @@ public class TwoBallB extends SequentialCommandGroup {
         m_intake = intake;
         m_actuators = actuators;
 
-        m_trajectory = PathPlanner.loadPath("2BallRotation", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
-        m_trajectory2 = PathPlanner.loadPath("2BallRotation2", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
+        m_trajectory = PathPlanner.loadPath("2BallARotation-1", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
+        m_trajectory2 = PathPlanner.loadPath("2BallARotation-2", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
 
         var m_translationController = new PIDController(Constants.AUTO_P_X_CONTROLLER, 0, 0);
         var m_strafeController = new PIDController(Constants.AUTO_P_Y_CONTROLLER, 0, 0);

@@ -14,12 +14,10 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
-public class OneBallAuto extends SequentialCommandGroup {
+public class OneBall extends SequentialCommandGroup {
 
     private Shooter m_shooter;
     private Feeder m_feeder;
@@ -27,15 +25,14 @@ public class OneBallAuto extends SequentialCommandGroup {
     private PathPlannerTrajectory m_driveBack;
     private Pose2d m_initialPose;
 
-    public OneBallAuto(Shooter shooter, Feeder feeder, SwerveDrivetrain drivetrain) {
+    public OneBall(Shooter shooter, Feeder feeder, SwerveDrivetrain drivetrain) {
 
         m_shooter = shooter;
         m_feeder = feeder;
         m_drivetrain = drivetrain;
-       // m_initialPose = new Pose2d(7.11, 4.57, Rotation2d.fromDegrees(-20.56)); //TODO: put this back
-       m_initialPose = new Pose2d(6.0, 5.0, Rotation2d.fromDegrees(0));
+        m_initialPose = new Pose2d(7.11, 4.57, Rotation2d.fromDegrees(-20.56));
 
-        m_driveBack = PathPlanner.loadPath("Test Path", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
+        m_driveBack = PathPlanner.loadPath("1BallAuto", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
 
         var m_translationController = new PIDController(Constants.AUTO_P_X_CONTROLLER, 0, 0);
         var m_strafeController = new PIDController(Constants.AUTO_P_Y_CONTROLLER, 0, 0);

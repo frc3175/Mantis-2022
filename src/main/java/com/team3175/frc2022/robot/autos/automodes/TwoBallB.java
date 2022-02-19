@@ -17,23 +17,21 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
-public class TwoBallHangar extends SequentialCommandGroup {
+public class TwoBallB extends SequentialCommandGroup {
 
     private Shooter m_shooter;
     private Feeder m_feeder;
     private Intake m_intake;
     private Actuators m_actuators;
     private SwerveDrivetrain m_drivetrain;
-    private PathPlannerTrajectory m_trajectory1;
+    private PathPlannerTrajectory m_trajectory;
     private PathPlannerTrajectory m_trajectory2;
-    private PathPlannerTrajectory m_trajectory3;
 
-    public TwoBallHangar(Shooter shooter, Feeder feeder, Intake intake, Actuators actuators, SwerveDrivetrain drivetrain) {
+    public TwoBallB(Shooter shooter, Feeder feeder, Intake intake, Actuators actuators, SwerveDrivetrain drivetrain) {
 
         m_shooter = shooter;
         m_feeder = feeder;
@@ -41,9 +39,8 @@ public class TwoBallHangar extends SequentialCommandGroup {
         m_intake = intake;
         m_actuators = actuators;
 
-        m_trajectory1 = PathPlanner.loadPath("2BallHangar-1", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
-        m_trajectory2 = PathPlanner.loadPath("2BallHangar-2", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
-        m_trajectory3 = PathPlanner.loadPath("DoNothing", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
+        m_trajectory = PathPlanner.loadPath("2BallRotation", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
+        m_trajectory2 = PathPlanner.loadPath("2BallRotation2", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
 
         var m_translationController = new PIDController(Constants.AUTO_P_X_CONTROLLER, 0, 0);
         var m_strafeController = new PIDController(Constants.AUTO_P_Y_CONTROLLER, 0, 0);
@@ -51,9 +48,9 @@ public class TwoBallHangar extends SequentialCommandGroup {
                                                         Constants.THETA_CONTROLLER_CONSTRAINTS);
         m_thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
-        PPSwerveControllerCommand m_trajectoryCommand1 = 
+        PPSwerveControllerCommand m_trajectoryCommand = 
             new PPSwerveControllerCommand(
-            m_trajectory1, 
+            m_trajectory, 
             m_drivetrain::getPose, 
             Constants.swerveKinematics, 
             m_translationController, 
@@ -73,23 +70,22 @@ public class TwoBallHangar extends SequentialCommandGroup {
             m_drivetrain::setModuleStates, 
             m_drivetrain);
 
-            PPSwerveControllerCommand m_trajectoryCommand3 = 
-            new PPSwerveControllerCommand(
-            m_trajectory3, 
-            m_drivetrain::getPose, 
-            Constants.swerveKinematics, 
-            m_translationController, 
-            m_strafeController, 
-            m_thetaController, 
-            m_drivetrain::setModuleStates, 
-            m_drivetrain);
+        AutonSpinUp m_spinUp1 = new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM);
+        AutonSpinUp m_spinUp2 = new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM);
+
+        AutonShootAndFeed m_shootAndFeed1 = new AutonShootAndFeed(m_shooter, m_feeder, Constants.SHOOT_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
+        AutonShootAndFeed m_shootAndFeed2 = new AutonShootAndFeed(m_shooter, m_feeder, Constants.SHOOT_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
+
+        SetIntakeState m_intakeDeploy = new SetIntakeState(m_intake, m_actuators, "deploy", Constants.INTAKE_SPEED);
+
+        SetIntakeState m_intakeRetract = new SetIntakeState(m_intake, m_actuators, "retract", Constants.INTAKE_SPEED);
 
         addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(new Pose2d(7.11, 4.57, Rotation2d.fromDegrees(-20.56)))),
-                    new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM),
-                    new AutonShootAndFeed(m_shooter, m_feeder, 150000, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT),
-                    new ParallelCommandGroup(m_trajectoryCommand1, new SetIntakeState(m_intake, m_actuators, "deploy", Constants.INTAKE_SPEED)),
-                    new ParallelCommandGroup(m_trajectoryCommand2, new SetIntakeState(m_intake, m_actuators, "retract", Constants.INTAKE_SPEED), new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM))
-                    //new ParallelCommandGroup(m_trajectoryCommand3, new AutonShootAndFeed(m_shooter, m_feeder, 150000, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT))
+                    m_spinUp1,
+                    m_shootAndFeed1,
+                    new ParallelCommandGroup(m_trajectoryCommand, m_intakeDeploy),
+                    new ParallelCommandGroup(m_trajectoryCommand2, m_intakeRetract, m_spinUp2),
+                    m_shootAndFeed2
                     );
 
     }

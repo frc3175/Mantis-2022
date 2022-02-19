@@ -13,6 +13,7 @@ import com.kauailabs.navx.frc.AHRS;
 import com.team3175.frc2022.robot.Constants;
 
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SwerveDrivetrain extends SubsystemBase {
 
@@ -283,6 +284,10 @@ public class SwerveDrivetrain extends SubsystemBase {
     public void periodic(){
         
         m_swerveOdometry.update(getYaw(), getStates());
+
+        SmartDashboard.putNumber("pose x", getPose().getX());
+        SmartDashboard.putNumber("pose y", getPose().getY());
+        SmartDashboard.putNumber("pose rot", getPose().getRotation().getDegrees());
 
     } 
 

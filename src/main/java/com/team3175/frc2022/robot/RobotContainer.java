@@ -59,8 +59,8 @@ public class RobotContainer {
   private final Climber m_climber = new Climber();
 
   /* Autos */
-  private final Command m_twoBallHangar = new TwoBallHangar(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
-  private final Command m_twoBallTerminalCenter = new TwoBallTerminalCenter(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+  private final Command m_twoBallHangar = new TwoBallA(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+  private final Command m_twoBallTerminalCenter = new TwoBallB(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
   private final Command m_oneBall = new OneBallAuto(m_shooter, m_feeder, m_swerveDrivetrain);
   
 
@@ -73,7 +73,7 @@ public class RobotContainer {
     autoChooser = new SendableChooser<Command>();
     autoChooser.setDefaultOption("One Ball Auto", m_oneBall);
     autoChooser.addOption("Two Ball Hangar", m_twoBallHangar);
-    autoChooser.addOption("Two Ball Terminal Center", m_oneBall);
+    autoChooser.addOption("Two Ball Terminal Center", m_twoBallTerminalCenter);
     SmartDashboard.putData("Auto mode", autoChooser);
     
     // Configure the button bindings

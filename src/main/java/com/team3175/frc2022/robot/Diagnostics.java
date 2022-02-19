@@ -25,7 +25,7 @@ public class Diagnostics {
     private static NetworkTableInstance inst;
     private static NetworkTable diagnosticTable;
 
-    private SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
+    //private SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
     //private Climber m_climber = new Climber();
     private Intake m_intake = new Intake();
     private Feeder m_feeder = new Feeder();
@@ -48,7 +48,7 @@ public class Diagnostics {
 
         driveTab = Shuffleboard.getTab("Match Dashboard");
         
-        gyroEntry = driveTab.add("Gyro", m_drivetrain.m_gyro);
+        //gyroEntry = driveTab.add("Gyro", m_drivetrain.m_gyro);
     
         intakeActuationEntry = driveTab.add("intake down", m_intake.isIntakeRunning())
                                        .getEntry();
@@ -64,7 +64,7 @@ public class Diagnostics {
 
     }
 
-    public void pushDrivetrainDiagnostics() {
+    /*public void pushDrivetrainDiagnostics() {
 
         SwerveModule[] m_swerveModules = m_drivetrain.getModules();
 
@@ -87,7 +87,7 @@ public class Diagnostics {
         diagnosticTable.getEntry("pose rot").setDouble((m_drivetrain.getPose().getRotation().getDegrees()));
         
 
-    }
+    } */
 
    /*public void pushClimberDiagnostics() {
 

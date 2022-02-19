@@ -75,6 +75,13 @@ public final class Constants {
     public static final double DRIVE_F = 0.0;
 
     /* Drive Motor Characterization Values */
+
+    //MANTIS CONSTANTS (With correct units)
+    /*public static final double DRIVE_S = (0.62708 / 12); //divide by 12 to convert from volts to percent output for CTRE
+    public static final double DRIVE_V = (0.3372 / 12);
+    public static final double DRIVE_A = (0.043545 / 12); */
+
+    //ROGUE CONSTANTS
     public static final double DRIVE_S = (0.48665 / 12); //divide by 12 to convert from volts to percent output for CTRE
     public static final double DRIVE_V = (2.4132 / 12);
     public static final double DRIVE_A = (0.06921 / 12);
@@ -105,11 +112,11 @@ public final class Constants {
     public static final double TURN_IN_PLACE_SPEED = 0.5;
 
     /* Auto Swerve profiling */
-    public static final double AUTO_MAX_SPEED = 4.9;
+    public static final double AUTO_MAX_SPEED = Units.feetToMeters(4.9);
     public static final double AUTO_MAX_ACCELERATION_MPS_SQUARED = 3;
     public static final double AUTO_P_X_CONTROLLER = 0.1; 
-    public static final double AUTO_P_Y_CONTROLLER = 1.4884;
-    public static final double AUTO_P_THETA_CONTROLLER = 2.55; //DO NOT RAISE (2.55 works)
+    public static final double AUTO_P_Y_CONTROLLER = 1.4884; //1.4884
+    public static final double AUTO_P_THETA_CONTROLLER = 2.8;
     
     /* Constraint for the motion profilied robot angle controller */
     public static final TrapezoidProfile.Constraints THETA_CONTROLLER_CONSTRAINTS =
@@ -128,7 +135,7 @@ public final class Constants {
     public static final double SHOOTER_P = 0.1;
     public static final double SHOOTER_I = 0.0;
     public static final double SHOOTER_D = 0.0;
-    public static final double SHOOTER_F = 0.07;
+    public static final double SHOOTER_F = 0.08;
 
     /* CTRE Configs */
     public static final int SHOOTER_CONTINUOUS_CURRENT_LIMIT = 35;

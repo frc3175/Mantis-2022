@@ -17,6 +17,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -74,7 +75,7 @@ public class TwoBallARotation extends SequentialCommandGroup {
         AutonSpinUp m_spinUp2 = new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM);
 
         AutonShootAndFeed m_shootAndFeed1 = new AutonShootAndFeed(m_shooter, m_feeder, Constants.SHOOT_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
-        AutonShootAndFeed m_shootAndFeed2 = new AutonShootAndFeed(m_shooter, m_feeder, Constants.SHOOT_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
+        AutonShootAndFeed m_shootAndFeed2 = new AutonShootAndFeed(m_shooter, m_feeder, 300000, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
 
         SetIntakeState m_intakeDeploy = new SetIntakeState(m_intake, m_actuators, "deploy", Constants.INTAKE_SPEED);
 
@@ -84,6 +85,7 @@ public class TwoBallARotation extends SequentialCommandGroup {
                     m_spinUp1,
                     m_shootAndFeed1,
                     new ParallelCommandGroup(m_trajectoryCommand, m_intakeDeploy),
+                    new WaitCommand(0.25),
                     new ParallelCommandGroup(m_trajectoryCommand2, m_intakeRetract, m_spinUp2),
                     m_shootAndFeed2
                     );

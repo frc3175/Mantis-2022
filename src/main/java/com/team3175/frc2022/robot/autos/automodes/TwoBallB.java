@@ -7,6 +7,7 @@ import com.team3175.frc2022.robot.Constants;
 import com.team3175.frc2022.robot.autos.autocommands.AutonShootAndFeed;
 import com.team3175.frc2022.robot.autos.autocommands.AutonSpinUp;
 import com.team3175.frc2022.robot.commands.SetIntakeState;
+import com.team3175.frc2022.robot.commands.ShootCargo;
 import com.team3175.frc2022.robot.subsystems.Actuators;
 import com.team3175.frc2022.robot.subsystems.Feeder;
 import com.team3175.frc2022.robot.subsystems.Intake;
@@ -74,7 +75,7 @@ public class TwoBallB extends SequentialCommandGroup {
         AutonSpinUp m_spinUp2 = new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM);
 
         AutonShootAndFeed m_shootAndFeed1 = new AutonShootAndFeed(m_shooter, m_feeder, Constants.SHOOT_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
-        AutonShootAndFeed m_shootAndFeed2 = new AutonShootAndFeed(m_shooter, m_feeder, Constants.SHOOT_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
+        AutonShootAndFeed m_shootAndFeed2 = new AutonShootAndFeed(m_shooter, m_feeder, 300000, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
 
         SetIntakeState m_intakeDeploy = new SetIntakeState(m_intake, m_actuators, "deploy", Constants.INTAKE_SPEED);
 
@@ -84,7 +85,7 @@ public class TwoBallB extends SequentialCommandGroup {
                     m_spinUp1,
                     m_shootAndFeed1,
                     new ParallelCommandGroup(m_trajectoryCommand, m_intakeDeploy),
-                    new ParallelCommandGroup(m_trajectoryCommand2, m_intakeRetract, m_spinUp2),
+                    new ParallelCommandGroup(m_trajectoryCommand2, m_intakeRetract, new InstantCommand(() -> m_shooter.shoot(Constants.SHOOTER_TARGET_RPM))),
                     m_shootAndFeed2
                     );
 

@@ -37,8 +37,8 @@ public class AutonShootAndFeed extends CommandBase {
     @Override
     public void execute() {
 
-        boolean isLeftAtSetpoint = m_shooter.leftFalconAtSetpoint(m_setpoint);
-        boolean isRightAtSetpoint = m_shooter.rightFalconAtSetpoint(m_setpoint);
+        boolean isLeftAtSetpoint = m_shooter.leftFalconAtSetpoint((m_setpoint - 100));
+        boolean isRightAtSetpoint = m_shooter.rightFalconAtSetpoint((m_setpoint - 100));
 
         m_shooter.shoot(m_setpoint);
 

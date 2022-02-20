@@ -49,6 +49,8 @@ public class RobotContainer {
   private final JoystickButton m_shootCargo = new JoystickButton(m_opController, XboxController.Button.kLeftBumper.value);
   private final POVButton m_climbUp = new POVButton(m_opController, 0);
   private final POVButton m_climbDown = new POVButton(m_opController, 180);
+  private final JoystickButton m_overrideClimbUp = new JoystickButton(m_opController, XboxController.Button.kStart.value);
+  private final JoystickButton m_overrideClimbDown = new JoystickButton(m_opController, XboxController.Button.kBack.value);
 
   /* Subsystems */
   private final SwerveDrivetrain m_swerveDrivetrain = new SwerveDrivetrain();
@@ -105,13 +107,17 @@ public class RobotContainer {
     m_outtakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.OUTTAKE_SPEED, m_opController))
                   .whenReleased(new IntakeCargo(m_intake, 0, m_opController));
     m_shootCargo.whenPressed(new ShootCargo(m_shooter, Constants.SHOOTER_TARGET_RPM, m_driverController, m_opController))
-                .whenReleased(new StopShooter(m_shooter));
+                .whenReleased(new StopShooter(m_shooter, m_driverController, m_opController));
     m_intakeCargo.whenPressed(new ActuateIntake(m_actuator))
                  .whenReleased(new ActuateBack(m_actuator));
     m_climbUp.whenPressed(new ClimbUp(m_climber, Conversions.climberInchesToEncoders(Constants.CLIMBER_UP_DISTANCE), Constants.CLIMBER_SPEED))
              .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
     m_climbDown.whenPressed(new ClimbDown(m_climber, Conversions.climberInchesToEncoders(Constants.CLIMBER_DOWN_DISTANCE), Constants.CLIMBER_SPEED))
                .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
+    /*m_overrideClimbDown.whenPressed(new InstantCommand(()-> m_climber.overrideDown(Constants.CLIMBER_SPEED)))
+                       .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
+    m_overrideClimbUp.whenPressed(new InstantCommand(()-> m_climber.overrideUp(Constants.CLIMBER_SPEED)))
+                     .whenReleased(new InstantCommand(() -> m_climber.overrideStop())); */
 
 
   }

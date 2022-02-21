@@ -1,6 +1,7 @@
 package com.team3175.frc2022.robot;
 
 import com.team3175.frc2022.lib.math.Conversions;
+import com.team3175.frc2022.robot.subsystems.Actuators;
 import com.team3175.frc2022.robot.subsystems.Climber;
 import com.team3175.frc2022.robot.subsystems.Feeder;
 import com.team3175.frc2022.robot.subsystems.Intake;
@@ -14,30 +15,39 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 @SuppressWarnings("unused")
-public class Diagnostics {
+public class Diagnostics extends SubsystemBase {
 
     private static NetworkTableInstance inst;
     private static NetworkTable diagnosticTable;
 
-    //private SwerveDrivetrain m_drivetrain = new SwerveDrivetrain();
-    //private Climber m_climber = new Climber();
-    private Intake m_intake = new Intake();
-    private Feeder m_feeder = new Feeder();
-    private Shooter m_shooter = new Shooter();
-    //private Actuators m_actuators = new Actuators();
+    private SwerveDrivetrain m_drivetrain;
+    private Climber m_climber;
+    private Intake m_intake;
+    private Feeder m_feeder;
+    private Shooter m_shooter;
+    private Actuators m_actuators;
 
     private ShuffleboardTab driveTab;
     private ComplexWidget gyroEntry;
     private NetworkTableEntry intakeActuationEntry;
 
     // creates a diagnostic table
-    public Diagnostics(){
+    public Diagnostics(SwerveDrivetrain drivetrain, Climber climber, Intake intake, Feeder feeder, Shooter shooter, Actuators actuators){
+
+        m_drivetrain = drivetrain;
+        m_climber = climber;
+        m_intake = intake;
+        m_feeder = feeder;
+        m_shooter = shooter;
+        m_actuators = actuators;
 
         UsbCamera m_camera = CameraServer.startAutomaticCapture();
         m_camera.setResolution(400, 400);
@@ -48,10 +58,11 @@ public class Diagnostics {
 
         driveTab = Shuffleboard.getTab("Match Dashboard");
         
-        //gyroEntry = driveTab.add("Gyro", m_drivetrain.m_gyro);
+        gyroEntry = driveTab.add("Gyro", m_drivetrain.m_gyro);
     
         intakeActuationEntry = driveTab.add("intake down", m_intake.isIntakeRunning())
                                        .getEntry();
+
     }
 
     public void pushMatchDashboardDiagnostics() {
@@ -64,7 +75,7 @@ public class Diagnostics {
 
     }
 
-    /*public void pushDrivetrainDiagnostics() {
+    public void pushDrivetrainDiagnostics() {
 
         SwerveModule[] m_swerveModules = m_drivetrain.getModules();
 
@@ -87,9 +98,9 @@ public class Diagnostics {
         diagnosticTable.getEntry("pose rot").setDouble((m_drivetrain.getPose().getRotation().getDegrees()));
         
 
-    } */
+    }
 
-   /*public void pushClimberDiagnostics() {
+    public void pushClimberDiagnostics() {
 
         pushDouble("climber encoder", m_climber.getClimberEncoder());
         pushDouble("climber temp", m_climber.getTemp());
@@ -97,7 +108,7 @@ public class Diagnostics {
         pushBoolean("climber alive", m_climber.isAlive());
         pushDouble("climber velocity rpm", Conversions.falconToRPM(m_climber.getVelocity(), 1.0));
 
-    } */
+    }
 
     public void pushIntakeDiagnostics() {
 
@@ -132,7 +143,6 @@ public class Diagnostics {
         pushBoolean("shooter right alive", m_shooter.isRightAlive());
         pushDouble("shooter right velocity rpm", m_shooter.getRightVelocityRPM());
 
-
     }
 
     public static void pushDouble(String name, double value){
@@ -141,6 +151,18 @@ public class Diagnostics {
 
     public static void pushBoolean(String name, boolean value) {
         diagnosticTable.getEntry(name).setBoolean(value);
+    }
+
+    @Override
+    public void periodic() {
+
+        pushDrivetrainDiagnostics();
+        pushFeederDiagnostics();
+        pushIntakeDiagnostics();
+        pushShooterDiagnostics();
+        pushClimberDiagnostics();
+        pushMatchDashboardDiagnostics();
+
     }
 
 }

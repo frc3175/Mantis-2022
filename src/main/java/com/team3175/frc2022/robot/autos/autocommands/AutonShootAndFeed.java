@@ -43,7 +43,7 @@ public class AutonShootAndFeed extends CommandBase {
         m_shooter.shoot(m_setpoint);
 
         if(isLeftAtSetpoint && isRightAtSetpoint) {
-            if(m_shooter.getEncoders() < m_ticks) {
+            if(m_feeder.getEncoder() < m_ticks) {
                 m_feeder.feederRunPercentOutput(m_feederPower);
                 m_shooter.shoot(m_setpoint);
             } else {
@@ -52,8 +52,6 @@ public class AutonShootAndFeed extends CommandBase {
         } else {
             m_shooter.shoot(m_setpoint);
         }
-
-        SmartDashboard.putNumber("shooter encoder", m_shooter.getEncoders());
 
     }
 

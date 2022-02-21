@@ -59,6 +59,7 @@ public class RobotContainer {
   private final Shooter m_shooter = new Shooter();
   private final Actuators m_actuator = new Actuators();
   private final Climber m_climber = new Climber();
+  private final Diagnostics m_diagnostics;
 
   /* Autos */
   private final Command m_twoBallA = new TwoBallA(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
@@ -73,6 +74,8 @@ public class RobotContainer {
     boolean fieldRelative = true;
     boolean openLoop = true;
     m_swerveDrivetrain.setDefaultCommand(new SwerveDrive(m_swerveDrivetrain, m_driverController, m_translationAxis, m_strafeAxis, m_rotationAxis, fieldRelative, openLoop));
+
+    m_diagnostics = new Diagnostics(m_swerveDrivetrain, m_climber, m_intake, m_feeder, m_shooter, m_actuator);
 
     autoChooser = new SendableChooser<Command>();
     autoChooser.setDefaultOption("One Ball Auto", m_oneBall);
@@ -98,7 +101,7 @@ public class RobotContainer {
 
     /* Driver Buttons */
     m_zeroGyro.whenPressed(new InstantCommand(() -> m_swerveDrivetrain.resetGyro()));
-    m_feedShooter.whenPressed(new InstantCommand(() -> m_feeder.feederRunPercentOutput(Constants.FEEDER_PERCENT_OUTPUT)))
+    m_feedShooter.whenPressed(new InstantCommand(() -> m_feeder.feederRunVelocity(Constants.TARGET_FEEDER_RPM)))
                   .whenReleased(new InstantCommand(() -> m_feeder.feederRunPercentOutput(0)));
                   
     /* Operator Buttons */  

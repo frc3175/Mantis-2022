@@ -236,11 +236,17 @@ public final class Constants {
     /* Feeder neutral mode */
     public static final NeutralMode FEEDER_NEUTRAL_MODE = NeutralMode.Brake;
 
+    /* Feeder PID */
+    public static final double FEEDER_P = 0.01;
+    public static final double FEEDER_I = 0.0;
+    public static final double FEEDER_D = 0.4; //0.5 works
+    public static final double FEEDER_F = 0.046;
+
     /* Inversions */
     public static final boolean INVERT_FEEDER = false;
 
     /* Feeder Constants */
-    public static final double TARGET_FEEDER_RPM = 1000; //random
+    public static final double TARGET_FEEDER_RPM = 3000; //random
     public static final double FEEDER_PERCENT_OUTPUT = 0.9;
 
     /*============================
@@ -295,7 +301,7 @@ public final class Constants {
             Auto Constants
     ==============================*/
 
-    public static final double SHOOT_TICKS = 150000;
+    public static final double SHOOT_TICKS = 100000;
     public static final double TWO_BALL_INTAKE_TICKS = 100000;
 
 } 

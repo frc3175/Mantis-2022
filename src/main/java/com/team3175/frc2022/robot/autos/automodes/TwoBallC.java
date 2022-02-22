@@ -84,7 +84,7 @@ public class TwoBallC extends SequentialCommandGroup {
                     m_spinUp1,
                     m_shootAndFeed1,
                     new ParallelCommandGroup(m_trajectoryCommand, m_intakeDeploy),
-                    new ParallelCommandGroup(m_trajectoryCommand2, m_intakeRetract),
+                    new ParallelCommandGroup(m_trajectoryCommand2, m_intakeRetract, new InstantCommand(() -> m_shooter.shoot(Constants.SHOOTER_TARGET_RPM))),
                     m_shootAndFeed2
                     );
 

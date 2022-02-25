@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.team3175.frc2022.robot.Constants;
 import com.team3175.frc2022.robot.subsystems.SwerveDrivetrain;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -23,6 +24,9 @@ public class SwerveDrive extends CommandBase {
     private int m_strafeAxis;
     private int m_rotationAxis;
 
+    private SlewRateLimiter m_xAxisFilter;
+    private SlewRateLimiter m_yAxisFilter;
+
     /**
      * 
      * Driver control
@@ -38,6 +42,10 @@ public class SwerveDrive extends CommandBase {
         m_rotationAxis = rotationAxis;
         m_fieldRelative = fieldRelative;
         m_openLoop = openLoop;
+
+        m_xAxisFilter = new SlewRateLimiter(0.5);
+        m_yAxisFilter = new SlewRateLimiter(0.5);
+
     }
 
     @Override
@@ -46,6 +54,7 @@ public class SwerveDrive extends CommandBase {
 
     @Override
     public void execute() {
+
         double yAxis = -m_driverController.getRawAxis(m_driveAxis);
         double xAxis = -m_driverController.getRawAxis(m_strafeAxis);
         double rAxis = -m_driverController.getRawAxis(m_rotationAxis);
@@ -60,13 +69,17 @@ public class SwerveDrive extends CommandBase {
         double xAxisSquared = xAxis > 0 ? xAxis * xAxis : xAxis * xAxis * -1;
         double yAxisSquared = yAxis > 0 ? yAxis * yAxis : yAxis * yAxis * -1;
 
-        m_translation = new Translation2d(yAxisSquared, xAxisSquared).times(Constants.MAX_SPEED);
+        double yAxisFiltered = m_yAxisFilter.calculate(yAxisSquared);
+        double xAxisFiltered = m_xAxisFilter.calculate(xAxisSquared);
+
+        m_translation = new Translation2d(yAxisFiltered, xAxisFiltered).times(Constants.MAX_SPEED);
         m_rotation = rAxisSquared * Constants.MAX_ANGULAR_VELOCITY;
         m_swerveDrivetrain.drive(m_translation, m_rotation, m_fieldRelative, m_openLoop);
 
         SmartDashboard.putNumber("yAxis", yAxis);
         SmartDashboard.putNumber("xAxis", xAxis);
         SmartDashboard.putNumber("rAxis", rAxis);
+        
     }
 }
 

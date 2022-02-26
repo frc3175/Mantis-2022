@@ -110,6 +110,7 @@ public final class Constants {
     public static final double MAX_SPEED = Units.feetToMeters(16.2); //meters per second
     public static final double MAX_ANGULAR_VELOCITY = Math.PI * 5.2 * 0.625; //actually 5.2
     public static final double TURN_IN_PLACE_SPEED = 0.5;
+    public static final double A_RATE_LIMITER = 1.5;
 
     /* Auto Swerve profiling */
     public static final double AUTO_MAX_SPEED = Units.feetToMeters(4.9);
@@ -303,5 +304,6 @@ public final class Constants {
 
     public static final double SHOOT_TICKS = 100000;
     public static final double TWO_BALL_INTAKE_TICKS = 100000;
+    public static final double FEEDER_TICKS = 150000;
 
 } 

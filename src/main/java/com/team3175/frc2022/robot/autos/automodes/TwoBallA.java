@@ -7,6 +7,7 @@ import com.team3175.frc2022.robot.Constants;
 import com.team3175.frc2022.robot.autos.autocommands.AutonShootAndFeed;
 import com.team3175.frc2022.robot.autos.autocommands.AutonSpinUp;
 import com.team3175.frc2022.robot.commands.SetIntakeState;
+import com.team3175.frc2022.robot.commands.StopSwerve;
 import com.team3175.frc2022.robot.subsystems.Actuators;
 import com.team3175.frc2022.robot.subsystems.Feeder;
 import com.team3175.frc2022.robot.subsystems.Intake;
@@ -72,10 +73,11 @@ public class TwoBallA extends SequentialCommandGroup {
 
         addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(new Pose2d(7.11, 4.57, Rotation2d.fromDegrees(-20.56)))),
                     new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM),
-                    new AutonShootAndFeed(m_shooter, m_feeder, 150000, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT),
+                    new AutonShootAndFeed(m_shooter, m_feeder, Constants.FEEDER_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT),
                     new ParallelCommandGroup(m_trajectoryCommand1, new SetIntakeState(m_intake, m_actuators, "deploy", Constants.INTAKE_SPEED)),
                     new ParallelCommandGroup(m_trajectoryCommand2, new SetIntakeState(m_intake, m_actuators, "retract", Constants.INTAKE_SPEED), new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM)),
-                    new AutonShootAndFeed(m_shooter, m_feeder, 150000, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT)
+                    new StopSwerve(m_drivetrain),
+                    new AutonShootAndFeed(m_shooter, m_feeder, (Constants.FEEDER_TICKS * 2), Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT)
                     );
 
     }

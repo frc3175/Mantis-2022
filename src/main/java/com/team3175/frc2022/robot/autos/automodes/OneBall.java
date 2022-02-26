@@ -6,6 +6,7 @@ import com.pathplanner.lib.commands.PPSwerveControllerCommand;
 import com.team3175.frc2022.robot.Constants;
 import com.team3175.frc2022.robot.autos.autocommands.AutonShootAndFeed;
 import com.team3175.frc2022.robot.autos.autocommands.AutonSpinUp;
+import com.team3175.frc2022.robot.commands.StopSwerve;
 import com.team3175.frc2022.robot.subsystems.Feeder;
 import com.team3175.frc2022.robot.subsystems.Shooter;
 import com.team3175.frc2022.robot.subsystems.SwerveDrivetrain;
@@ -53,12 +54,13 @@ public class OneBall extends SequentialCommandGroup {
 
         AutonSpinUp m_spinUp = new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM);
 
-        AutonShootAndFeed m_shootAndFeed = new AutonShootAndFeed(m_shooter, m_feeder, 150000, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
+        AutonShootAndFeed m_shootAndFeed = new AutonShootAndFeed(m_shooter, m_feeder, Constants.FEEDER_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
 
         addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(m_initialPose)),
                     m_spinUp,
                     m_shootAndFeed,
-                    m_driveBackCommand);
+                    m_driveBackCommand,
+                    new StopSwerve(m_drivetrain));
 
     }
 

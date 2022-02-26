@@ -24,8 +24,8 @@ public class SwerveDrive extends CommandBase {
     private int m_strafeAxis;
     private int m_rotationAxis;
 
-    private SlewRateLimiter m_xAxisFilter;
-    private SlewRateLimiter m_yAxisFilter;
+    private SlewRateLimiter m_xAxisARateLimiter;
+    private SlewRateLimiter m_yAxisARateLimiter;
 
     /**
      * 
@@ -43,8 +43,8 @@ public class SwerveDrive extends CommandBase {
         m_fieldRelative = fieldRelative;
         m_openLoop = openLoop;
 
-        m_xAxisFilter = new SlewRateLimiter(0.5);
-        m_yAxisFilter = new SlewRateLimiter(0.5);
+        m_xAxisARateLimiter = new SlewRateLimiter(Constants.A_RATE_LIMITER);
+        m_yAxisARateLimiter = new SlewRateLimiter(Constants.A_RATE_LIMITER);
 
     }
 
@@ -64,13 +64,12 @@ public class SwerveDrive extends CommandBase {
         xAxis = (Math.abs(xAxis) < Constants.STICK_DEADBAND) ? 0 : xAxis;
         rAxis = (Math.abs(rAxis) < Constants.STICK_DEADBAND) ? 0 : rAxis;
 
-        //double rAxisSquared = (rAxis * rAxis) * (rAxis / Math.abs(rAxis));
         double rAxisSquared = rAxis > 0 ? rAxis * rAxis : rAxis * rAxis * -1;
         double xAxisSquared = xAxis > 0 ? xAxis * xAxis : xAxis * xAxis * -1;
         double yAxisSquared = yAxis > 0 ? yAxis * yAxis : yAxis * yAxis * -1;
 
-        double yAxisFiltered = m_yAxisFilter.calculate(yAxisSquared);
-        double xAxisFiltered = m_xAxisFilter.calculate(xAxisSquared);
+        double yAxisFiltered = m_yAxisARateLimiter.calculate(yAxisSquared);
+        double xAxisFiltered = m_xAxisARateLimiter.calculate(xAxisSquared);
 
         m_translation = new Translation2d(yAxisFiltered, xAxisFiltered).times(Constants.MAX_SPEED);
         m_rotation = rAxisSquared * Constants.MAX_ANGULAR_VELOCITY;
@@ -79,7 +78,7 @@ public class SwerveDrive extends CommandBase {
         SmartDashboard.putNumber("yAxis", yAxis);
         SmartDashboard.putNumber("xAxis", xAxis);
         SmartDashboard.putNumber("rAxis", rAxis);
-        
+
     }
 }
 

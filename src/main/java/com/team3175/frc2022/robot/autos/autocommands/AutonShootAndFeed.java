@@ -31,6 +31,7 @@ public class AutonShootAndFeed extends CommandBase {
     public void initialize() {
 
         m_shooter.resetEncoders();
+        m_feeder.resetEncoders();
 
     }
 

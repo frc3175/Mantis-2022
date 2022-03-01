@@ -100,12 +100,6 @@ public class Conversions {
         return encoders;
     }
 
-    //TODO: write method
-
-    public double encodersToClimberInches(double encoder) {
-        return 1;
-    }
-
     
 
 }

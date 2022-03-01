@@ -60,8 +60,6 @@ public final class Constants {
     /* Gyro reversed */
     public static final boolean INVERT_GYRO = true; // Always ensure Gyro is CCW+ CW- !!!!!
 
-    //TODO: Characterize drivetrain on new robot
-
     /* Angle Motor PID Values */
     public static final double AZIMUTH_P = 0.2;
     public static final double AZIMUTH_I = 0.0;
@@ -108,7 +106,7 @@ public final class Constants {
 
     /* Swerve Profiling Values */
     public static final double MAX_SPEED = Units.feetToMeters(16.2); //meters per second
-    public static final double MAX_ANGULAR_VELOCITY = Math.PI * 5.2 * 0.625; //actually 5.2
+    public static final double MAX_ANGULAR_VELOCITY = Math.PI * 4.12; //radians per second //TODO: fix multiplier, formerly 0.625
     public static final double TURN_IN_PLACE_SPEED = 0.5;
     public static final double A_RATE_LIMITER = 2.0;
 
@@ -175,7 +173,7 @@ public final class Constants {
      public static final boolean CLIMBER_ENABLE_CURRENT_LIMIT = true;
 
     /* Climber neutral mode */
-    public static final NeutralMode CLIMBER_NEUTRAL_MODE = NeutralMode.Brake; //TODO: switch to brake
+    public static final NeutralMode CLIMBER_NEUTRAL_MODE = NeutralMode.Brake;
 
     /* Invert climber */
     public static final boolean INVERT_CLIMBER = false;
@@ -261,8 +259,6 @@ public final class Constants {
     /*============================
                Kinematics
     ==============================*/
-
-    //TODO: Adjust motor ramps, potentially create new motor ramps for shooter and other subs
 
     public static final double DRIVETRAIN_WIDTH = Units.inchesToMeters(21.5);
     public static final double DRIVETRAIN_LENGTH = Units.inchesToMeters(21);

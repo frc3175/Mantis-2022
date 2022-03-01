@@ -6,8 +6,6 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 
-//TODO: bind this command to a button
-
 public class Climb extends SequentialCommandGroup {
 
     private Climber m_climber;

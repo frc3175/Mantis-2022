@@ -116,6 +116,8 @@ public final class Constants {
     public static final double AUTO_P_X_CONTROLLER = 0.1; 
     public static final double AUTO_P_Y_CONTROLLER = 1.4884; //1.4884
     public static final double AUTO_P_THETA_CONTROLLER = 2.8;
+    public static final double FOUR_BALL_MAX_SPEED = Units.feetToMeters(16.2);
+    public static final double FOUR_BALL_MAX_ACCELERATION = 7.6;
     
     /* Constraint for the motion profilied robot angle controller */
     public static final TrapezoidProfile.Constraints THETA_CONTROLLER_CONSTRAINTS =
@@ -301,5 +303,6 @@ public final class Constants {
     public static final double SHOOT_TICKS = 100000;
     public static final double TWO_BALL_INTAKE_TICKS = 100000;
     public static final double FEEDER_TICKS = 150000;
+    public static final double FIVE_BALL_FEEDER_TICKS = 20000;
 
 } 

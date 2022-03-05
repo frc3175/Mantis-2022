@@ -31,7 +31,7 @@ public class SwerveDrivetrain extends SubsystemBase {
 
     public SwerveDrivetrain() {
         m_gyro = new AHRS(SPI.Port.kMXP);
-        m_gyro.reset();
+        //m_gyro.reset();
         
         m_swerveOdometry = new SwerveDriveOdometry(Constants.swerveKinematics, getYaw());
 

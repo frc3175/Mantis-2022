@@ -72,7 +72,7 @@ public class SwerveDrive extends CommandBase {
         double xAxisFiltered = m_xAxisARateLimiter.calculate(xAxisSquared);
 
         m_translation = new Translation2d(yAxisFiltered, xAxisFiltered).times(Constants.MAX_SPEED);
-        m_rotation = rAxisSquared * Constants.MAX_ANGULAR_VELOCITY;
+        m_rotation = rAxisSquared * Constants.MAX_ANGULAR_VELOCITY * 0.5;
         m_swerveDrivetrain.drive(m_translation, m_rotation, m_fieldRelative, m_openLoop);
 
         SmartDashboard.putNumber("yAxis", yAxis);

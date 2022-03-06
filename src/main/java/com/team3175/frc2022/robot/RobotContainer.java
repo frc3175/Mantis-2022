@@ -70,12 +70,16 @@ public class RobotContainer {
 
   public RobotContainer(){
 
+    /* Set Drive as default command*/
     boolean fieldRelative = true;
     boolean openLoop = true;
-    m_swerveDrivetrain.setDefaultCommand(new SwerveDrive(m_swerveDrivetrain, m_driverController, m_translationAxis, m_strafeAxis, m_rotationAxis, fieldRelative, openLoop));
+    m_swerveDrivetrain.setDefaultCommand(new SwerveDrive(m_swerveDrivetrain, 
+      m_driverController, m_translationAxis, m_strafeAxis, m_rotationAxis, fieldRelative, openLoop));
 
+    /* Instantiate diagnostics subystem */
     m_diagnostics = new Diagnostics(m_swerveDrivetrain, m_climber, m_intake, m_feeder, m_shooter, m_actuator);
 
+    /* Add all autons to AutoChooser */
     autoChooser = new SendableChooser<Command>();
     autoChooser.setDefaultOption("One Ball Auto", m_oneBall);
     autoChooser.addOption("Two Ball A", m_twoBallA);
@@ -86,7 +90,7 @@ public class RobotContainer {
     autoChooser.addOption("Shoot Auton", m_shootAuton);
     SmartDashboard.putData("Auto mode", autoChooser);
     
-    // Configure the button bindings
+    /* Configure the button bindings */
     configureButtonBindings();
 
   }
@@ -100,21 +104,37 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     /* Driver Buttons */
+
+    //Zero Gyro -> X Button
     m_zeroGyro.whenPressed(new InstantCommand(() -> m_swerveDrivetrain.resetGyro()));
+
+    //Feeder -> A Button
     m_feedShooter.whenPressed(new InstantCommand(() -> m_feeder.feederRunVelocity(Constants.TARGET_FEEDER_RPM)))
                   .whenReleased(new InstantCommand(() -> m_feeder.feederRunPercentOutput(0)));
                   
-    /* Operator Buttons */  
+    /* Operator Buttons */ 
+
+    //Intake -> Y Button
     m_intakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.INTAKE_SPEED, m_opController))
                  .whenReleased(new IntakeCargo(m_intake, 0, m_opController));
+
+    //Outtake -> X Button
     m_outtakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.OUTTAKE_SPEED, m_opController))
                   .whenReleased(new IntakeCargo(m_intake, 0, m_opController));
+
+    //Shoot -> Left Bumper
     m_shootCargo.whenPressed(new ShootCargo(m_shooter, Constants.SHOOTER_TARGET_RPM, m_driverController, m_opController))
                 .whenReleased(new StopShooter(m_shooter, m_driverController, m_opController));
+
+    //Intake Actuation -> Linked to intake (Y Button)
     m_intakeCargo.whenPressed(new ActuateIntake(m_actuator))
                  .whenReleased(new ActuateBack(m_actuator));
+
+    //Climber Up -> Dpad 0
     m_climbUp.whenPressed(new ClimbUp(m_climber, Conversions.climberInchesToEncoders(Constants.CLIMBER_UP_DISTANCE), Constants.CLIMBER_SPEED))
              .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
+
+    //Climber Down -> Dpad 180
     m_climbDown.whenHeld(new OverrideClimbDown(m_climber, Constants.CLIMBER_SPEED))
                        .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
 

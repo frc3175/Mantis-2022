@@ -60,9 +60,23 @@ public class Climber extends SubsystemBase {
         }
     }
 
+    /**
+     * 
+     * @return if the automated climb is complete or not
+     * 
+     */
+
     public boolean isDone() {
         return isDone;
     }
+
+    /**
+     * 
+     * Override the isDone variable and set if the climb is done or not
+     * 
+     * @param done whether or not the automated climb is complete
+     * 
+     */
 
     public void setDone(boolean done) {
         isDone = done;
@@ -179,6 +193,12 @@ public class Climber extends SubsystemBase {
     public void unlockPneumatics() {
        m_solenoid.set(Constants.CLIMBER_UNLOCK);
     }
+
+    /**
+     * 
+     * Configure the climber motor to the config set in CTREConfigs
+     * 
+     */
 
     public void configureClimberMotor() {
         m_climberFalcon.configFactoryDefault();

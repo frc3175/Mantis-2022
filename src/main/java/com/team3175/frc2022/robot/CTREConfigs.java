@@ -78,8 +78,8 @@ public final class CTREConfigs {
         feederFXConfig.slot0.kF = Constants.FEEDER_F;
         feederFXConfig.supplyCurrLimit = feederSupplyLimit;
         feederFXConfig.initializationStrategy = SensorInitializationStrategy.BootToZero;
-        feederFXConfig.openloopRamp = Constants.OPEN_LOOP_RAMP; //maybe make this own ramp to spin up faster???
-        feederFXConfig.closedloopRamp = Constants.CLOSED_LOOP_RAMP; //"                                     "
+        feederFXConfig.openloopRamp = Constants.OPEN_LOOP_RAMP;
+        feederFXConfig.closedloopRamp = Constants.CLOSED_LOOP_RAMP;
 
         /* Shooter Falcon Configuration */
         SupplyCurrentLimitConfiguration shooterSupplyLimit = new SupplyCurrentLimitConfiguration(
@@ -89,14 +89,14 @@ public final class CTREConfigs {
             Constants.SHOOTER_PEAK_CURRENT_DURATION
         );
 
-        shooterFXConfig.slot0.kP = Constants.SHOOTER_P; //maybe switch to bang bang controller
+        shooterFXConfig.slot0.kP = Constants.SHOOTER_P;
         shooterFXConfig.slot0.kI = Constants.SHOOTER_I;
         shooterFXConfig.slot0.kD = Constants.SHOOTER_D;
         shooterFXConfig.slot0.kF = Constants.SHOOTER_F;
         shooterFXConfig.supplyCurrLimit = shooterSupplyLimit;
         shooterFXConfig.initializationStrategy = SensorInitializationStrategy.BootToZero;
         shooterFXConfig.openloopRamp = Constants.OPEN_LOOP_RAMP;
-        shooterFXConfig.closedloopRamp = Constants.CLOSED_LOOP_RAMP; //change these for flywheel??
+        shooterFXConfig.closedloopRamp = Constants.CLOSED_LOOP_RAMP;
 
         /* Climber Falcon Configuration */
         SupplyCurrentLimitConfiguration climberSupplyLimit = new SupplyCurrentLimitConfiguration(
@@ -113,7 +113,7 @@ public final class CTREConfigs {
         climberFXConfig.supplyCurrLimit = climberSupplyLimit;
         climberFXConfig.initializationStrategy = SensorInitializationStrategy.BootToZero;
         climberFXConfig.openloopRamp = Constants.OPEN_LOOP_RAMP;
-        climberFXConfig.closedloopRamp = Constants.CLOSED_LOOP_RAMP; //change these for flywheel??
+        climberFXConfig.closedloopRamp = Constants.CLOSED_LOOP_RAMP;
 
         /* Intake Falcon Configuration */
         SupplyCurrentLimitConfiguration intakeSupplyLimit = new SupplyCurrentLimitConfiguration(

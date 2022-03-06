@@ -35,9 +35,9 @@ public final class Constants {
 
     /* CANCoder offsets */
     public static double FRONT_LEFT_OFFSET = 158.99;
-    public static double FRONT_RIGHT_OFFSET = 69.43; //Temp, normally 68.1
+    public static double FRONT_RIGHT_OFFSET = 69.43;
     public static double BACK_LEFT_OFFSET = 134.38;
-    public static double BACK_RIGHT_OFFSET = 225.17; //Temp, normally 224.29
+    public static double BACK_RIGHT_OFFSET = 225.17;
 
     /* Azimuth reversed */
     public static boolean FRONT_LEFT_AZIMUTH_REVERSED = false;
@@ -47,9 +47,9 @@ public final class Constants {
 
     /* Drive motors reversed */
     public static boolean FRONT_LEFT_DRIVE_REVERSED = true;
-    public static boolean FRONT_RIGHT_DRIVE_REVERSED = true; //temp, normally true
+    public static boolean FRONT_RIGHT_DRIVE_REVERSED = true;
     public static boolean BACK_LEFT_DRIVE_REVERSED = true;
-    public static boolean BACK_RIGHT_DRIVE_REVERSED = true; //temp, normally true
+    public static boolean BACK_RIGHT_DRIVE_REVERSED = true;
 
     /* CANCoders reversed */
     public static boolean FRONT_LEFT_CANCODER_REVERSED = false;
@@ -58,7 +58,7 @@ public final class Constants {
     public static boolean BACK_RIGHT_CANCODER_REVERSED = true;
 
     /* Gyro reversed */
-    public static final boolean INVERT_GYRO = true; // Always ensure Gyro is CCW+ CW- !!!!!
+    public static final boolean INVERT_GYRO = true;
 
     /* Angle Motor PID Values */
     public static final double AZIMUTH_P = 0.2;
@@ -73,14 +73,7 @@ public final class Constants {
     public static final double DRIVE_F = 0.0;
 
     /* Drive Motor Characterization Values */
-
-    //MANTIS CONSTANTS (With correct units)
-    /*public static final double DRIVE_S = (0.62708 / 12); //divide by 12 to convert from volts to percent output for CTRE
-    public static final double DRIVE_V = (0.3372 / 12);
-    public static final double DRIVE_A = (0.043545 / 12); */
-
-    //ROGUE CONSTANTS
-    public static final double DRIVE_S = (0.48665 / 12); //divide by 12 to convert from volts to percent output for CTRE
+    public static final double DRIVE_S = (0.48665 / 12); //Values from SysId divided by 12 to convert to volts for CTRE
     public static final double DRIVE_V = (2.4132 / 12);
     public static final double DRIVE_A = (0.06921 / 12);
 
@@ -101,20 +94,20 @@ public final class Constants {
     public static final NeutralMode DRIVE_NEUTRAL_MODE = NeutralMode.Brake;
 
     /* Swerve Gear Ratios */
-    public static final double DRIVE_GEAR_RATIO = (6.86 / 1.0); //6.86:1
-    public static final double AZIMUTH_GEAR_RATIO = (12.8 / 1.0); //12.8:1
+    public static final double DRIVE_GEAR_RATIO = (6.86 / 1.0); //6.86:1 from SDS
+    public static final double AZIMUTH_GEAR_RATIO = (12.8 / 1.0); //12.8:1 from SDS
 
     /* Swerve Profiling Values */
-    public static final double MAX_SPEED = Units.feetToMeters(16.2); //meters per second
-    public static final double MAX_ANGULAR_VELOCITY = Math.PI * 4.12; //radians per second //TODO: fix multiplier, formerly 0.625
+    public static final double MAX_SPEED = Units.feetToMeters(16.2); //meters per second (theoretical from SDS)
+    public static final double MAX_ANGULAR_VELOCITY = Math.PI * 4.12; //radians per second (theoretical calculation)
     public static final double TURN_IN_PLACE_SPEED = 0.5;
-    public static final double A_RATE_LIMITER = 2.0;
+    public static final double A_RATE_LIMITER = 2.0; //Slew Rate Limiter Constant
 
     /* Auto Swerve profiling */
     public static final double AUTO_MAX_SPEED = Units.feetToMeters(4.9);
     public static final double AUTO_MAX_ACCELERATION_MPS_SQUARED = 3;
     public static final double AUTO_P_X_CONTROLLER = 0.1; 
-    public static final double AUTO_P_Y_CONTROLLER = 1.4884; //1.4884
+    public static final double AUTO_P_Y_CONTROLLER = 1.4884;
     public static final double AUTO_P_THETA_CONTROLLER = 2.8;
     public static final double FOUR_BALL_MAX_SPEED = Units.feetToMeters(16.2);
     public static final double FOUR_BALL_MAX_ACCELERATION = 7.6;
@@ -145,7 +138,7 @@ public final class Constants {
     public static final boolean SHOOTER_ENABLE_CURRENT_LIMIT = true;
 
     /* Shooter neutral mode */
-    public static final NeutralMode SHOOTER_NEUTRAL_MODE = NeutralMode.Coast; //this is coast in case i need to switch to bang bang
+    public static final NeutralMode SHOOTER_NEUTRAL_MODE = NeutralMode.Coast;
 
     /* Shooter inversions */
     public static final boolean INVERT_LEFT_SHOOTER = true;
@@ -211,7 +204,7 @@ public final class Constants {
     public static final boolean INTAKE_ENABLE_CURRENT_LIMIT = true;
 
     /* Intake inversions */
-    public static final boolean INVERT_INTAKE = true; //opposite of intake_not_inverted
+    public static final boolean INVERT_INTAKE = true;
     public static final boolean RE_INVERT_INTAKE = INVERT_INTAKE ? false : true;
 
     /* Intake neutral mode */
@@ -240,14 +233,14 @@ public final class Constants {
     /* Feeder PID */
     public static final double FEEDER_P = 0.01;
     public static final double FEEDER_I = 0.0;
-    public static final double FEEDER_D = 0.4; //0.5 works
+    public static final double FEEDER_D = 0.4;
     public static final double FEEDER_F = 0.046;
 
     /* Inversions */
     public static final boolean INVERT_FEEDER = false;
 
     /* Feeder Constants */
-    public static final double TARGET_FEEDER_RPM = 3000; //random
+    public static final double TARGET_FEEDER_RPM = 3000;
     public static final double FEEDER_PERCENT_OUTPUT = 0.9;
 
     /*============================
@@ -277,7 +270,7 @@ public final class Constants {
                 Misc.
     ==============================*/
 
-    public static final double OPEN_LOOP_RAMP = 0.25; //tune this as well??
+    public static final double OPEN_LOOP_RAMP = 0.25;
     public static final double CLOSED_LOOP_RAMP = 0.0;
 
     /*============================

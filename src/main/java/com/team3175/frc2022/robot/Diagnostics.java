@@ -39,7 +39,7 @@ public class Diagnostics extends SubsystemBase {
     private ComplexWidget gyroEntry;
     private NetworkTableEntry intakeActuationEntry;
 
-    // creates a diagnostic table
+    /* Creates a diagnostic table */
     public Diagnostics(SwerveDrivetrain drivetrain, Climber climber, Intake intake, Feeder feeder, Shooter shooter, Actuators actuators){
 
         m_drivetrain = drivetrain;
@@ -65,15 +65,24 @@ public class Diagnostics extends SubsystemBase {
 
     }
 
-    public void pushMatchDashboardDiagnostics() {
+    /**
+     * 
+     * Push match diagnostics to the match dashboard
+     * 
+     */
 
-        //double gyro = m_drivetrain.getAngle();
-        //gyroEntry.setDouble(gyro);
+    public void pushMatchDashboardDiagnostics() {
 
         boolean isIntakeDown = m_intake.isIntakeRunning();
         intakeActuationEntry.setBoolean(isIntakeDown);
 
     }
+
+    /**
+     * 
+     * Push each module position and gyro position to dashboard
+     * 
+     */
 
     public void pushDrivetrainDiagnostics() {
 
@@ -100,6 +109,12 @@ public class Diagnostics extends SubsystemBase {
 
     }
 
+    /**
+     * 
+     * Push climber encoder, temp, current draw, and rpm to dashboard
+     * 
+     */
+
     public void pushClimberDiagnostics() {
 
         pushDouble("climber encoder", m_climber.getClimberEncoder());
@@ -109,6 +124,12 @@ public class Diagnostics extends SubsystemBase {
         pushDouble("climber velocity rpm", Conversions.falconToRPM(m_climber.getVelocity(), 1.0));
 
     }
+
+    /**
+     * 
+     * Push intake encoder, temp, current draw, and rpm to dashboard
+     * 
+     */
 
     public void pushIntakeDiagnostics() {
 
@@ -120,6 +141,12 @@ public class Diagnostics extends SubsystemBase {
 
     }
 
+    /**
+     * 
+     * Push feeder encoder, temp, current draw, and rpm to dashboard
+     * 
+     */
+
     public void pushFeederDiagnostics() {
 
         pushDouble("feeder encoder", m_feeder.getEncoder());
@@ -129,6 +156,12 @@ public class Diagnostics extends SubsystemBase {
         pushDouble("feeder velocity rpm", Conversions.falconToRPM(m_feeder.getVelocity(), 1.0));
 
     }
+
+    /**
+     * 
+     * Push left and right shooter encoders, temps, current draws, and rpms to dashboard
+     * 
+     */
 
     public void pushShooterDiagnostics() {
 
@@ -145,9 +178,27 @@ public class Diagnostics extends SubsystemBase {
 
     }
 
+    /**
+     * 
+     * Creates a network table entry with a specified name and double value
+     * 
+     * @param name name to push to network tables
+     * @param value double value to publish to network tables
+     * 
+     */
+
     public static void pushDouble(String name, double value){
         diagnosticTable.getEntry(name).setDouble(value);
     }
+
+    /**
+     * 
+     * Creates a network table entry with a specified name and boolean value
+     * 
+     * @param name name to push to network tables
+     * @param value boolean value to publish to network tables
+     * 
+     */
 
     public static void pushBoolean(String name, boolean value) {
         diagnosticTable.getEntry(name).setBoolean(value);

@@ -11,15 +11,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Feeder extends SubsystemBase {
 
     private TalonFX m_feederFalcon;
-    //private SubsystemManager m_manager;
 
     public Feeder() {
-
-        /*m_manager = new SubsystemManager(m_feederFalcon, 
-                                         CTREConfigs.feederFXConfig, 
-                                         Constants.INVERT_FEEDER, 
-                                         Constants.FEEDER_NEUTRAL_MODE, 
-                                         "feeder"); */
 
         m_feederFalcon = new TalonFX(Constants.FEEDER_FALCON);
         configFeederMotor();
@@ -43,6 +36,7 @@ public class Feeder extends SubsystemBase {
      * Run the feeder in velocity mode
      * 
      * @param rpm setpoint of the feeder in revolutions per minute
+     * 
      */
 
     public void feederRunVelocity(double rpm) {
@@ -80,9 +74,11 @@ public class Feeder extends SubsystemBase {
         return m_feederFalcon.getSelectedSensorPosition();
     }
 
-    /*public SubsystemManager getManager() {
-        return m_manager;
-    } */
+    /**
+     * 
+     * Configure feeder motor to the motor set in CTREConfig
+     * 
+     */
 
     public void configFeederMotor() {
         m_feederFalcon.configFactoryDefault();
@@ -96,6 +92,7 @@ public class Feeder extends SubsystemBase {
      * @return falcon temperature
      * 
      */
+
     public double getTemp() {
         return m_feederFalcon.getTemperature();
     }
@@ -105,6 +102,7 @@ public class Feeder extends SubsystemBase {
      * @return current draw of the falcon (amps)
      * 
      */
+
     public double getCurrent() {
         return m_feederFalcon.getSupplyCurrent();
     }
@@ -114,15 +112,17 @@ public class Feeder extends SubsystemBase {
      * @return if the falcon is drawing any voltage
      * 
      */
+
     public boolean isAlive() {
         return (m_feederFalcon.getBusVoltage() != 0.0);
     }
 
-        /**
+    /**
      * 
      * @return velocity of the motor in native falcon units
      * 
      */
+    
     public double getVelocity() {
         return m_feederFalcon.getSelectedSensorVelocity();
     }

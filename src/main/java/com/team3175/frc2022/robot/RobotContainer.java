@@ -131,9 +131,5 @@ public class RobotContainer {
     return autoChooser.getSelected();
 
   }
-
-  public SwerveDrivetrain getDrivetrain() {
-    return m_swerveDrivetrain;
-  }
   
 }

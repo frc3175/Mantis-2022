@@ -53,9 +53,21 @@ public class Intake extends SubsystemBase {
         return m_intakeFalcon.getSelectedSensorPosition();
     }
 
+    /**
+     * 
+     * Sets intake PercentOutput to 0
+     * 
+     */
+
     public void stopIntake() {
         m_intakeFalcon.set(ControlMode.PercentOutput, 0);
     }
+
+    /**
+     * 
+     * @return if the intake velocity is above 0
+     * 
+     */
 
     public boolean isIntakeRunning() {
         if(m_intakeFalcon.getSelectedSensorVelocity() > 0) {
@@ -65,19 +77,12 @@ public class Intake extends SubsystemBase {
         }
     }
 
-    public int isIntakeRunningInt() {
-        if(m_intakeFalcon.getSelectedSensorVelocity() > 0) {
-            return 0;
-        } else {
-            return 1;
-        }
-    }
-
     /**
      * 
      * @return falcon temperature
      * 
      */
+
     public double getTemp() {
         return m_intakeFalcon.getTemperature();
     }
@@ -87,6 +92,7 @@ public class Intake extends SubsystemBase {
      * @return current draw of the falcon (amps)
      * 
      */
+
     public double getCurrent() {
         return m_intakeFalcon.getSupplyCurrent();
     }
@@ -96,6 +102,7 @@ public class Intake extends SubsystemBase {
      * @return if the falcon is drawing any voltage
      * 
      */
+
     public boolean isAlive() {
         return (m_intakeFalcon.getBusVoltage() != 0.0);
     }
@@ -105,9 +112,16 @@ public class Intake extends SubsystemBase {
      * @return velocity of the motor in native falcon units
      * 
      */
+
     public double getVelocity() {
         return m_intakeFalcon.getSelectedSensorVelocity();
     }
+
+    /**
+     * 
+     * Configure the intake motor to the config set in CTREConfigs
+     * 
+     */
 
     public void configIntakeMotor() {
         m_intakeFalcon.configFactoryDefault();

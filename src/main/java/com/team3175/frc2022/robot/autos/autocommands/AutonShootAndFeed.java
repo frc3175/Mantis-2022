@@ -3,7 +3,6 @@ package com.team3175.frc2022.robot.autos.autocommands;
 import com.team3175.frc2022.robot.subsystems.Feeder;
 import com.team3175.frc2022.robot.subsystems.Shooter;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class AutonShootAndFeed extends CommandBase {
@@ -14,6 +13,18 @@ public class AutonShootAndFeed extends CommandBase {
     private double m_feederPower;
     private double m_setpoint;
     private boolean isDone = false;
+
+    /**
+     * 
+     * Spin up the shooter, shoot, and feed in autonomous
+     * 
+     * @param shooter shooter instance
+     * @param feeder feeder instance
+     * @param ticks number of ticks to feed for
+     * @param setpoint shooter setpoint in RPM
+     * @param feederPower percent output to run the feeder at
+     * 
+     */
 
     public AutonShootAndFeed(Shooter shooter, Feeder feeder, double ticks, double setpoint, double feederPower) {
 

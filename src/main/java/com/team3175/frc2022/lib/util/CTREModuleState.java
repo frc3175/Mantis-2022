@@ -13,6 +13,7 @@ public class CTREModuleState {
    * @param desiredState The desired state.
    * @param currentAngle The current module angle.
    */
+
   public static SwerveModuleState optimize(SwerveModuleState desiredState, Rotation2d currentAngle) {
     double targetAngle = placeInAppropriate0To360Scope(currentAngle.getDegrees(), desiredState.angle.getDegrees());
     double targetSpeed = desiredState.speedMetersPerSecond;
@@ -24,11 +25,12 @@ public class CTREModuleState {
     return new SwerveModuleState(targetSpeed, Rotation2d.fromDegrees(targetAngle));
   }
 
-  /**
+    /**
      * @param scopeReference Current Angle
      * @param newAngle Target Angle
      * @return Closest angle within scope
      */
+
     private static double placeInAppropriate0To360Scope(double scopeReference, double newAngle) {
       double lowerBound;
       double upperBound;

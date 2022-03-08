@@ -66,7 +66,6 @@ public class RobotContainer {
   private final Command m_twoBallB = new TwoBallB(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
   private final Command m_twoBallC = new TwoBallC(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
   private final Command m_threeBallBC = new ThreeBallBC(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
-  private final Command m_shootAuton = new ShootAuton(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
 
   public RobotContainer(){
 
@@ -87,7 +86,6 @@ public class RobotContainer {
     autoChooser.addOption("Two Ball B", m_twoBallB);
     autoChooser.addOption("Two Ball C", m_twoBallC);
     autoChooser.addOption("Three Ball BC", m_threeBallBC);
-    autoChooser.addOption("Shoot Auton", m_shootAuton);
     SmartDashboard.putData("Auto mode", autoChooser);
     
     /* Configure the button bindings */

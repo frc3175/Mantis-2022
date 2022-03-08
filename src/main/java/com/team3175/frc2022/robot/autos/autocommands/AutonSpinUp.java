@@ -10,6 +10,15 @@ public class AutonSpinUp extends CommandBase {
     private double m_rpm;
     private boolean isDone = false;
 
+    /**
+     * 
+     * Spin up the shooter in auton, does not run the feeder
+     * 
+     * @param shooter shooter instance
+     * @param rpm setpoint for the shooter in RPM
+     * 
+     */
+
     public AutonSpinUp(Shooter shooter, double rpm) {
 
         m_shooter = shooter;

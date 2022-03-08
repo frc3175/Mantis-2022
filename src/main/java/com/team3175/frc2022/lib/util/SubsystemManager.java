@@ -30,6 +30,7 @@ public class SubsystemManager {
      * @param name name with which to refer to the motor
      * 
      */
+    
     public SubsystemManager(TalonFX motor, TalonFXConfiguration config, boolean isInverted, NeutralMode neutralMode, String name) {
 
         m_motor = motor;

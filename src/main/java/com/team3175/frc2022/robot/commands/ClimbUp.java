@@ -12,6 +12,16 @@ public class ClimbUp extends CommandBase {
     private double m_speed;
     private Timer m_timer;
 
+    /**
+     * 
+     * Sends climbers up to a certain point when a button is pressed once
+     * 
+     * @param climber climber instance
+     * @param setpoint encoder point when the motors should stop
+     * @param speed percent output speed to run the motor
+     * 
+     */
+
     public ClimbUp(Climber climber, double setpoint, double speed) {
 
         m_climber = climber;

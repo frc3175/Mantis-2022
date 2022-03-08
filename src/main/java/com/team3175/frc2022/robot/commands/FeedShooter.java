@@ -8,7 +8,16 @@ public class FeedShooter extends CommandBase {
 
     private final Feeder m_feeder;
     private final double m_rpm;
-    
+
+    /**
+     * 
+     * Runs the feeder in RPM mode
+     * 
+     * @param feeder feeder instance
+     * @param rpm setpoint for the motor in RPM
+     * 
+     */
+
     public FeedShooter(Feeder feeder, double rpm) {
 
         m_feeder = feeder;

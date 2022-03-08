@@ -24,7 +24,6 @@ public class Actuators extends SubsystemBase{
         m_actuators.set(Value.kReverse);
         isDown = true;
 
-
     }
 
     /**
@@ -45,8 +44,11 @@ public class Actuators extends SubsystemBase{
      * @return if the intake is down
      * 
      */
+    
     public boolean isIntakeDown() {
+
         return isDown;
+
     }
 
 } 

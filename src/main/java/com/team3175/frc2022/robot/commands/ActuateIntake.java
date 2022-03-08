@@ -8,6 +8,14 @@ public class ActuateIntake extends CommandBase{
     
     private  Actuators m_actuators;
 
+    /**
+     * 
+     * Set the intake position to down
+     * 
+     * @param actuators actuator instance
+     * 
+     */
+
     public ActuateIntake(Actuators actuators){
 
         m_actuators = actuators;

@@ -15,6 +15,16 @@ public class IntakeCargo extends CommandBase {
     private final XboxController m_driveController;
     private boolean intakeRunning;
     
+    /**
+     * 
+     * Runs the intake and actuates the pistons down when a button is held
+     * 
+     * @param intake intake instance
+     * @param speed speed to set the intake motor to
+     * @param driveController driver controller object
+     * 
+     */
+
     public IntakeCargo(Intake intake, double speed, XboxController driveController) {
 
         m_intake = intake;

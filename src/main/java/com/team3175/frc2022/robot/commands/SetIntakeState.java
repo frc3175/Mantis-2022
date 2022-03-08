@@ -13,6 +13,18 @@ public class SetIntakeState extends CommandBase {
     private double m_power;
     private boolean isDone = false;
 
+    /**
+     * 
+     * Sets the state of the intake pistons to "retract" or "deploy" and runs the motor accordingly
+     * Currently used exclusively in autonomous
+     * 
+     * @param intake intake instance
+     * @param actuators actuator instance
+     * @param state "retract" or "deploy", the state to set the intake to
+     * @param power intake motor power in percent output
+     * 
+     */
+
     public SetIntakeState(Intake intake, Actuators actuators, String state, double power) {
 
         m_intake = intake;

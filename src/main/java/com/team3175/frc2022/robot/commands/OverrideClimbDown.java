@@ -11,6 +11,15 @@ public class OverrideClimbDown extends CommandBase {
     private double m_speed;
     private Timer m_timer;
 
+    /**
+     * 
+     * Climbs down when a button is held
+     * 
+     * @param climber climber instance
+     * @param speed speed in percent output to set the motor to
+     * 
+     */
+
     public OverrideClimbDown(Climber climber, double speed) {
 
         m_climber = climber;

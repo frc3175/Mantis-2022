@@ -8,6 +8,14 @@ public class ActuateBack extends CommandBase{
     
     private  Actuators m_actuators;
 
+    /**
+     * 
+     * Set the intake position to retracted
+     * 
+     * @param actuators actuator instance
+     * 
+     */
+
     public ActuateBack(Actuators actuators){
 
         m_actuators = actuators;

@@ -12,6 +12,16 @@ public class StopShooter extends CommandBase {
     private final XboxController m_driverController;
     private final XboxController m_opController;
 
+    /**
+     * 
+     * Sets the shooter power to 0 and rumble to 0
+     * 
+     * @param shooter shooter instance
+     * @param driverController driver controller object
+     * @param opController operator controller object
+     * 
+     */
+
     public StopShooter(Shooter shooter, XboxController driverController, XboxController opController) {
 
         m_shooter = shooter;

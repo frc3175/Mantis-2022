@@ -12,6 +12,16 @@ public class ClimbDown extends CommandBase {
     private final double m_speed;
     private Timer m_timer;
 
+    /**
+     * 
+     * Brings the climber down to a certain point and engages the pneumatic lock when the climb is complete
+     * 
+     * @param climber climber instance
+     * @param setpoint encoder tick value at which to stop the motor
+     * @param speed percent output to run the motor
+     * 
+     */
+
     public ClimbDown(Climber climber, double setpoint, double speed) {
 
         m_climber = climber;

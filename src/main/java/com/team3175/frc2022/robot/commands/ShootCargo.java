@@ -3,7 +3,6 @@ package com.team3175.frc2022.robot.commands;
 import com.team3175.frc2022.robot.Constants;
 import com.team3175.frc2022.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ShootCargo extends CommandBase {
@@ -12,6 +11,17 @@ public class ShootCargo extends CommandBase {
     private final double m_rpm;
     private final XboxController m_opController;
     private final XboxController m_driveController;
+
+    /**
+     * 
+     * Runs the shooter and rumbles controllers when the shooter is spun up
+     * 
+     * @param shooter shooter instance
+     * @param rpm setpoint in RPM
+     * @param opController operator controller object
+     * @param driveController driver controller object
+     * 
+     */
 
     public ShootCargo(Shooter shooter, double rpm, XboxController opController, XboxController driveController) {
 
@@ -35,12 +45,6 @@ public class ShootCargo extends CommandBase {
     public void execute() {
 
         m_shooter.shoot(m_rpm);
-
-        SmartDashboard.putNumber("left shooter velocity falcon units", m_shooter.getLeftVelocityFalcon());
-        SmartDashboard.putNumber("left shooter velocity RPM", m_shooter.getLeftVelocityRPM());
-
-        SmartDashboard.putNumber("right shooter velocity falcon units", m_shooter.getRightVelocityFalcon());
-        SmartDashboard.putNumber("right shooter velocity RPM", m_shooter.getRightVelocityRPM());
 
         if(m_shooter.rightFalconAtSetpoint(m_rpm) && m_shooter.leftFalconAtSetpoint(m_rpm)) {
             m_driveController.setRumble(Constants.DRIVER_RUMBLE_LEFT, Constants.DRIVER_RUMBLE_PERCENT);

@@ -15,18 +15,15 @@ public class StopSwerve extends CommandBase {
 
     /**
      * 
-     * Driver control
+     * Stops the drivetrain movement, called at the end of every auto path
      * 
      */
+
     public StopSwerve(SwerveDrivetrain swerveDrivetrain) {
 
         m_swerveDrivetrain = swerveDrivetrain;
         addRequirements(m_swerveDrivetrain);
 
-    }
-
-    @Override
-    public void initialize() {
     }
 
     @Override
@@ -41,5 +38,6 @@ public class StopSwerve extends CommandBase {
     public boolean isFinished() {
         return true;
     }
+
 }
 

@@ -102,6 +102,8 @@ public class Diagnostics extends SubsystemBase {
 
         SmartDashboard.putNumber("Gyro Yaw: ", m_drivetrain.getYaw().getDegrees());
 
+        pushDouble("raw gyro", m_drivetrain.getYawRaw().getDegrees());
+
         diagnosticTable.getEntry("pose x").setDouble(m_drivetrain.getPose().getX());
         diagnosticTable.getEntry("pose y").setDouble(m_drivetrain.getPose().getY());
         diagnosticTable.getEntry("pose rot").setDouble((m_drivetrain.getPose().getRotation().getDegrees()));

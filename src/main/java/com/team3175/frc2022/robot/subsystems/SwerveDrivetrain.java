@@ -39,8 +39,8 @@ public class SwerveDrivetrain extends SubsystemBase {
         /* Add all autons to AutoChooser */
         fenderChooser = new SendableChooser<Double>();
         fenderChooser.setDefaultOption("none", 0.0);
-        fenderChooser.addOption("hangar side (left)", -20.56);
-        fenderChooser.addOption("terminal side (right)", 0.0); //TODO: find this
+        fenderChooser.addOption("hangar side (left)", -20.56); //-20.56
+        fenderChooser.addOption("terminal side (right)", 68.50); //TODO: find this
         SmartDashboard.putData("fender selector", fenderChooser);
 
         offset = fenderChooser.getSelected();
@@ -203,6 +203,11 @@ public class SwerveDrivetrain extends SubsystemBase {
     public Rotation2d getYaw() {
         return (Constants.INVERT_GYRO) ? Rotation2d.fromDegrees(360 - (m_gyro.getYaw() + offset)) 
                                              : Rotation2d.fromDegrees((m_gyro.getYaw() + offset));
+    }
+
+    public Rotation2d getYawRaw() {
+        return (Constants.INVERT_GYRO) ? Rotation2d.fromDegrees(360 - (m_gyro.getYaw())) 
+                                             : Rotation2d.fromDegrees((m_gyro.getYaw())); 
     }
 
     /**

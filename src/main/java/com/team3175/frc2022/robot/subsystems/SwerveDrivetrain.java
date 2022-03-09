@@ -13,6 +13,7 @@ import com.kauailabs.navx.frc.AHRS;
 import com.team3175.frc2022.robot.Constants;
 
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SwerveDrivetrain extends SubsystemBase {
@@ -20,6 +21,8 @@ public class SwerveDrivetrain extends SubsystemBase {
     public SwerveDriveOdometry m_swerveOdometry;
     public SwerveModule[] m_swerveModules;
     public AHRS m_gyro;
+    private double offset;
+    private static SendableChooser<Double> fenderChooser;
 
     /**
      * 
@@ -32,6 +35,15 @@ public class SwerveDrivetrain extends SubsystemBase {
     public SwerveDrivetrain() {
         m_gyro = new AHRS(SPI.Port.kMXP);
         //m_gyro.reset();
+
+        /* Add all autons to AutoChooser */
+        fenderChooser = new SendableChooser<Double>();
+        fenderChooser.setDefaultOption("none", 0.0);
+        fenderChooser.addOption("hangar side (left)", -20.56);
+        fenderChooser.addOption("terminal side (right)", 0.0); //TODO: find this
+        SmartDashboard.putData("fender selector", fenderChooser);
+
+        offset = fenderChooser.getSelected();
         
         m_swerveOdometry = new SwerveDriveOdometry(Constants.swerveKinematics, getYaw());
 
@@ -162,7 +174,7 @@ public class SwerveDrivetrain extends SubsystemBase {
      */
 
     public double getAngle() {
-        double angle = m_gyro.getYaw();
+        double angle = (m_gyro.getYaw() + offset);
         return angle;
     }
 
@@ -189,8 +201,8 @@ public class SwerveDrivetrain extends SubsystemBase {
      */
 
     public Rotation2d getYaw() {
-        return (Constants.INVERT_GYRO) ? Rotation2d.fromDegrees(360 - m_gyro.getYaw()) 
-                                             : Rotation2d.fromDegrees(m_gyro.getYaw());
+        return (Constants.INVERT_GYRO) ? Rotation2d.fromDegrees(360 - (m_gyro.getYaw() + offset)) 
+                                             : Rotation2d.fromDegrees((m_gyro.getYaw() + offset));
     }
 
     /**
@@ -200,6 +212,7 @@ public class SwerveDrivetrain extends SubsystemBase {
      */
 
     public void resetGyro() {
+        offset = 0;
         m_gyro.reset();
     }
 

@@ -43,7 +43,9 @@ public class SwerveDrivetrain extends SubsystemBase {
         fenderChooser.addOption("terminal side (right)", 68.50); //TODO: find this
         SmartDashboard.putData("fender selector", fenderChooser);
 
-        offset = fenderChooser.getSelected();
+        //offset = fenderChooser.getSelected();
+
+        offset = 0;
         
         m_swerveOdometry = new SwerveDriveOdometry(Constants.swerveKinematics, getYaw());
 

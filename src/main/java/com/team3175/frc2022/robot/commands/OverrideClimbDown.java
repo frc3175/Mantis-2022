@@ -40,22 +40,25 @@ public class OverrideClimbDown extends CommandBase {
     @Override
     public void execute() {
 
-        if(m_timer.get() > 0.25) {
+        /* if(m_timer.get() > 0.25) {
             m_climber.overrideDown(m_speed);
         } else {
             m_climber.overrideStop();
-        }
+        } */
+
+        m_climber.overrideDown(m_speed);
 
     }
 
     @Override
     public void end(boolean isFinished) {
-        m_timer.reset();
+
+        /* m_timer.reset();
         m_timer.start();
         while(m_timer.get() < 0.25) {
             //donothing
         }
-        m_climber.lockPneumatics();
+        m_climber.lockPneumatics(); */
         
     } 
     

@@ -13,12 +13,14 @@ public class Climber extends SubsystemBase {
 
     private final TalonFX m_climberFalcon = new TalonFX(Constants.CLIMBER_FALCON);
     private boolean isDone = false;
+    private boolean isLocked = true;
 
     private final DoubleSolenoid m_solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.CLIMBER_SOLENOID_LEFT, Constants.CLIMBER_SOLENOID_RIGHT);
 
     public Climber() {
         configureClimberMotor();
-        lockPneumatics();
+        unlockPneumatics();
+        //lockPneumatics();
     }
 
     /**
@@ -182,6 +184,7 @@ public class Climber extends SubsystemBase {
 
     public void lockPneumatics() {
         m_solenoid.set(Constants.CLIMBER_LOCK);
+        isLocked = true;
     }
 
     /**
@@ -192,6 +195,7 @@ public class Climber extends SubsystemBase {
 
     public void unlockPneumatics() {
        m_solenoid.set(Constants.CLIMBER_UNLOCK);
+       isLocked = false;
     }
 
     /**
@@ -205,6 +209,10 @@ public class Climber extends SubsystemBase {
         m_climberFalcon.configAllSettings(CTREConfigs.climberFXConfig);
         m_climberFalcon.setNeutralMode(Constants.CLIMBER_NEUTRAL_MODE);
         m_climberFalcon.setInverted(Constants.INVERT_CLIMBER);
+    }
+
+    public boolean isClimberLocked() {
+        return isLocked;
     }
     
 }

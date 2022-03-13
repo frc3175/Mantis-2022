@@ -21,8 +21,8 @@ public class SwerveDrivetrain extends SubsystemBase {
     public SwerveDriveOdometry m_swerveOdometry;
     public SwerveModule[] m_swerveModules;
     public AHRS m_gyro;
-    private double offset;
-    private static SendableChooser<Double> fenderChooser;
+    //private double offset;
+    //private static SendableChooser<Double> fenderChooser;
 
     /**
      * 
@@ -36,14 +36,15 @@ public class SwerveDrivetrain extends SubsystemBase {
         m_gyro = new AHRS(SPI.Port.kMXP);
         //m_gyro.reset();
 
-        /* Add all autons to AutoChooser */
-        fenderChooser = new SendableChooser<Double>();
+        /* fenderChooser = new SendableChooser<Double>();
         fenderChooser.setDefaultOption("none", 0.0);
         fenderChooser.addOption("hangar side (left)", -20.56); //-20.56
-        fenderChooser.addOption("terminal side (right)", 68.50); //TODO: find this
+        fenderChooser.addOption("terminal side (right)", 68.50);
         SmartDashboard.putData("fender selector", fenderChooser);
 
-        offset = fenderChooser.getSelected();
+        offset = fenderChooser.getSelected(); */
+
+        //offset = 0;
         
         m_swerveOdometry = new SwerveDriveOdometry(Constants.swerveKinematics, getYaw());
 
@@ -174,7 +175,7 @@ public class SwerveDrivetrain extends SubsystemBase {
      */
 
     public double getAngle() {
-        double angle = (m_gyro.getYaw() + offset);
+        double angle = (m_gyro.getYaw());
         return angle;
     }
 
@@ -201,8 +202,8 @@ public class SwerveDrivetrain extends SubsystemBase {
      */
 
     public Rotation2d getYaw() {
-        return (Constants.INVERT_GYRO) ? Rotation2d.fromDegrees(360 - (m_gyro.getYaw() + offset)) 
-                                             : Rotation2d.fromDegrees((m_gyro.getYaw() + offset));
+        return (Constants.INVERT_GYRO) ? Rotation2d.fromDegrees(360 - (m_gyro.getYaw())) 
+                                             : Rotation2d.fromDegrees((m_gyro.getYaw()));
     }
 
     public Rotation2d getYawRaw() {
@@ -217,7 +218,7 @@ public class SwerveDrivetrain extends SubsystemBase {
      */
 
     public void resetGyro() {
-        offset = 0;
+        //offset = 0;
         m_gyro.reset();
     }
 

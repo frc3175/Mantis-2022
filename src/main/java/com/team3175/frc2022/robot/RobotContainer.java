@@ -49,6 +49,8 @@ public class RobotContainer {
   private final JoystickButton m_shootCargo = new JoystickButton(m_opController, XboxController.Button.kLeftBumper.value);
   private final POVButton m_climbUp = new POVButton(m_opController, 0);
   private final POVButton m_climbDown = new POVButton(m_opController, 180);
+  private final JoystickButton m_lockClimber = new JoystickButton(m_opController, XboxController.Button.kStart.value);
+  private final JoystickButton m_unlockClimber = new JoystickButton(m_opController, XboxController.Button.kB.value);
 
   /* Subsystems */
   private final SwerveDrivetrain m_swerveDrivetrain = new SwerveDrivetrain();
@@ -135,6 +137,10 @@ public class RobotContainer {
     //Climber Down -> Dpad 180
     m_climbDown.whenHeld(new OverrideClimbDown(m_climber, Constants.CLIMBER_SPEED))
                        .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
+
+    m_lockClimber.whenPressed(new InstantCommand(() -> m_climber.lockPneumatics()));
+
+    m_unlockClimber.whenPressed(new InstantCommand(() -> m_climber.unlockPneumatics()));
 
 
   }

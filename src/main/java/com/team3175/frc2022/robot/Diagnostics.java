@@ -38,6 +38,7 @@ public class Diagnostics extends SubsystemBase {
     private ShuffleboardTab driveTab;
     private ComplexWidget gyroEntry;
     private NetworkTableEntry intakeActuationEntry;
+    private NetworkTableEntry climberLockEntry;
 
     /* Creates a diagnostic table */
     public Diagnostics(SwerveDrivetrain drivetrain, Climber climber, Intake intake, Feeder feeder, Shooter shooter, Actuators actuators){
@@ -62,6 +63,8 @@ public class Diagnostics extends SubsystemBase {
     
         intakeActuationEntry = driveTab.add("intake down", m_intake.isIntakeRunning())
                                        .getEntry();
+
+        climberLockEntry = driveTab.add("climber lock", m_climber.isClimberLocked()).getEntry();
 
     }
 
@@ -124,6 +127,7 @@ public class Diagnostics extends SubsystemBase {
         pushDouble("climber current", m_climber.getCurrent());
         pushBoolean("climber alive", m_climber.isAlive());
         pushDouble("climber velocity rpm", Conversions.falconToRPM(m_climber.getVelocity(), 1.0));
+        pushBoolean("climber locked", m_climber.isClimberLocked());
 
     }
 

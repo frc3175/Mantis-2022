@@ -176,7 +176,7 @@ public final class Constants {
 
     /* Climber speeds */
     public static final double CLIMBER_SPEED = 1.0;
-    public static final double CLIMBER_UP_DISTANCE = 21;
+    public static final double CLIMBER_UP_DISTANCE = 18;
     public static final double CLIMBER_DOWN_DISTANCE = CLIMBER_UP_DISTANCE - 0.25;
     public static final double CLIMBER_DOWN_SETPOINT = 1000;
     

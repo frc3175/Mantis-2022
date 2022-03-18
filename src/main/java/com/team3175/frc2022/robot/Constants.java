@@ -33,7 +33,7 @@ public final class Constants {
     public static final int FRONT_LEFT_ENCODER = 10; //Jonathan 
     public static final int FRONT_LEFT_AZIMUTH = 6; //Geraldine
 
-    public static final int PIGEON = 21; //TODO: fix
+    public static final int PIGEON = 21;
 
     /* CANCoder offsets */
     public static double FRONT_LEFT_OFFSET = 158.99;
@@ -60,7 +60,7 @@ public final class Constants {
     public static boolean BACK_RIGHT_CANCODER_REVERSED = true;
 
     /* Gyro reversed */
-    public static final boolean INVERT_GYRO = true;
+    public static final boolean INVERT_GYRO = false;
 
     /* Angle Motor PID Values */
     public static final double AZIMUTH_P = 0.2;
@@ -193,8 +193,8 @@ public final class Constants {
     public static final DoubleSolenoid.Value CLIMBER_UNLOCK = Value.kReverse;
 
     /* Climber hooks */
-    public static final int CLIMBER_HOOKS_LEFT = 2;
-    public static final int CLIMBER_HOOKS_RIGHT = 3;
+    public static final int CLIMBER_HOOKS_LEFT = 6;
+    public static final int CLIMBER_HOOKS_RIGHT = 7;
 
     /*============================
                Intake

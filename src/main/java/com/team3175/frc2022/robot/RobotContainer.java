@@ -52,8 +52,8 @@ public class RobotContainer {
   private final POVButton m_climbDown = new POVButton(m_opController, 180);
   private final JoystickButton m_lockClimber = new JoystickButton(m_opController, XboxController.Button.kStart.value);
   private final JoystickButton m_unlockClimber = new JoystickButton(m_opController, XboxController.Button.kBack.value);
-  private final JoystickButton m_passiveHooksUp = new JoystickButton(m_opController, XboxController.Button.kB.value);
-  private final JoystickButton m_passiveHooksDown = new JoystickButton(m_opController, XboxController.Button.kA.value);
+  private final JoystickButton m_passiveHooksUp = new JoystickButton(m_opController, XboxController.Button.kRightStick.value);
+  private final JoystickButton m_passiveHooksDown = new JoystickButton(m_opController, XboxController.Button.kB.value);
 
   /* Subsystems */
   private final SwerveDrivetrain m_swerveDrivetrain = new SwerveDrivetrain();
@@ -144,6 +144,10 @@ public class RobotContainer {
     m_lockClimber.whenPressed(new InstantCommand(() -> m_climber.lockPneumatics()));
 
     m_unlockClimber.whenPressed(new InstantCommand(() -> m_climber.unlockPneumatics()));
+
+    m_passiveHooksUp.whenPressed(new SetHookState(m_climber, "up"));
+
+    m_passiveHooksDown.whenPressed(new SetHookState(m_climber, "down"));
 
 
   }

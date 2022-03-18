@@ -34,10 +34,10 @@ public class SetHookState extends CommandBase {
         switch(m_state) {
 
             case "up" :
-                m_climber.passiveHooksUp();
+                m_climber.passiveHooksRelease();
                 break;
             case "down" :
-                m_climber.passiveHooksDown();
+                m_climber.passiveHooksLock();
                 break;
 
         }

@@ -22,6 +22,7 @@ public class Climber extends SubsystemBase {
     public Climber() {
         configureClimberMotor();
         lockPneumatics();
+        passiveHooksLock();
     }
 
     /**
@@ -205,7 +206,7 @@ public class Climber extends SubsystemBase {
      * 
      */
 
-    public void passiveHooksUp() {
+    public void passiveHooksRelease() {
         m_hooks.set(Value.kForward);
     }
 
@@ -215,7 +216,7 @@ public class Climber extends SubsystemBase {
      * 
      */
 
-    public void passiveHooksDown() {
+    public void passiveHooksLock() {
         m_hooks.set(Value.kReverse);
     }
 

@@ -9,7 +9,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import com.ctre.phoenix.sensors.Pigeon2;
+import com.ctre.phoenix.sensors.WPI_PigeonIMU;
 import com.team3175.frc2022.robot.Constants;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -18,7 +18,7 @@ public class SwerveDrivetrain extends SubsystemBase {
 
     public SwerveDriveOdometry m_swerveOdometry;
     public SwerveModule[] m_swerveModules;
-    public Pigeon2 m_gyro;
+    public WPI_PigeonIMU m_gyro;
 
     /**
      * 
@@ -29,7 +29,7 @@ public class SwerveDrivetrain extends SubsystemBase {
      */
 
     public SwerveDrivetrain() {
-        m_gyro = new Pigeon2(Constants.PIGEON);
+        m_gyro = new WPI_PigeonIMU(Constants.PIGEON);
 
         m_swerveOdometry = new SwerveDriveOdometry(Constants.swerveKinematics, getYaw());
 

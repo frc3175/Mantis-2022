@@ -37,7 +37,7 @@ public class Diagnostics extends SubsystemBase {
     private Actuators m_actuators;
 
     private ShuffleboardTab driveTab;
-    private SimpleWidget gyroEntry;
+    private ComplexWidget gyroEntry;
     private NetworkTableEntry intakeActuationEntry;
     private NetworkTableEntry climberLockEntry;
 
@@ -111,7 +111,6 @@ public class Diagnostics extends SubsystemBase {
         diagnosticTable.getEntry("pose x").setDouble(m_drivetrain.getPose().getX());
         diagnosticTable.getEntry("pose y").setDouble(m_drivetrain.getPose().getY());
         diagnosticTable.getEntry("pose rot").setDouble((m_drivetrain.getPose().getRotation().getDegrees()));
-        
 
     }
 

@@ -10,6 +10,7 @@ import com.team3175.frc2022.robot.commands.*;
 import com.team3175.frc2022.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -50,7 +51,9 @@ public class RobotContainer {
   private final POVButton m_climbUp = new POVButton(m_opController, 0);
   private final POVButton m_climbDown = new POVButton(m_opController, 180);
   private final JoystickButton m_lockClimber = new JoystickButton(m_opController, XboxController.Button.kStart.value);
-  private final JoystickButton m_unlockClimber = new JoystickButton(m_opController, XboxController.Button.kB.value);
+  private final JoystickButton m_unlockClimber = new JoystickButton(m_opController, XboxController.Button.kBack.value);
+  private final JoystickButton m_passiveHooksUp = new JoystickButton(m_opController, XboxController.Button.kB.value);
+  private final JoystickButton m_passiveHooksDown = new JoystickButton(m_opController, XboxController.Button.kA.value);
 
   /* Subsystems */
   private final SwerveDrivetrain m_swerveDrivetrain = new SwerveDrivetrain();

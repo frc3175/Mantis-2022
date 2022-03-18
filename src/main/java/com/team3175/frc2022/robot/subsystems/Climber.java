@@ -7,6 +7,7 @@ import com.team3175.frc2022.robot.Constants;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
@@ -16,11 +17,11 @@ public class Climber extends SubsystemBase {
     private boolean isLocked = true;
 
     private final DoubleSolenoid m_solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.CLIMBER_SOLENOID_LEFT, Constants.CLIMBER_SOLENOID_RIGHT);
+    private final DoubleSolenoid m_hooks = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.CLIMBER_HOOKS_LEFT, Constants.CLIMBER_HOOKS_RIGHT);
 
     public Climber() {
         configureClimberMotor();
-        unlockPneumatics();
-        //lockPneumatics();
+        lockPneumatics();
     }
 
     /**
@@ -200,6 +201,26 @@ public class Climber extends SubsystemBase {
 
     /**
      * 
+     * Set the climber hooks to the up position
+     * 
+     */
+
+    public void passiveHooksUp() {
+        m_hooks.set(Value.kForward);
+    }
+
+    /**
+     * 
+     * Bring the climber hooks down
+     * 
+     */
+
+    public void passiveHooksDown() {
+        m_hooks.set(Value.kReverse);
+    }
+
+    /**
+     * 
      * Configure the climber motor to the config set in CTREConfigs
      * 
      */
@@ -210,6 +231,12 @@ public class Climber extends SubsystemBase {
         m_climberFalcon.setNeutralMode(Constants.CLIMBER_NEUTRAL_MODE);
         m_climberFalcon.setInverted(Constants.INVERT_CLIMBER);
     }
+
+    /**
+     * 
+     * @return if the climber lock is engaged
+     * 
+     */
 
     public boolean isClimberLocked() {
         return isLocked;

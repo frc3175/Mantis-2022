@@ -33,6 +33,8 @@ public final class Constants {
     public static final int FRONT_LEFT_ENCODER = 10; //Jonathan 
     public static final int FRONT_LEFT_AZIMUTH = 6; //Geraldine
 
+    public static final int PIGEON = 21; //TODO: fix
+
     /* CANCoder offsets */
     public static double FRONT_LEFT_OFFSET = 158.99;
     public static double FRONT_RIGHT_OFFSET = 69.43;
@@ -189,6 +191,10 @@ public final class Constants {
     public static final int CLIMBER_SOLENOID_RIGHT = 5;
     public static final DoubleSolenoid.Value CLIMBER_LOCK = Value.kForward;
     public static final DoubleSolenoid.Value CLIMBER_UNLOCK = Value.kReverse;
+
+    /* Climber hooks */
+    public static final int CLIMBER_HOOKS_LEFT = 2;
+    public static final int CLIMBER_HOOKS_RIGHT = 3;
 
     /*============================
                Intake

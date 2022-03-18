@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -36,7 +37,7 @@ public class Diagnostics extends SubsystemBase {
     private Actuators m_actuators;
 
     private ShuffleboardTab driveTab;
-    private ComplexWidget gyroEntry;
+    private SimpleWidget gyroEntry;
     private NetworkTableEntry intakeActuationEntry;
     private NetworkTableEntry climberLockEntry;
 
@@ -105,7 +106,7 @@ public class Diagnostics extends SubsystemBase {
 
         SmartDashboard.putNumber("Gyro Yaw: ", m_drivetrain.getYaw().getDegrees());
 
-        pushDouble("raw gyro", m_drivetrain.getYawRaw().getDegrees());
+        pushDouble("raw gyro", m_drivetrain.getYaw().getDegrees());
 
         diagnosticTable.getEntry("pose x").setDouble(m_drivetrain.getPose().getX());
         diagnosticTable.getEntry("pose y").setDouble(m_drivetrain.getPose().getY());

@@ -9,20 +9,16 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import com.kauailabs.navx.frc.AHRS;
+import com.ctre.phoenix.sensors.Pigeon2;
 import com.team3175.frc2022.robot.Constants;
 
-import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SwerveDrivetrain extends SubsystemBase {
 
     public SwerveDriveOdometry m_swerveOdometry;
     public SwerveModule[] m_swerveModules;
-    public AHRS m_gyro;
-    //private double offset;
-    //private static SendableChooser<Double> fenderChooser;
+    public Pigeon2 m_gyro;
 
     /**
      * 
@@ -33,20 +29,8 @@ public class SwerveDrivetrain extends SubsystemBase {
      */
 
     public SwerveDrivetrain() {
-        m_gyro = new AHRS(SPI.Port.kMXP);
-        //m_gyro.reset();
+        m_gyro = new Pigeon2(Constants.PIGEON);
 
-        /* fenderChooser = new SendableChooser<Double>();
-        fenderChooser.setDefaultOption("none", 0.0);
-        fenderChooser.addOption("hangar side (left)", -20.56); //-20.56
-        fenderChooser.addOption("terminal side (right)", 68.50);
-        SmartDashboard.putData("fender selector", fenderChooser);
-
-        offset = fenderChooser.getSelected(); */
-
-        //offset = 0;
-
-        
         m_swerveOdometry = new SwerveDriveOdometry(Constants.swerveKinematics, getYaw());
 
         m_swerveModules = new SwerveModule[] {
@@ -207,11 +191,6 @@ public class SwerveDrivetrain extends SubsystemBase {
                                              : Rotation2d.fromDegrees((m_gyro.getYaw()));
     }
 
-    public Rotation2d getYawRaw() {
-        return (Constants.INVERT_GYRO) ? Rotation2d.fromDegrees(360 - (m_gyro.getYaw())) 
-                                             : Rotation2d.fromDegrees((m_gyro.getYaw())); 
-    }
-
     /**
      * 
      * Sets the current gyro angle to 0 no matter the robot orientation
@@ -219,8 +198,7 @@ public class SwerveDrivetrain extends SubsystemBase {
      */
 
     public void resetGyro() {
-        //offset = 0;
-        m_gyro.reset();
+        m_gyro.setYaw(0);
     }
 
     /**

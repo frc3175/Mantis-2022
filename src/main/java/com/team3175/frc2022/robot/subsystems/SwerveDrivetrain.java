@@ -164,6 +164,10 @@ public class SwerveDrivetrain extends SubsystemBase {
         return angle;
     }
 
+    public double getNonContinuousGyro() {
+        return getAngle() % 360;
+    }
+
     /**
      * 
      * @return Array of SwerveModuleStates containing the states of all 4 robots

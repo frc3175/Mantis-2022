@@ -164,12 +164,16 @@ public class RobotContainer {
     m_climbDown.whenHeld(new OverrideClimbDown(m_climber, Constants.CLIMBER_SPEED))
                        .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
 
+    //Climber Lock -> Start Button
     m_lockClimber.whenPressed(new InstantCommand(() -> m_climber.lockPneumatics()));
 
+    //Climber Unlock -> Back Button
     m_unlockClimber.whenPressed(new InstantCommand(() -> m_climber.unlockPneumatics()));
 
+    //Passive Hooks Release -> Right Joystick Button
     m_passiveHooksUp.whenPressed(new SetHookState(m_climber, "up"));
 
+    //Passive Hooks Lock -> B Button
     m_passiveHooksDown.whenPressed(new SetHookState(m_climber, "down"));
 
 

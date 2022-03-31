@@ -65,11 +65,29 @@ public class RobotContainer {
   private final Diagnostics m_diagnostics;
 
   /* Autos */
+
+  //Basic 2 and 1 balls
   private final Command m_twoBallA = new TwoBallA(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
   private final Command m_oneBall = new OneBall(m_shooter, m_feeder, m_swerveDrivetrain);
   private final Command m_twoBallB = new TwoBallB(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
   private final Command m_twoBallC = new TwoBallC(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
-  private final Command m_threeBallBC = new ThreeBallBC(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+
+  //Three balls
+  private final Command m_threeBallBCBlue = new ThreeBallBCBlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+  private final Command m_threeBallBCRed = new ThreeBallBCRed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+
+  //Four ball hangar side
+  private final Command m_fourBallADEBlue = new FourBallADEBlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+  private final Command m_fourBallADERed = new FourBallADERed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+
+  //Four ball terminal side
+  private final Command m_fourBallBCDBlue = new FourBallBCDBlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+  private final Command m_fourBallBCDRed = new FourBallBCDRed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+
+  //Two ball defense
+  private final Command m_twoBallADefenseBlue = new TwoBallADefenseBlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+  private final Command m_twoBallADefenseRed = new TwoBallADefenseRed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+  
 
   public RobotContainer(){
 
@@ -88,7 +106,14 @@ public class RobotContainer {
     autoChooser.addOption("Two Ball A", m_twoBallA);
     autoChooser.addOption("Two Ball B", m_twoBallB);
     autoChooser.addOption("Two Ball C", m_twoBallC);
-    autoChooser.addOption("Three Ball BC", m_threeBallBC);
+    autoChooser.addOption("Three Ball BC Red", m_threeBallBCRed);
+    autoChooser.addOption("Three Ball BC Blue", m_threeBallBCBlue);
+    autoChooser.addOption("Four Ball ADE (hangar) Red", m_fourBallADERed);
+    autoChooser.addOption("Four Ball ADE (hangar) Blue", m_fourBallADEBlue);
+    autoChooser.addOption("Four Ball BCD (terminal) Red", m_fourBallBCDRed);
+    autoChooser.addOption("Four Ball BCD (terminal) Blue", m_fourBallBCDBlue);
+    autoChooser.addOption("Two Ball A Defense Red", m_twoBallADefenseRed);
+    autoChooser.addOption("Two Ball A Defense Blue", m_twoBallADefenseBlue);
     SmartDashboard.putData("Auto mode", autoChooser);
     
     /* Configure the button bindings */

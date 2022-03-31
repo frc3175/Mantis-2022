@@ -302,6 +302,7 @@ public final class Constants {
     public static final double SHOOT_TICKS = 100000;
     public static final double TWO_BALL_INTAKE_TICKS = 100000;
     public static final double FEEDER_TICKS = 150000;
-    public static final double FIVE_BALL_FEEDER_TICKS = 20000;
+    public static final double FIVE_BALL_FEEDER_TICKS = 40000;
+    public static final double SHOOT_DEFENSIVE_BALL_SPEED = 1500;
 
 } 

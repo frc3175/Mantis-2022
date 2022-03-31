@@ -18,12 +18,11 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
-public class TwoBallA extends SequentialCommandGroup {
+public class ThreeBallBCBlue extends SequentialCommandGroup {
 
     private Shooter m_shooter;
     private Feeder m_feeder;
@@ -33,7 +32,7 @@ public class TwoBallA extends SequentialCommandGroup {
     private PathPlannerTrajectory m_trajectory;
     private PathPlannerTrajectory m_trajectory2;
 
-    public TwoBallA(Shooter shooter, Feeder feeder, Intake intake, Actuators actuators, SwerveDrivetrain drivetrain) {
+    public ThreeBallBCBlue(Shooter shooter, Feeder feeder, Intake intake, Actuators actuators, SwerveDrivetrain drivetrain) {
 
         m_shooter = shooter;
         m_feeder = feeder;
@@ -41,8 +40,8 @@ public class TwoBallA extends SequentialCommandGroup {
         m_intake = intake;
         m_actuators = actuators;
 
-        m_trajectory = PathPlanner.loadPath("2BallA-1", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
-        m_trajectory2 = PathPlanner.loadPath("2BallA-2", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
+        m_trajectory = PathPlanner.loadPath("3BallBC-1-Blue", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
+        m_trajectory2 = PathPlanner.loadPath("3BallBC-2-Blue", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
 
         var m_translationController = new PIDController(Constants.AUTO_P_X_CONTROLLER, 0, 0);
         var m_strafeController = new PIDController(Constants.AUTO_P_Y_CONTROLLER, 0, 0);
@@ -81,12 +80,11 @@ public class TwoBallA extends SequentialCommandGroup {
 
         SetIntakeState m_intakeRetract = new SetIntakeState(m_intake, m_actuators, "retract", Constants.INTAKE_SPEED);
 
-        addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(new Pose2d(7.11, 4.57, Rotation2d.fromDegrees(-20.56)))),
+        addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(new Pose2d(7.78, 2.96, Rotation2d.fromDegrees(68.50)))),
                     m_spinUp1,
                     m_shootAndFeed1,
                     new ParallelCommandGroup(m_trajectoryCommand, m_intakeDeploy),
-                    new WaitCommand(0.25),
-                    new ParallelCommandGroup(m_trajectoryCommand2, m_intakeRetract, new InstantCommand(() -> m_shooter.shoot(Constants.SHOOTER_TARGET_RPM))),
+                    new ParallelCommandGroup(m_trajectoryCommand2, m_intakeRetract),
                     new StopSwerve(m_drivetrain),
                     m_shootAndFeed2
                     );

@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
-public class ThreeBallBC extends SequentialCommandGroup {
+public class ThreeBallBCRed extends SequentialCommandGroup {
 
     private Shooter m_shooter;
     private Feeder m_feeder;
@@ -32,7 +32,7 @@ public class ThreeBallBC extends SequentialCommandGroup {
     private PathPlannerTrajectory m_trajectory;
     private PathPlannerTrajectory m_trajectory2;
 
-    public ThreeBallBC(Shooter shooter, Feeder feeder, Intake intake, Actuators actuators, SwerveDrivetrain drivetrain) {
+    public ThreeBallBCRed(Shooter shooter, Feeder feeder, Intake intake, Actuators actuators, SwerveDrivetrain drivetrain) {
 
         m_shooter = shooter;
         m_feeder = feeder;

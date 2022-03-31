@@ -12,6 +12,11 @@ Matthew N ```@Matttheking2022``` <br>
 Mr Updike ```@cjupdike``` <br>
 Ian Sjögren ```@Ianshogren``` <br>
 
+# Mantis: The Robot
+
+![Full Robot For Render v1](https://user-images.githubusercontent.com/59668551/160954812-da8fca87-b7f3-4699-b2a3-706a33057346.jpg)
+
+
 # Labeled Field Map
 
 #### Rapid React field render showing our naming standard for the preset balls on the field in autonomous:

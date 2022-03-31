@@ -122,7 +122,7 @@ public class TwoBallADefenseBlue extends SequentialCommandGroup {
         SetIntakeState m_intakeRetractA = new SetIntakeState(m_intake, m_actuators, "retract", Constants.INTAKE_SPEED);
         SetIntakeState m_intakeRetractX = new SetIntakeState(m_intake, m_actuators, "retract", Constants.INTAKE_SPEED);
 
-        addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(new Pose2d(7.56, 1.79, Rotation2d.fromDegrees(-88.09)))),
+        addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(new Pose2d(6.05, 5.16, Rotation2d.fromDegrees(137.49)))),
                     new ParallelCommandGroup(m_intakeACommand, m_intakeDeployA),
                     new ParallelCommandGroup(m_shootACommand, m_intakeRetractA, m_spinUpA),
                     new StopSwerve(m_drivetrain),

@@ -147,7 +147,7 @@ public final class Constants {
     public static final boolean INVERT_RIGHT_SHOOTER = false;
 
     /* Shooter setpoint */
-    public static final double SHOOTER_TARGET_RPM = 3050;
+    public static final double SHOOTER_TARGET_RPM = 2700;
     public static final double SHOOTER_ERROR = 10; //allowable shooter error from setpoint to be "spun up"
 
     /*============================
@@ -303,6 +303,6 @@ public final class Constants {
     public static final double TWO_BALL_INTAKE_TICKS = 100000;
     public static final double FEEDER_TICKS = 150000;
     public static final double FIVE_BALL_FEEDER_TICKS = 40000;
-    public static final double SHOOT_DEFENSIVE_BALL_SPEED = 1500;
+    public static final double SHOOT_DEFENSIVE_BALL_SPEED = 3000;
 
 } 

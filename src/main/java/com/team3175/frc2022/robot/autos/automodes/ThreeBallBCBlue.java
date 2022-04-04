@@ -31,6 +31,7 @@ public class ThreeBallBCBlue extends SequentialCommandGroup {
     private SwerveDrivetrain m_drivetrain;
     private PathPlannerTrajectory m_trajectory;
     private PathPlannerTrajectory m_trajectory2;
+    private PathPlannerTrajectory m_trajectory3;
 
     public ThreeBallBCBlue(Shooter shooter, Feeder feeder, Intake intake, Actuators actuators, SwerveDrivetrain drivetrain) {
 
@@ -42,6 +43,7 @@ public class ThreeBallBCBlue extends SequentialCommandGroup {
 
         m_trajectory = PathPlanner.loadPath("3BallBC-1-Blue", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
         m_trajectory2 = PathPlanner.loadPath("3BallBC-2-Blue", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
+        m_trajectory3 = PathPlanner.loadPath("RightFenderZero", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
 
         var m_translationController = new PIDController(Constants.AUTO_P_X_CONTROLLER, 0, 0);
         var m_strafeController = new PIDController(Constants.AUTO_P_Y_CONTROLLER, 0, 0);
@@ -71,6 +73,17 @@ public class ThreeBallBCBlue extends SequentialCommandGroup {
             m_drivetrain::setModuleStates, 
             m_drivetrain);
 
+        PPSwerveControllerCommand m_trajectoryCommand3 = 
+            new PPSwerveControllerCommand(
+            m_trajectory3, 
+            m_drivetrain::getPose, 
+            Constants.swerveKinematics, 
+            m_translationController, 
+            m_strafeController, 
+            m_thetaController, 
+            m_drivetrain::setModuleStates, 
+            m_drivetrain);
+
         AutonSpinUp m_spinUp1 = new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM);
 
         AutonShootAndFeed m_shootAndFeed1 = new AutonShootAndFeed(m_shooter, m_feeder, Constants.FEEDER_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
@@ -86,7 +99,8 @@ public class ThreeBallBCBlue extends SequentialCommandGroup {
                     new ParallelCommandGroup(m_trajectoryCommand, m_intakeDeploy),
                     new ParallelCommandGroup(m_trajectoryCommand2, m_intakeRetract),
                     new StopSwerve(m_drivetrain),
-                    m_shootAndFeed2
+                    m_shootAndFeed2,
+                    m_trajectoryCommand3
                     );
 
     }

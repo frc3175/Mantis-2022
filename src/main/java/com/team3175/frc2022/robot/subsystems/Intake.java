@@ -128,6 +128,9 @@ public class Intake extends SubsystemBase {
         m_intakeFalcon.configAllSettings(CTREConfigs.intakeFXConfig);
         m_intakeFalcon.setInverted(Constants.INVERT_INTAKE);
         m_intakeFalcon.setNeutralMode(Constants.INTAKE_NEUTRAL_MODE);
+        /*m_intakeFalcon.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 10000);
+        m_intakeFalcon.setStatusFramePeriod(StatusFrame.Status_4_AinTempVbat, 9000);
+        m_intakeFalcon.setStatusFramePeriod(StatusFrame.Status_14_Turn_PIDF1, 14000); */
     }
 
 

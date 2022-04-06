@@ -109,7 +109,7 @@ public class ThreeBallBCBlue extends SequentialCommandGroup {
         SetIntakeState m_intakeRetract = new SetIntakeState(m_intake, m_actuators, "retract", Constants.INTAKE_SPEED);
         SetIntakeState m_intakeRetract2 = new SetIntakeState(m_intake, m_actuators, "retract", 0);
 
-        addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(new Pose2d(7.78, 2.96, Rotation2d.fromDegrees(68.50)))),
+        addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(new Pose2d(7.57, 1.79, Rotation2d.fromDegrees(-87.88)))),
                     new ParallelCommandGroup(m_trajectoryCommand, m_intakeDeploy),
                     new ParallelCommandGroup(m_trajectoryCommand2, m_intakeRetract, m_spinUp1),
                     new StopSwerve(m_drivetrain),

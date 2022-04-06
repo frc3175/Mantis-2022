@@ -280,6 +280,24 @@ public class SwerveDrivetrain extends SubsystemBase {
 
     /**
      * 
+     * @param yaw yaw value to set the gyro to
+     * 
+     */
+
+    public void setGyro(double yaw) {
+        double yawMod;
+        if(yaw < 0) {
+            yawMod = 360 - yaw;
+        } else if(yaw > 0) {
+            yawMod = yaw;
+        } else {
+            yawMod = yaw;
+        }
+        m_gyro.setYaw(yawMod);
+    }
+
+    /**
+     * 
      * Updates odometry with current theta angle and module states
      * 
      * Pushes module cancoder and integrated encoder values, module velocities, and gyro angle to SmartDashboard
@@ -295,7 +313,7 @@ public class SwerveDrivetrain extends SubsystemBase {
         SmartDashboard.putNumber("pose y", getPose().getY());
         SmartDashboard.putNumber("pose rot", getPose().getRotation().getDegrees());
 
-    } 
+    }
 
     
 }

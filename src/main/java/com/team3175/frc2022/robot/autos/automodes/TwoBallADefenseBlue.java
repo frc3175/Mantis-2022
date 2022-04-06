@@ -33,7 +33,6 @@ public class TwoBallADefenseBlue extends SequentialCommandGroup {
     private PathPlannerTrajectory m_shootA;
     private PathPlannerTrajectory m_intakeX;
     private PathPlannerTrajectory m_shootX;
-    private PathPlannerTrajectory m_spin;
 
     public TwoBallADefenseBlue(Shooter shooter, Feeder feeder, Intake intake, Actuators actuators, SwerveDrivetrain drivetrain) {
 
@@ -47,7 +46,6 @@ public class TwoBallADefenseBlue extends SequentialCommandGroup {
         m_shootA = PathPlanner.loadPath("2BallA-Defense-2-Blue", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
         m_intakeX = PathPlanner.loadPath("2BallA-Defense-3-Blue", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
         m_shootX = PathPlanner.loadPath("2BallA-Defense-4-Blue", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
-        m_spin = PathPlanner.loadPath("2BallA-Defense-5-Blue", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
 
         var m_translationController = new PIDController(Constants.AUTO_P_X_CONTROLLER, 0, 0);
         var m_strafeController = new PIDController(Constants.AUTO_P_Y_CONTROLLER, 0, 0);
@@ -99,17 +97,6 @@ public class TwoBallADefenseBlue extends SequentialCommandGroup {
             m_drivetrain::setModuleStates, 
             m_drivetrain);
 
-        PPSwerveControllerCommand m_spinCommand = 
-            new PPSwerveControllerCommand(
-            m_spin, 
-            m_drivetrain::getPose, 
-            Constants.swerveKinematics, 
-            m_translationController, 
-            m_strafeController, 
-            m_thetaController, 
-            m_drivetrain::setModuleStates, 
-            m_drivetrain);
-
         AutonSpinUp m_spinUpA = new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM);
         AutonSpinUp m_spinUpX = new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM);
 
@@ -130,8 +117,7 @@ public class TwoBallADefenseBlue extends SequentialCommandGroup {
                     new ParallelCommandGroup(m_intakeXCommand, m_intakeDeployX),
                     new ParallelCommandGroup(m_shootXCommand, m_intakeRetractX, m_spinUpX),
                     new StopSwerve(m_drivetrain),
-                    m_shootAndFeedX,
-                    m_spinCommand
+                    m_shootAndFeedX
                     );
 
     }

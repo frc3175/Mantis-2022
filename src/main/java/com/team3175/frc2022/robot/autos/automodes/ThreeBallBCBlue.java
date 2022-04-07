@@ -5,7 +5,6 @@ import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.commands.PPSwerveControllerCommand;
 import com.team3175.frc2022.robot.Constants;
 import com.team3175.frc2022.robot.autos.autocommands.AutonShootAndFeed;
-import com.team3175.frc2022.robot.autos.autocommands.AutonSpinUp;
 import com.team3175.frc2022.robot.commands.SetIntakeState;
 import com.team3175.frc2022.robot.commands.StopSwerve;
 import com.team3175.frc2022.robot.subsystems.Actuators;
@@ -97,9 +96,6 @@ public class ThreeBallBCBlue extends SequentialCommandGroup {
             m_drivetrain::setModuleStates, 
             m_drivetrain);
 
-        AutonSpinUp m_spinUp1 = new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM);
-        AutonSpinUp m_spinUp2 = new AutonSpinUp(m_shooter, Constants.SHOOTER_TARGET_RPM);
-
         AutonShootAndFeed m_shootAndFeed1 = new AutonShootAndFeed(m_shooter, m_feeder, Constants.FEEDER_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
         AutonShootAndFeed m_shootAndFeed2 = new AutonShootAndFeed(m_shooter, m_feeder, (Constants.FEEDER_TICKS * 2), Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
 
@@ -111,11 +107,11 @@ public class ThreeBallBCBlue extends SequentialCommandGroup {
 
         addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(new Pose2d(7.57, 1.79, Rotation2d.fromDegrees(-87.88)))),
                     new ParallelCommandGroup(m_trajectoryCommand, m_intakeDeploy),
-                    new ParallelCommandGroup(m_trajectoryCommand2, m_intakeRetract, m_spinUp1),
+                    new ParallelCommandGroup(m_trajectoryCommand2, m_intakeRetract, new InstantCommand(() -> m_shooter.shoot(Constants.SHOOTER_TARGET_RPM))),
                     new StopSwerve(m_drivetrain),
                     m_shootAndFeed1,
                     new ParallelCommandGroup(m_trajectoryCommand3, m_intakeDeploy2),
-                    new ParallelCommandGroup(m_trajectoryCommand4, m_intakeRetract2, m_spinUp2),
+                    new ParallelCommandGroup(m_trajectoryCommand4, m_intakeRetract2, new InstantCommand(() -> m_shooter.shoot(Constants.SHOOTER_TARGET_RPM))),
                     new StopSwerve(m_drivetrain),
                     m_shootAndFeed2
                     );

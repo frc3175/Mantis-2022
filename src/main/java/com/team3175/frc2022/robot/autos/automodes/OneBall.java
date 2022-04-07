@@ -60,7 +60,8 @@ public class OneBall extends SequentialCommandGroup {
                     m_spinUp,
                     m_shootAndFeed,
                     m_driveBackCommand,
-                    new StopSwerve(m_drivetrain));
+                    new StopSwerve(m_drivetrain),
+                    new InstantCommand(() -> m_drivetrain.setGyro(339.44)));
 
     }
 

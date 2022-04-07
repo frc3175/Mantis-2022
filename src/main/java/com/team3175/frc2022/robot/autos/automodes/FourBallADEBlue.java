@@ -113,7 +113,8 @@ public class FourBallADEBlue extends SequentialCommandGroup {
                     new ParallelCommandGroup(m_intakeDECommand, m_intakeDeployDE),
                     new ParallelCommandGroup(m_shootDECommand, m_intakeRetractDE, new InstantCommand(() -> m_shooter.shoot(Constants.SHOOTER_TARGET_RPM))),
                     new StopSwerve(m_drivetrain),
-                    m_shootAndFeedDE
+                    m_shootAndFeedDE,
+                    new InstantCommand(() -> m_drivetrain.setGyro(339.44))
                     );
 
     }

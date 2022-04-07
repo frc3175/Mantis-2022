@@ -113,7 +113,8 @@ public class ThreeBallBCRed extends SequentialCommandGroup {
                     new ParallelCommandGroup(m_trajectoryCommand3, m_intakeDeploy2),
                     new ParallelCommandGroup(m_trajectoryCommand4, m_intakeRetract2, new InstantCommand(() -> m_shooter.shoot(Constants.SHOOTER_TARGET_RPM))),
                     new StopSwerve(m_drivetrain),
-                    m_shootAndFeed2
+                    m_shootAndFeed2,
+                    new InstantCommand(() -> m_drivetrain.setGyro(68.71))
                     );
 
     }

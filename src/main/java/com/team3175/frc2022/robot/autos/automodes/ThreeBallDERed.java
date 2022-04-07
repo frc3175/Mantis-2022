@@ -85,10 +85,11 @@ public class ThreeBallDERed extends SequentialCommandGroup {
                     m_spinUp1,
                     m_shootAndFeed1,
                     new ParallelCommandGroup(m_trajectoryCommand, m_intakeDeploy),
-                    new WaitCommand(0.25),
+                    new WaitCommand(1.5),
                     new ParallelCommandGroup(m_trajectoryCommand2, m_intakeRetract, new InstantCommand(() -> m_shooter.shoot(Constants.SHOOTER_TARGET_RPM))),
                     new StopSwerve(m_drivetrain),
-                    m_shootAndFeed2
+                    m_shootAndFeed2,
+                    new InstantCommand(() -> m_drivetrain.setGyro(339.44))
                     );
 
     }

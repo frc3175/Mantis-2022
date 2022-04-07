@@ -117,7 +117,8 @@ public class TwoBallADefenseBlue extends SequentialCommandGroup {
                     new ParallelCommandGroup(m_intakeXCommand, m_intakeDeployX),
                     new ParallelCommandGroup(m_shootXCommand, m_intakeRetractX, m_spinUpX),
                     new StopSwerve(m_drivetrain),
-                    m_shootAndFeedX
+                    m_shootAndFeedX,
+                    new InstantCommand(() -> m_drivetrain.setGyro(180.00))
                     );
 
     }

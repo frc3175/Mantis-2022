@@ -113,7 +113,8 @@ public class FourBallBCDRed extends SequentialCommandGroup {
                     new ParallelCommandGroup(m_intakeBDCommand, m_intakeDeployBD),
                     new ParallelCommandGroup(m_shootBDCommand, m_intakeRetractBD, new InstantCommand(() -> m_shooter.shoot(Constants.SHOOTER_TARGET_RPM))),
                     new StopSwerve(m_drivetrain),
-                    m_shootAndFeedBD
+                    m_shootAndFeedBD,
+                    new InstantCommand(() -> m_drivetrain.setGyro(67.38))
                     );
 
     }

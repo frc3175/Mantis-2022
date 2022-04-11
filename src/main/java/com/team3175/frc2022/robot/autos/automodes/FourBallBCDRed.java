@@ -96,7 +96,7 @@ public class FourBallBCDRed extends SequentialCommandGroup {
             m_drivetrain::setModuleStates, 
             m_drivetrain);
 
-        AutonShootAndFeed m_shootAndFeedC = new AutonShootAndFeed(m_shooter, m_feeder, Constants.FIVE_BALL_FEEDER_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
+        AutonShootAndFeed m_shootAndFeedC = new AutonShootAndFeed(m_shooter, m_feeder, (Constants.FEEDER_TICKS), Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
         AutonShootAndFeed m_shootAndFeedBD = new AutonShootAndFeed(m_shooter, m_feeder, (Constants.FEEDER_TICKS * 2), Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
 
         SetIntakeState m_intakeDeployC = new SetIntakeState(m_intake, m_actuators, "deploy", Constants.INTAKE_SPEED);
@@ -106,6 +106,7 @@ public class FourBallBCDRed extends SequentialCommandGroup {
         SetIntakeState m_intakeRetractBD = new SetIntakeState(m_intake, m_actuators, "retract", Constants.INTAKE_SPEED);
 
         addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(new Pose2d(7.56, 1.79, Rotation2d.fromDegrees(-88.09)))),
+                    new InstantCommand(() -> m_feeder.resetEncoders()),
                     new ParallelCommandGroup(m_intakeCCommand, m_intakeDeployC),
                     new ParallelCommandGroup(m_shootCCommand, m_intakeRetractC, new InstantCommand(() -> m_shooter.shoot(Constants.SHOOTER_TARGET_RPM))),
                     new StopSwerve(m_drivetrain),

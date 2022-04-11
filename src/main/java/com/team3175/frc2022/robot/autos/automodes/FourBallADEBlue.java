@@ -106,6 +106,7 @@ public class FourBallADEBlue extends SequentialCommandGroup {
         SetIntakeState m_intakeRetractDE = new SetIntakeState(m_intake, m_actuators, "retract", Constants.INTAKE_SPEED);
 
         addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(new Pose2d(6.05, 5.16, Rotation2d.fromDegrees(137.49)))),
+                    new InstantCommand(() -> m_feeder.resetEncoders()),
                     new ParallelCommandGroup(m_intakeACommand, m_intakeDeployA),
                     new ParallelCommandGroup(m_shootACommand, m_intakeRetractA, new InstantCommand(() -> m_shooter.shoot(Constants.SHOOTER_TARGET_RPM))),
                     new StopSwerve(m_drivetrain),

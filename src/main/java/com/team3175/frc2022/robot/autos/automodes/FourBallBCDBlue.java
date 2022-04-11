@@ -106,6 +106,7 @@ public class FourBallBCDBlue extends SequentialCommandGroup {
         SetIntakeState m_intakeRetractBD = new SetIntakeState(m_intake, m_actuators, "retract", Constants.INTAKE_SPEED);
 
         addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(new Pose2d(7.56, 1.79, Rotation2d.fromDegrees(-88.09)))),
+                    new InstantCommand(() -> m_feeder.resetEncoders()),
                     new ParallelCommandGroup(m_intakeCCommand, m_intakeDeployC),
                     new ParallelCommandGroup(m_shootCCommand, m_intakeRetractC, new InstantCommand(() -> m_shooter.shoot(Constants.SHOOTER_TARGET_RPM))),
                     new StopSwerve(m_drivetrain),

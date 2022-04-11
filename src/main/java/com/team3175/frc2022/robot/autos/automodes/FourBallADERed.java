@@ -20,7 +20,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 public class FourBallADERed extends SequentialCommandGroup {
 
@@ -34,7 +33,6 @@ public class FourBallADERed extends SequentialCommandGroup {
     private PathPlannerTrajectory m_trajectory3;
     private PathPlannerTrajectory m_trajectory4;
     private PathPlannerTrajectory m_trajectory5;
-    private PathPlannerTrajectory m_trajectory6;
 
     public FourBallADERed(Shooter shooter, Feeder feeder, Intake intake, Actuators actuators, SwerveDrivetrain drivetrain) {
 
@@ -48,8 +46,7 @@ public class FourBallADERed extends SequentialCommandGroup {
         m_trajectory2 = PathPlanner.loadPath("4BallADE-2-Red", Constants.WACK_MAX_SPEED, Constants.WACK_MAX_ACCELERATION);
         m_trajectory3 = PathPlanner.loadPath("4BallADE-3-Red", Constants.WACK_MAX_SPEED, Constants.WACK_MAX_ACCELERATION);
         m_trajectory4 = PathPlanner.loadPath("4BallADE-4-Red", Constants.WACK_MAX_SPEED, Constants.WACK_MAX_ACCELERATION);
-        //m_trajectory5 = PathPlanner.loadPath("4BallADE-5-Red", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
-        m_trajectory6 = PathPlanner.loadPath("4BallADE-6-Red", Constants.WACK_MAX_SPEED, Constants.WACK_MAX_ACCELERATION);
+        m_trajectory5 = PathPlanner.loadPath("4BallADE-5-Red", Constants.WACK_MAX_SPEED, Constants.WACK_MAX_ACCELERATION);
 
 
         var m_translationController = new PIDController(Constants.AUTO_P_X_CONTROLLER, 0, 0);
@@ -113,17 +110,6 @@ public class FourBallADERed extends SequentialCommandGroup {
             m_drivetrain::setModuleStates, 
             m_drivetrain);
 
-        PPSwerveControllerCommand m_trajectoryCommand6 = 
-            new PPSwerveControllerCommand(
-            m_trajectory6, 
-            m_drivetrain::getPose, 
-            Constants.swerveKinematics, 
-            m_translationController, 
-            m_strafeController, 
-            m_thetaController, 
-            m_drivetrain::setModuleStates, 
-            m_drivetrain);
-
         AutonShootAndFeed m_shootAndFeedA = new AutonShootAndFeed(m_shooter, m_feeder, Constants.FEEDER_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
         AutonShootAndFeed m_shootAndFeedDE = new AutonShootAndFeed(m_shooter, m_feeder, (Constants.FEEDER_TICKS * 2), Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
 
@@ -141,10 +127,7 @@ public class FourBallADERed extends SequentialCommandGroup {
                     m_shootAndFeedA,
                     new ParallelCommandGroup(m_trajectoryCommand3),
                     new ParallelCommandGroup(m_trajectoryCommand4, m_intakeDeployDE),
-                    /* m_trajectoryCommand5,
-                    new StopSwerve(m_drivetrain),
-                    new WaitCommand(0.5), */
-                    new ParallelCommandGroup(m_trajectoryCommand6, m_intakeRetractDE, new InstantCommand(() -> m_shooter.shoot(Constants.SHOOTER_TARGET_RPM))),
+                    new ParallelCommandGroup(m_trajectoryCommand5, m_intakeRetractDE, new InstantCommand(() -> m_shooter.shoot(Constants.SHOOTER_TARGET_RPM))),
                     new StopSwerve(m_drivetrain),
                     m_shootAndFeedDE,
                     new InstantCommand(() -> m_drivetrain.setGyro(339.44))

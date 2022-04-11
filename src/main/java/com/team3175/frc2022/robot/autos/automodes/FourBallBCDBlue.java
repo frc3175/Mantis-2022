@@ -96,7 +96,7 @@ public class FourBallBCDBlue extends SequentialCommandGroup {
             m_drivetrain::setModuleStates, 
             m_drivetrain);
 
-        AutonShootAndFeed m_shootAndFeedC = new AutonShootAndFeed(m_shooter, m_feeder, Constants.FIVE_BALL_FEEDER_TICKS, Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
+        AutonShootAndFeed m_shootAndFeedC = new AutonShootAndFeed(m_shooter, m_feeder, (Constants.FEEDER_TICKS), Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
         AutonShootAndFeed m_shootAndFeedBD = new AutonShootAndFeed(m_shooter, m_feeder, (Constants.FEEDER_TICKS * 2), Constants.SHOOTER_TARGET_RPM, Constants.FEEDER_PERCENT_OUTPUT);
 
         SetIntakeState m_intakeDeployC = new SetIntakeState(m_intake, m_actuators, "deploy", Constants.INTAKE_SPEED);

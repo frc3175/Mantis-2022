@@ -67,10 +67,9 @@ public class RobotContainer {
   /* Autos */
 
   //Basic 2 and 1 balls
-  private final Command m_twoBallA = new TwoBallA(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+  private final Command m_twoBallARed = new TwoBallARed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+  private final Command m_twoBallABlue = new TwoBallABlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
   private final Command m_oneBall = new OneBall(m_shooter, m_feeder, m_swerveDrivetrain);
-  private final Command m_twoBallB = new TwoBallB(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
-  private final Command m_twoBallC = new TwoBallC(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
 
   //Three balls
   private final Command m_threeBallBCBlue = new ThreeBallBCBlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
@@ -107,9 +106,8 @@ public class RobotContainer {
     /* Add all autons to AutoChooser */
     autoChooser = new SendableChooser<Command>();
     autoChooser.setDefaultOption("One Ball Auto", m_oneBall);
-    autoChooser.addOption("Two Ball A", m_twoBallA);
-    autoChooser.addOption("Two Ball B", m_twoBallB);
-    autoChooser.addOption("Two Ball C", m_twoBallC);
+    autoChooser.addOption("Two Ball A Red", m_twoBallARed);
+    autoChooser.addOption("Two Ball A Blue", m_twoBallABlue);
     autoChooser.addOption("Three Ball BC Red", m_threeBallBCRed);
     autoChooser.addOption("Three Ball BC Blue", m_threeBallBCBlue);
     autoChooser.addOption("Four Ball ADE (wack) Red", m_fourBallADERed);

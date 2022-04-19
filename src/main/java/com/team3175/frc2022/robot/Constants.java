@@ -148,7 +148,7 @@ public final class Constants {
     public static final boolean INVERT_LEFT_SHOOTER = true;
     public static final boolean INVERT_RIGHT_SHOOTER = false; 
     /* Shooter setpoint */
-    public static final double SHOOTER_TARGET_RPM = 2700;
+    public static final double SHOOTER_TARGET_RPM = 2600;
     public static final double SHOOTER_ERROR = 10; //allowable shooter error from setpoint to be "spun up"
 
     /*============================

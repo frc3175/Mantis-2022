@@ -39,7 +39,7 @@ public final class Constants {
     public static double FRONT_LEFT_OFFSET = 158.99;
     public static double FRONT_RIGHT_OFFSET = 69.43;
     public static double BACK_LEFT_OFFSET = 134.38;
-    public static double BACK_RIGHT_OFFSET = 225.17;
+    public static double BACK_RIGHT_OFFSET = 136.17;
 
     /* Azimuth reversed */
     public static boolean FRONT_LEFT_AZIMUTH_REVERSED = false;
@@ -57,7 +57,7 @@ public final class Constants {
     public static boolean FRONT_LEFT_CANCODER_REVERSED = false;
     public static boolean FRONT_RIGHT_CANCODER_REVERSED = false;
     public static boolean BACK_LEFT_CANCODER_REVERSED = false;
-    public static boolean BACK_RIGHT_CANCODER_REVERSED = true;
+    public static boolean BACK_RIGHT_CANCODER_REVERSED = false;
 
     /* Gyro reversed */
     public static final boolean INVERT_GYRO = false;

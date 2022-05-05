@@ -123,6 +123,11 @@ public final class CTREConfigs {
             Constants.INTAKE_PEAK_CURRENT_DURATION
         );
 
+        /*intakeFXConfig.slot0.kP = 0.01;
+        intakeFXConfig.slot0.kI = 0.0;
+        intakeFXConfig.slot0.kD = 0.01;
+        intakeFXConfig.slot0.kF = 100; */
+
         intakeFXConfig.supplyCurrLimit = intakeSupplyLimit;
 
         

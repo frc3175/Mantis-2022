@@ -136,9 +136,9 @@ public final class Constants {
     public static final double SHOOTER_F = 0.06;
 
     /* CTRE Configs */
-    public static final int SHOOTER_CONTINUOUS_CURRENT_LIMIT = 35;
+    public static final int SHOOTER_CONTINUOUS_CURRENT_LIMIT = 35; //35
     public static final int SHOOTER_PEAK_CURRENT_LIMIT = 60;
-    public static final double SHOOTER_PEAK_CURRENT_DURATION = 0.1;
+    public static final double SHOOTER_PEAK_CURRENT_DURATION = 0.1; //0.1
     public static final boolean SHOOTER_ENABLE_CURRENT_LIMIT = true;
 
     /* Shooter neutral mode */
@@ -206,7 +206,7 @@ public final class Constants {
     public static final int INTAKE_FALCON = 17;
 
     /* Intake CTRE Configs */
-    public static final int INTAKE_CONTINUOUS_CURRENT_LIMIT = 15;
+    public static final int INTAKE_CONTINUOUS_CURRENT_LIMIT = 15; //was 15
     public static final int INTAKE_PEAK_CURRENT_LIMIT = 20;
     public static final double INTAKE_PEAK_CURRENT_DURATION = 0.1;
     public static final boolean INTAKE_ENABLE_CURRENT_LIMIT = true;
@@ -219,7 +219,7 @@ public final class Constants {
     public static final NeutralMode INTAKE_NEUTRAL_MODE = NeutralMode.Brake;
 
     /* Intake speeds */
-    public static final double INTAKE_SPEED = 0.9;
+    public static final double INTAKE_SPEED = 0.9;//0.9
     public static final double OUTTAKE_SPEED = -0.9;
 
     /*============================

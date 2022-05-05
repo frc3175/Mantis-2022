@@ -90,6 +90,8 @@ public class RobotContainer {
   //Three ball gamer
   private final Command m_threeBallDEBlue = new ThreeBallDEBlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
   private final Command m_threeBallDERed = new ThreeBallDERed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+
+  private final Command m_defensiveTest = new DefensiveTest(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
   
 
   public RobotContainer(){
@@ -118,6 +120,7 @@ public class RobotContainer {
     autoChooser.addOption("Two Ball A Defense Blue", m_twoBallADefenseBlue);
     autoChooser.addOption("Three Ball DE (gamer) Red", m_threeBallDERed);
     autoChooser.addOption("Three Ball DE (gamer) Blue", m_threeBallDEBlue);
+    autoChooser.addOption("Defensive Test", m_defensiveTest);
     SmartDashboard.putData("Auto mode", autoChooser);
     
     /* Configure the button bindings */
@@ -151,6 +154,10 @@ public class RobotContainer {
     //Outtake -> X Button
     m_outtakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.OUTTAKE_SPEED, m_opController))
                   .whenReleased(new IntakeCargo(m_intake, 0, m_opController));
+
+    //Outtake Actuation -> X Button
+    m_outtakeCargo.whenPressed(new ActuateIntake(m_actuator))
+                  .whenReleased(new ActuateBack(m_actuator));
 
     //Shoot -> Left Bumper
     m_shootCargo.whenPressed(new ShootCargo(m_shooter, Constants.SHOOTER_TARGET_RPM, m_driverController, m_opController))

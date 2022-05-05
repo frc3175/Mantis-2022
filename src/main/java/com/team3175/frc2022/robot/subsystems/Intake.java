@@ -30,7 +30,6 @@ public class Intake extends SubsystemBase {
         } else {
             m_intakeFalcon.set(ControlMode.PercentOutput, 0);
         }
-
     }
 
     /**

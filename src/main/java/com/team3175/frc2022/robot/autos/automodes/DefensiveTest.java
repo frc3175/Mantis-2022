@@ -43,7 +43,7 @@ public class DefensiveTest extends SequentialCommandGroup {
         m_actuators = actuators;
         m_initialPose = new Pose2d(5.27, 4.40, Rotation2d.fromDegrees(0.00));
 
-        m_driveBack = PathPlanner.loadPath("DefensiveTest-1", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
+        m_driveBack = PathPlanner.loadPath("Path54321", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
         m_driveForward = PathPlanner.loadPath("Path12345", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
 
         var m_translationController = new PIDController(Constants.AUTO_P_X_CONTROLLER, 0, 0);
@@ -83,6 +83,7 @@ public class DefensiveTest extends SequentialCommandGroup {
                     new SetIntakeState(m_intake, m_actuators, "deploy", 0.1),
                     new WaitCommand(0.5),
                     m_driveForwardCommand,
+                    m_driveBackCommand,
                     new SetIntakeState(m_intake, m_actuators, "deploy reverse", 0.9));
 
     }

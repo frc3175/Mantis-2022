@@ -34,6 +34,7 @@ public class RobotContainer {
   /* Controllers */
   private final XboxController m_driverController = new XboxController(Constants.DRIVER_PORT);
   private final XboxController m_opController = new XboxController(Constants.OPERATOR_PORT);
+  private final XboxController m_testController = new XboxController(Constants.TEST_PORT);
 
   /* Drive Axes */
   private final int m_translationAxis = XboxController.Axis.kLeftY.value;
@@ -54,6 +55,24 @@ public class RobotContainer {
   private final JoystickButton m_unlockClimber = new JoystickButton(m_opController, XboxController.Button.kBack.value);
   private final JoystickButton m_passiveHooksUp = new JoystickButton(m_opController, XboxController.Button.kRightStick.value);
   private final JoystickButton m_passiveHooksDown = new JoystickButton(m_opController, XboxController.Button.kB.value);
+
+  /* Test Controller Buttons */
+  private final int m_testTranslationAxis = XboxController.Axis.kLeftY.value;
+  private final int m_testStrafeAxis = XboxController.Axis.kLeftX.value;
+  private final int m_testRotationAxis = XboxController.Axis.kRightX.value;
+
+  private final JoystickButton m_testZeroGyro = new JoystickButton(m_testController, XboxController.Button.kX.value);
+  private final JoystickButton m_testFeedShooter = new JoystickButton(m_testController, XboxController.Button.kA.value);
+
+  private final JoystickButton m_testIntakeCargo = new JoystickButton(m_testController, XboxController.Button.kY.value);
+  private final JoystickButton m_testOuttakeCargo = new JoystickButton(m_testController, XboxController.Button.kX.value);
+  private final JoystickButton m_testShootCargo = new JoystickButton(m_testController, XboxController.Button.kLeftBumper.value);
+  private final POVButton m_testClimbUp = new POVButton(m_testController, 0);
+  private final POVButton m_testClimbDown = new POVButton(m_testController, 180);
+  private final JoystickButton m_testLockClimber = new JoystickButton(m_testController, XboxController.Button.kStart.value);
+  private final JoystickButton m_testUnlockClimber = new JoystickButton(m_testController, XboxController.Button.kBack.value);
+  private final JoystickButton m_testPassiveHooksUp = new JoystickButton(m_testController, XboxController.Button.kRightStick.value);
+  private final JoystickButton m_testPassiveHooksDown = new JoystickButton(m_testController, XboxController.Button.kB.value);
 
   /* Subsystems */
   private final SwerveDrivetrain m_swerveDrivetrain = new SwerveDrivetrain();
@@ -140,9 +159,12 @@ public class RobotContainer {
 
     //Zero Gyro -> X Button
     m_zeroGyro.whenPressed(new InstantCommand(() -> m_swerveDrivetrain.resetGyro()));
+    m_testZeroGyro.whenPressed(new InstantCommand(() -> m_swerveDrivetrain.resetGyro()));
 
     //Feeder -> A Button
     m_feedShooter.whenPressed(new InstantCommand(() -> m_feeder.feederRunVelocity(Constants.TARGET_FEEDER_RPM)))
+                  .whenReleased(new InstantCommand(() -> m_feeder.feederRunPercentOutput(0)));
+    m_testFeedShooter.whenPressed(new InstantCommand(() -> m_feeder.feederRunVelocity(Constants.TARGET_FEEDER_RPM)))
                   .whenReleased(new InstantCommand(() -> m_feeder.feederRunPercentOutput(0)));
                   
     /* Operator Buttons */ 
@@ -150,42 +172,61 @@ public class RobotContainer {
     //Intake -> Y Button
     m_intakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.INTAKE_SPEED, m_opController))
                  .whenReleased(new IntakeCargo(m_intake, 0, m_opController));
+    m_testIntakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.INTAKE_SPEED, m_opController))
+                 .whenReleased(new IntakeCargo(m_intake, 0, m_opController));
 
     //Outtake -> X Button
     m_outtakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.OUTTAKE_SPEED, m_opController))
+                  .whenReleased(new IntakeCargo(m_intake, 0, m_opController));
+    m_testOuttakeCargo.whenPressed(new IntakeCargo(m_intake, Constants.OUTTAKE_SPEED, m_opController))
                   .whenReleased(new IntakeCargo(m_intake, 0, m_opController));
 
     //Outtake Actuation -> X Button
     m_outtakeCargo.whenPressed(new ActuateIntake(m_actuator))
                   .whenReleased(new ActuateBack(m_actuator));
+    m_testOuttakeCargo.whenPressed(new ActuateIntake(m_actuator))
+                  .whenReleased(new ActuateBack(m_actuator));
 
     //Shoot -> Left Bumper
     m_shootCargo.whenPressed(new ShootCargo(m_shooter, Constants.SHOOTER_TARGET_RPM, m_driverController, m_opController))
+                .whenReleased(new StopShooter(m_shooter, m_driverController, m_opController));
+    m_testShootCargo.whenPressed(new ShootCargo(m_shooter, Constants.SHOOTER_TARGET_RPM, m_driverController, m_opController))
                 .whenReleased(new StopShooter(m_shooter, m_driverController, m_opController));
 
     //Intake Actuation -> Linked to intake (Y Button)
     m_intakeCargo.whenPressed(new ActuateIntake(m_actuator))
                  .whenReleased(new ActuateBack(m_actuator));
+    m_testIntakeCargo.whenPressed(new ActuateIntake(m_actuator))
+                 .whenReleased(new ActuateBack(m_actuator));
 
     //Climber Up -> Dpad 0
     m_climbUp.whenPressed(new ClimbUp(m_climber, Conversions.climberInchesToEncoders(Constants.CLIMBER_UP_DISTANCE), Constants.CLIMBER_SPEED))
+             .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
+    m_testClimbUp.whenPressed(new ClimbUp(m_climber, Conversions.climberInchesToEncoders(Constants.CLIMBER_UP_DISTANCE), Constants.CLIMBER_SPEED))
              .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
 
     //Climber Down -> Dpad 180
     m_climbDown.whenHeld(new OverrideClimbDown(m_climber, Constants.CLIMBER_SPEED))
                        .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
+    m_testClimbDown.whenHeld(new OverrideClimbDown(m_climber, Constants.CLIMBER_SPEED))
+                       .whenReleased(new InstantCommand(() -> m_climber.overrideStop()));
 
     //Climber Lock -> Start Button
     m_lockClimber.whenPressed(new InstantCommand(() -> m_climber.lockPneumatics()));
+    m_testLockClimber.whenPressed(new InstantCommand(() -> m_climber.lockPneumatics()));
 
     //Climber Unlock -> Back Button
     m_unlockClimber.whenPressed(new InstantCommand(() -> m_climber.unlockPneumatics()));
+    m_testUnlockClimber.whenPressed(new InstantCommand(() -> m_climber.unlockPneumatics()));
 
     //Passive Hooks Release -> Right Joystick Button
     m_passiveHooksUp.whenPressed(new SetHookState(m_climber, "up"));
+    m_testPassiveHooksUp.whenPressed(new SetHookState(m_climber, "up"));
 
     //Passive Hooks Lock -> B Button
     m_passiveHooksDown.whenPressed(new SetHookState(m_climber, "down"));
+    m_testPassiveHooksDown.whenPressed(new SetHookState(m_climber, "down"));
+  
 
 
   }

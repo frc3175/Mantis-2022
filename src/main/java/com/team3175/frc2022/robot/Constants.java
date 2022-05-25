@@ -100,7 +100,7 @@ public final class Constants {
     public static final double AZIMUTH_GEAR_RATIO = (12.8 / 1.0); //12.8:1 from SDS
 
     /* Swerve Profiling Values */
-    public static final double MAX_SPEED = Units.feetToMeters(16.2); //meters per second (theoretical from SDS)
+    public static final double MAX_SPEED = (Units.feetToMeters(16.2)*0.25); //meters per second (theoretical from SDS)
     public static final double MAX_ANGULAR_VELOCITY = Math.PI * 4.12; //radians per second (theoretical calculation)
     public static final double TURN_IN_PLACE_SPEED = 0.5;
     public static final double A_RATE_LIMITER = 2.0; //Slew Rate Limiter Constant
@@ -289,6 +289,7 @@ public final class Constants {
     public static final double STICK_DEADBAND = 0.1;
     public static final int DRIVER_PORT = 0;
     public static final int OPERATOR_PORT = 1;
+    public static final int TEST_PORT = 2;
     public static final double OP_RUMBLE_PERCENT = 0.4;
     public static final double DRIVER_RUMBLE_PERCENT = 0.4;
     public static final RumbleType DRIVER_RUMBLE_LEFT = RumbleType.kLeftRumble;

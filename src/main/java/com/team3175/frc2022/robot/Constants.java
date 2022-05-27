@@ -289,7 +289,7 @@ public final class Constants {
     public static final double STICK_DEADBAND = 0.1;
     public static final int DRIVER_PORT = 0;
     public static final int OPERATOR_PORT = 1;
-    public static final int TEST_PORT = 2;
+    public static final int TEST_PORT = 5;
     public static final double OP_RUMBLE_PERCENT = 0.4;
     public static final double DRIVER_RUMBLE_PERCENT = 0.4;
     public static final RumbleType DRIVER_RUMBLE_LEFT = RumbleType.kLeftRumble;

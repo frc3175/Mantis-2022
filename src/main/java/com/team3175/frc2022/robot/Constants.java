@@ -100,7 +100,7 @@ public final class Constants {
     public static final double AZIMUTH_GEAR_RATIO = (12.8 / 1.0); //12.8:1 from SDS
 
     /* Swerve Profiling Values */
-    public static final double MAX_SPEED = (Units.feetToMeters(16.2)*0.25); //meters per second (theoretical from SDS)
+    public static final double MAX_SPEED = (Units.feetToMeters(16.2)); //meters per second (theoretical from SDS)
     public static final double MAX_ANGULAR_VELOCITY = Math.PI * 4.12; //radians per second (theoretical calculation)
     public static final double TURN_IN_PLACE_SPEED = 0.5;
     public static final double A_RATE_LIMITER = 2.0; //Slew Rate Limiter Constant
@@ -148,7 +148,7 @@ public final class Constants {
     public static final boolean INVERT_LEFT_SHOOTER = true;
     public static final boolean INVERT_RIGHT_SHOOTER = false; 
     /* Shooter setpoint */
-    public static final double SHOOTER_TARGET_RPM = 2800;
+    public static final double SHOOTER_TARGET_RPM = 2750;
     
     public static final double SHOOTER_ERROR = 10; //allowable shooter error from setpoint to be "spun up"
 

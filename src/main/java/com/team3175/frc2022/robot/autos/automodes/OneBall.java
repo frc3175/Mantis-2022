@@ -15,6 +15,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
@@ -59,6 +60,7 @@ public class OneBall extends SequentialCommandGroup {
         addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(m_initialPose)),
                     m_spinUp,
                     m_shootAndFeed,
+                    new WaitCommand(2.0),
                     m_driveBackCommand,
                     new StopSwerve(m_drivetrain),
                     new InstantCommand(() -> m_drivetrain.setGyro(339.44)));

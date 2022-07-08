@@ -66,9 +66,7 @@ public class RobotContainer {
 
   /* Autos */
 
-  //Basic 2 and 1 balls
-  private final Command m_twoBallARed = new TwoBallARed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
-  private final Command m_twoBallABlue = new TwoBallABlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+  //Basic 1 ball
   private final Command m_oneBall = new OneBall(m_shooter, m_feeder, m_swerveDrivetrain);
 
   //Three balls
@@ -83,17 +81,17 @@ public class RobotContainer {
   private final Command m_fourBallBCDBlue = new FourBallBCDBlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
   private final Command m_fourBallBCDRed = new FourBallBCDRed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
 
-  //Two ball defense
-  private final Command m_twoBallADefenseBlue = new TwoBallADefenseBlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
-  private final Command m_twoBallADefenseRed = new TwoBallADefenseRed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
-
   //Three ball gamer
   private final Command m_threeBallDEBlue = new ThreeBallDEBlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
   private final Command m_threeBallDERed = new ThreeBallDERed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
 
-  //Two ball defense intake
+  //Two ball defensive
   private final Command m_twoBallADefenseIntakeBlue = new TwoBallADefenseIntakeBlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
   private final Command m_twoBallADefenseIntakeRed = new TwoBallADefenseIntakeRed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+
+  //One ball defensive
+  private final Command m_oneBallDefenseBlue = new OneBallDefenseBlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+  private final Command m_oneBallDefenseRed = new OneBallDefenseRed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
   
 
   public RobotContainer(){
@@ -110,20 +108,18 @@ public class RobotContainer {
     /* Add all autons to AutoChooser */
     autoChooser = new SendableChooser<Command>();
     autoChooser.setDefaultOption("One Ball Auto", m_oneBall);
-    autoChooser.addOption("Two Ball A Red", m_twoBallARed);
-    autoChooser.addOption("Two Ball A Blue", m_twoBallABlue);
     autoChooser.addOption("Three Ball BC Red", m_threeBallBCRed);
     autoChooser.addOption("Three Ball BC Blue", m_threeBallBCBlue);
     autoChooser.addOption("Four Ball ADE (wack) Red", m_fourBallADERed);
     autoChooser.addOption("Four Ball ADE (wack) Blue", m_fourBallADEBlue);
     autoChooser.addOption("Four Ball BCD (terminal) Red", m_fourBallBCDRed);
     autoChooser.addOption("Four Ball BCD (terminal) Blue", m_fourBallBCDBlue);
-    autoChooser.addOption("Two Ball A Defense (shooter) Red", m_twoBallADefenseRed);
-    autoChooser.addOption("Two Ball A Defense (shooter) Blue", m_twoBallADefenseBlue);
     autoChooser.addOption("Three Ball DE (gamer) Red", m_threeBallDERed);
     autoChooser.addOption("Three Ball DE (gamer) Blue", m_threeBallDEBlue);
     autoChooser.addOption("Two Ball A Defense (intake) Blue", m_twoBallADefenseIntakeBlue);
     autoChooser.addOption("Two Ball A Defense (intake) Red", m_twoBallADefenseIntakeRed);
+    autoChooser.addOption("One Ball Defense Blue", m_oneBallDefenseBlue);
+    autoChooser.addOption("One Ball Defense Red", m_oneBallDefenseRed);
     SmartDashboard.putData("Auto mode", autoChooser);
     
     /* Configure the button bindings */

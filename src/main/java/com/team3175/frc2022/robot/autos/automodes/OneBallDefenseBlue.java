@@ -69,9 +69,9 @@ public class OneBallDefenseBlue extends SequentialCommandGroup {
                     m_spinUp,
                     m_shootAndFeed,
                     new WaitCommand(6.0),
-                    new ParallelCommandGroup(m_driveCommand, new SetIntakeState(m_intake, m_actuators, "deploy", Constants.INTAKE_SPEED)),
+                    new ParallelCommandGroup(m_driveCommand, new SetIntakeState(m_intake, m_actuators, "deploy", 0.1)),
                     new StopSwerve(m_drivetrain),
-                    new SetIntakeState(m_intake, m_actuators, "deploy reverse", 0.1),
+                    new SetIntakeState(m_intake, m_actuators, "deploy reverse", 0.9),
                     new InstantCommand(() -> m_drivetrain.setGyro(117.35)));
 
     }

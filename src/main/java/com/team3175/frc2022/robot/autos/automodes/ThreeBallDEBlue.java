@@ -111,6 +111,7 @@ public class ThreeBallDEBlue extends SequentialCommandGroup {
                     new InstantCommand(() -> m_feeder.resetEncoders()),
                     m_spinUp1,
                     m_shootAndFeed1,
+                    new WaitCommand(1.0),
                     new ParallelCommandGroup(m_trajectoryCommand),
                     new ParallelCommandGroup(m_trajectoryCommand2, m_intakeDeploy),
                     new ParallelCommandGroup(m_trajectoryCommand3),

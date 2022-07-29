@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
-public class OneBallDefenseBlue extends SequentialCommandGroup {
+public class OneBallDefenseHubBlue extends SequentialCommandGroup {
 
     private Shooter m_shooter;
     private Feeder m_feeder;
@@ -33,7 +33,7 @@ public class OneBallDefenseBlue extends SequentialCommandGroup {
     private PathPlannerTrajectory m_driveBack;
     private Pose2d m_initialPose;
 
-    public OneBallDefenseBlue(Shooter shooter, Feeder feeder, Intake intake, Actuators actuators, SwerveDrivetrain drivetrain) {
+    public OneBallDefenseHubBlue(Shooter shooter, Feeder feeder, Intake intake, Actuators actuators, SwerveDrivetrain drivetrain) {
 
         m_shooter = shooter;
         m_feeder = feeder;
@@ -42,7 +42,7 @@ public class OneBallDefenseBlue extends SequentialCommandGroup {
         m_actuators = actuators;
         m_initialPose = new Pose2d(7.11, 4.57, Rotation2d.fromDegrees(-20.56));
 
-        m_driveBack = PathPlanner.loadPath("OneBallDefense-1-Blue", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
+        m_driveBack = PathPlanner.loadPath("1Ball-Defense-1-Hub-Blue", Constants.AUTO_MAX_SPEED, Constants.AUTO_MAX_ACCELERATION_MPS_SQUARED);
 
         var m_translationController = new PIDController(Constants.AUTO_P_X_CONTROLLER, 0, 0);
         var m_strafeController = new PIDController(Constants.AUTO_P_Y_CONTROLLER, 0, 0);
@@ -68,10 +68,10 @@ public class OneBallDefenseBlue extends SequentialCommandGroup {
         addCommands(new InstantCommand(() -> m_drivetrain.resetOdometry(m_initialPose)),
                     m_spinUp,
                     m_shootAndFeed,
-                    new WaitCommand(6.0),
+                    new WaitCommand(1.0),
                     new ParallelCommandGroup(m_driveCommand, new SetIntakeState(m_intake, m_actuators, "deploy", 0.1)),
                     new StopSwerve(m_drivetrain),
-                    new SetIntakeState(m_intake, m_actuators, "deploy reverse", 0.9),
+                    new SetIntakeState(m_intake, m_actuators, "deploy reverse", 0.2),
                     new InstantCommand(() -> m_drivetrain.setGyro(117.35)));
 
     }

@@ -89,9 +89,13 @@ public class RobotContainer {
   private final Command m_twoBallADefenseIntakeBlue = new TwoBallADefenseIntakeBlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
   private final Command m_twoBallADefenseIntakeRed = new TwoBallADefenseIntakeRed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
 
-  //One ball defensive
-  private final Command m_oneBallDefenseBlue = new OneBallDefenseBlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
-  private final Command m_oneBallDefenseRed = new OneBallDefenseRed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+  //One ball defensive hangar
+  private final Command m_oneBallDefenseHangarBlue = new OneBallDefenseHangarBlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+  private final Command m_oneBallDefenseHangarRed = new OneBallDefenseHangarRed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+
+  //One ball defensive hub
+  private final Command m_oneBallDefenseHubBlue = new OneBallDefenseHubBlue(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
+  private final Command m_oneBallDefenseHubRed = new OneBallDefenseHubRed(m_shooter, m_feeder, m_intake, m_actuator, m_swerveDrivetrain);
   
 
   public RobotContainer(){
@@ -116,10 +120,12 @@ public class RobotContainer {
     autoChooser.addOption("Four Ball BCD (terminal) Blue", m_fourBallBCDBlue);
     autoChooser.addOption("Three Ball DE (gamer) Red", m_threeBallDERed);
     autoChooser.addOption("Three Ball DE (gamer) Blue", m_threeBallDEBlue);
-    autoChooser.addOption("Two Ball A Defense (intake) Blue", m_twoBallADefenseIntakeBlue);
-    autoChooser.addOption("Two Ball A Defense (intake) Red", m_twoBallADefenseIntakeRed);
-    autoChooser.addOption("One Ball Defense Blue", m_oneBallDefenseBlue);
-    autoChooser.addOption("One Ball Defense Red", m_oneBallDefenseRed);
+    autoChooser.addOption("Two Ball A Defense Blue", m_twoBallADefenseIntakeBlue);
+    autoChooser.addOption("Two Ball A Defense Red", m_twoBallADefenseIntakeRed);
+    autoChooser.addOption("One Ball Defense Hangar Blue", m_oneBallDefenseHangarBlue);
+    autoChooser.addOption("One Ball Defense Hangar Red", m_oneBallDefenseHangarRed);
+    autoChooser.addOption("One Ball Defense Hub Blue", m_oneBallDefenseHubBlue);
+    autoChooser.addOption("One Ball Defense Hub Red", m_oneBallDefenseHubRed);
     SmartDashboard.putData("Auto mode", autoChooser);
     
     /* Configure the button bindings */

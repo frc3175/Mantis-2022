@@ -112,10 +112,10 @@ public class RobotContainer {
     /* Add all autons to AutoChooser */
     autoChooser = new SendableChooser<Command>();
     autoChooser.setDefaultOption("One Ball Auto", m_oneBall);
-    autoChooser.addOption("Three Ball BC Red", m_threeBallBCRed);
-    autoChooser.addOption("Three Ball BC Blue", m_threeBallBCBlue);
-    autoChooser.addOption("Four Ball ADE (wack) Red", m_fourBallADERed);
-    autoChooser.addOption("Four Ball ADE (wack) Blue", m_fourBallADEBlue);
+    //autoChooser.addOption("Three Ball BC Red (regular 3 ball)", m_threeBallBCRed);
+    //autoChooser.addOption("Three Ball BC Blue (regular 3 ball)", m_threeBallBCBlue);
+    //autoChooser.addOption("Four Ball ADE (wack) Red", m_fourBallADERed);
+    //autoChooser.addOption("Four Ball ADE (wack) Blue", m_fourBallADEBlue);
     autoChooser.addOption("Four Ball BCD (terminal) Red", m_fourBallBCDRed);
     autoChooser.addOption("Four Ball BCD (terminal) Blue", m_fourBallBCDBlue);
     autoChooser.addOption("Three Ball DE (gamer) Red", m_threeBallDERed);
@@ -124,8 +124,8 @@ public class RobotContainer {
     autoChooser.addOption("Two Ball A Defense Red", m_twoBallADefenseIntakeRed);
     autoChooser.addOption("One Ball Defense Hangar Blue", m_oneBallDefenseHangarBlue);
     autoChooser.addOption("One Ball Defense Hangar Red", m_oneBallDefenseHangarRed);
-    autoChooser.addOption("One Ball Defense Hub Blue", m_oneBallDefenseHubBlue);
-    autoChooser.addOption("One Ball Defense Hub Red", m_oneBallDefenseHubRed);
+    //autoChooser.addOption("One Ball Defense Hub Blue", m_oneBallDefenseHubBlue);
+    //autoChooser.addOption("One Ball Defense Hub Red", m_oneBallDefenseHubRed);
     SmartDashboard.putData("Auto mode", autoChooser);
     
     /* Configure the button bindings */

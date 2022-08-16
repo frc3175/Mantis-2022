@@ -23,7 +23,7 @@ public final class Constants {
 
     public static final int BACK_RIGHT_DRIVE = 13; //Happy
     public static final int BACK_RIGHT_ENCODER = 4; //Bre
-    public static final int BACK_RIGHT_AZIMUTH = 14; //Samuel
+    public static final int BACK_RIGHT_AZIMUTH = 17; //Samuel
 
     public static final int FRONT_RIGHT_DRIVE = 11; //Keith
     public static final int FRONT_RIGHT_ENCODER = 7; //Freddy Mercury
@@ -203,7 +203,7 @@ public final class Constants {
     ==============================*/
 
     /* CAN ID */
-    public static final int INTAKE_FALCON = 17;
+    public static final int INTAKE_FALCON = 14;
 
     /* Intake CTRE Configs */
     public static final int INTAKE_CONTINUOUS_CURRENT_LIMIT = 15; //was 15

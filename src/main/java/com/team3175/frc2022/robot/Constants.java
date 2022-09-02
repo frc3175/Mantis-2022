@@ -25,13 +25,13 @@ public final class Constants {
     public static final int BACK_RIGHT_ENCODER = 4; //Bre
     public static final int BACK_RIGHT_AZIMUTH = 17; //Samuel
 
-    public static final int FRONT_RIGHT_DRIVE = 11; //Keith
-    public static final int FRONT_RIGHT_ENCODER = 7; //Freddy Mercury
-    public static final int FRONT_RIGHT_AZIMUTH = 9; //Beth
+    public static final int FRONT_RIGHT_DRIVE = 8; //Keith
+    public static final int FRONT_RIGHT_ENCODER = 10; //Freddy Mercury
+    public static final int FRONT_RIGHT_AZIMUTH = 6; //Beth
 
-    public static final int FRONT_LEFT_DRIVE = 8; //Chad
-    public static final int FRONT_LEFT_ENCODER = 10; //Jonathan 
-    public static final int FRONT_LEFT_AZIMUTH = 6; //Geraldine
+    public static final int FRONT_LEFT_DRIVE = 11; //Chad
+    public static final int FRONT_LEFT_ENCODER = 7; //Jonathan 
+    public static final int FRONT_LEFT_AZIMUTH = 9; //Geraldine
 
     public static final int PIGEON = 21;
 

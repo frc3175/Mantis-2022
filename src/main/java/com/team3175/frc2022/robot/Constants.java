@@ -36,10 +36,10 @@ public final class Constants {
     public static final int PIGEON = 21;
 
     /* CANCoder offsets */
-    public static double FRONT_LEFT_OFFSET = 158.99;
-    public static double FRONT_RIGHT_OFFSET = 69.43;
-    public static double BACK_LEFT_OFFSET = 134.38;
-    public static double BACK_RIGHT_OFFSET = 136.17;
+    public static double FRONT_LEFT_OFFSET = 338.64;
+    public static double FRONT_RIGHT_OFFSET = 247.06;
+    public static double BACK_LEFT_OFFSET = 136.23;
+    public static double BACK_RIGHT_OFFSET = 133.06;
 
     /* Azimuth reversed */
     public static boolean FRONT_LEFT_AZIMUTH_REVERSED = false;

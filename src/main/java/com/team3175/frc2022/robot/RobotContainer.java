@@ -40,6 +40,8 @@ public class RobotContainer {
   private final int m_strafeAxis = XboxController.Axis.kLeftX.value;
   private final int m_rotationAxis = XboxController.Axis.kRightX.value;
 
+  private final int m_slowMaxAxis = XboxController.Axis.kRightTrigger.value;
+
   /* Driver Buttons */
   private final JoystickButton m_zeroGyro = new JoystickButton(m_driverController, XboxController.Button.kX.value);
   private final JoystickButton m_feedShooter = new JoystickButton(m_driverController, XboxController.Button.kA.value);
@@ -101,10 +103,10 @@ public class RobotContainer {
   public RobotContainer(){
 
     /* Set Drive as default command*/
-    boolean fieldRelative = true; //TODO: MAKE THIS TRUE
+    boolean fieldRelative = false; //TODO: MAKE THIS TRUE
     boolean openLoop = true;
     m_swerveDrivetrain.setDefaultCommand(new SwerveDrive(m_swerveDrivetrain, 
-      m_driverController, m_translationAxis, m_strafeAxis, m_rotationAxis, fieldRelative, openLoop));
+      m_driverController, m_opController, m_translationAxis, m_strafeAxis, m_rotationAxis, m_slowMaxAxis, fieldRelative, openLoop));
 
     /* Initialize diagnostics subystem */
     m_diagnostics = new Diagnostics(m_swerveDrivetrain, m_climber, m_intake, m_feeder, m_shooter, m_actuator);
@@ -190,7 +192,7 @@ public class RobotContainer {
     m_passiveHooksUp.whenPressed(new SetHookState(m_climber, "up"));
 
     //Passive Hooks Lock -> B Button
-    m_passiveHooksDown.whenPressed(new SetHookState(m_climber, "down"));
+    m_passiveHooksDown.whenPressed(new SetHookState(m_climber, "down")); 
 
 
   }

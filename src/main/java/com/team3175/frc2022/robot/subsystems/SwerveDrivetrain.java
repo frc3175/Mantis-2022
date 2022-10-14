@@ -223,6 +223,12 @@ public class SwerveDrivetrain extends SubsystemBase {
 
     }
 
+    //This doesnt do anything it's just funny
+
+    public void makeMaxSlow() {
+
+    }
+
     /**
      * 
      * Optimizes the holonomic rotation of the robot

@@ -79,7 +79,7 @@ public class SwerveDrive extends CommandBase {
         double xAxisFiltered = m_xAxisARateLimiter.calculate(xAxisSquared);
 
         /* Input variables into drive methods */
-        m_translation = new Translation2d(yAxisFiltered, xAxisFiltered).times(Constants.MAX_SPEED); //TODO: return this to normal by removing 0.4
+        m_translation = new Translation2d(yAxisFiltered, xAxisFiltered).times(Constants.MAX_SPEED);
         m_rotation = rAxisSquared * Constants.MAX_ANGULAR_VELOCITY * 0.5;
         m_swerveDrivetrain.drive(m_translation, m_rotation, m_fieldRelative, m_openLoop);
 
